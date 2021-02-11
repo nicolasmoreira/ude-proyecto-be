@@ -2,6 +2,8 @@ package com.ude.proyecto.websocket;
 
 import java.io.EOFException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -18,7 +20,7 @@ import com.google.gson.JsonObject;
 @ServerEndpoint(value = "/websocket")
 public class WebSocketServer {
 
-	private static final ConcurrentHashMap<String, Session> sessions = new ConcurrentHashMap<>();
+	private static final Map<String, Session> sessions = new HashMap<String, Session>();	
 
 	private static void broadcastAll(String msg) throws IOException {
 		for (Entry<String, Session> s : sessions.entrySet()) {
