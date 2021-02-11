@@ -1,6 +1,7 @@
 # Project UDE Game - Backend
 
 ### Installation from Eclipse:
+- Create a DB on MySQL local server
 - Run As -> Maven install
 - Run As -> Run on Server
 

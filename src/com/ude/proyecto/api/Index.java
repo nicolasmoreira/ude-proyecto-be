@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.JsonObject;
 
 @WebServlet("/rest")
-
 public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	JsonObject json = new JsonObject();
