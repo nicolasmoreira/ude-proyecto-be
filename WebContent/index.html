@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Server test</title>
+</head>
+<body>
+	<script>
+		var ws = null;
+
+		function connect() {
+			ws = new WebSocket("ws://localhost:8080/JuegoServer/websocket");
+
+			ws.onopen = function(message) {
+				console.log("Connection: " + message);
+			};
+			ws.onmessage = function(message) {
+				console.log("Mssg: " + message);
+				console.log(message);
+			};
+
+			ws.onclose = function(message) {
+				console.log("Closing: " + message);
+			};
+
+			ws.onerror = function(message) {
+				console.log("Error: " + message);
+			};
+		}
+
+		function send() {
+			var text = document.getElementById('text').value;
+			ws.send(text);
+		}
+
+		function close() {
+			ws.close();
+		}
+	</script>
+	<div>
+		<h1>Test websocket server</h1>
+		<input id="text" placeholder="Message..." />
+		<button onclick="connect()">Connect</button>
+		<button onclick="send()">Send</button>
+		<button onclick="close()">Close</button>
+	</div>
+</body>
+</html>
