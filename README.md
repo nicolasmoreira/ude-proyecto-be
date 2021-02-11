@@ -2,6 +2,7 @@
 
 ### Installation from Eclipse:
 - Create a DB on MySQL local server
+- File -> Import... and under General use Projects from Folder or Archive
 - Run As -> Maven install
 - Run As -> Run on Server
 
