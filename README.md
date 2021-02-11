@@ -1,6 +1,9 @@
-# Prototipo
-Prototipo para el proyecto 2021 UDE
+# Project UDE Game - Backend
 
+## Installation from Eclipse:
+### Run As -> Maven install
+### Run As -> Run on Server
 
-Para actualizar el codigo:
-CLICK DERECHO EN EL PROYECTO EN ECLIPSE -> TEAM -> COMMIT
+## Test
+### Test API REST: http://localhost:8080/JuegoServer/rest
+### Test WebSocket: http://localhost:8080/JuegoServer/
