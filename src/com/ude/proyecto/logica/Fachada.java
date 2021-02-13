@@ -1,80 +1,97 @@
 package com.ude.proyecto.logica;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.rmi.RemoteException;
+import java.io.InputStream;
 import java.util.Properties;
 
-import com.ude.proyecto.logica.objetos.Avion;
-import com.ude.proyecto.logica.vo.VOAvion;
-import com.ude.proyecto.persistencia.PersistenciaException;
-import com.ude.proyecto.persistencia.daos.DAOAviones;
-import com.ude.proyecto.persistencia.poolConexiones.IConexion;
-import com.ude.proyecto.persistencia.poolConexiones.IPoolConexiones;
+import com.google.gson.JsonObject;
+import com.ude.proyecto.logica.colecciones.Aviones;
+import com.ude.proyecto.logica.colecciones.Jugadores;
+import com.ude.proyecto.logica.entidades.Avion;
+import com.ude.proyecto.logica.entidades.Jugador;
+import com.ude.proyecto.logica.entidades.Partida;
+import com.ude.proyecto.persistencia.daos.DAOJugadores;
+import com.ude.proyecto.persistencia.daos.DAOPartidas;
 
 public class Fachada {
 
-	// private Avion p;
-	// private IConexion icon;
-	private IPoolConexiones ipool;
+	private static Fachada fachada;
 
-	public Fachada() throws RemoteException {
+	public static Fachada getInstanceFachada() {
+		if (fachada == null) {
+			fachada = new Fachada();
+		}
+		return fachada;
+	}
+
+	private DAOJugadores daoJugadores;
+	private DAOPartidas daoPartidas;
+
+	private Partida partida;
+
+	private Fachada() {
+		partida = new Partida();
 		Properties p = new Properties();
-		String nomArch = "config.properties";
+		InputStream input = null;
+
 		try {
-			p.load(new FileInputStream(nomArch));
-			String driver = p.getProperty("driver");
+			input = getClass().getClassLoader().getResourceAsStream("resources/config.properties");
+			p.load(input);
+
+			String driver = p.getProperty("db_driver");
+			String host = p.getProperty("db_server");
+			String port = p.getProperty("db_port");
+			String database = p.getProperty("db_database");
+
+			String url = "jdbc:mysql://" + host + ":" + port + "/" + database;
+			String user = p.getProperty("db_user");
+			String password = p.getProperty("db_password");
+
 			Class.forName(driver);
-			String poolConcreto = p.getProperty("nombreClase");
-			ipool = (IPoolConexiones) Class.forName(poolConcreto).newInstance();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
+
+			daoJugadores = new DAOJugadores(url, user, password);
+			daoPartidas = new DAOPartidas(url, user, password);
+		} catch (Exception e) {
+			System.out.println("Exception creando fachada");
 			e.printStackTrace();
 		}
-	}
-
-	public void borrar(VOAvion voP) {
 
 	}
 
-	public VOAvion darCoordenadasOrigen(String cod) throws PersistenciaException {
-		// cod = "Matias-2"; //lo cambio a fuego
-		String msgError = null;
-		IConexion icon = null;
-		// boolean noExisteAvion = false;
-		VOAvion voavion = null;
-		try {
-			icon = ipool.obtenerConexion(true);
+	public JsonObject crearPartida(String player, int tamanioEscenarioX, int tamanioEscenarioY) throws Exception {
 
-			DAOAviones DAOA = new DAOAviones();
-			Avion avion = DAOA.find(icon, cod);
+		JsonObject json = new JsonObject();
 
-			// System.out.println(" error " + avion.toString());
+		Avion v1 = null, v2 = null;
 
-			if (avion != null) {
-				voavion = new VOAvion(avion.getCoordX(), avion.getCoordY(), avion.hayColision());
-			} else {
-				// noExisteAvion = true;
-				msgError = "Avion no existe";
-			}
-			ipool.liberarConexion(icon, true);
+		if (player.equals("player1")) {
 
-		} catch (PersistenciaException e) {
-			System.out.println(" error " + e.darMensaje());
-			throw new PersistenciaException(msgError);
+			v1 = new Avion(1, 1, 1);
+			v2 = new Avion(2, 2, 2);
+
+		} else if (player.equals("player2")) {
+
+			v1 = new Avion(4, 4, 4);
+			v2 = new Avion(5, 5, 5);
+
 		}
 
-		return voavion;
+		Aviones aviones = new Aviones();
+		aviones.put(v1);
+		aviones.put(v2);
 
-	}
+		Jugador jugador = new Jugador(1, player, aviones);
 
-	public boolean hayColision(VOAvion voPA, VOAvion voPB) {
-		return false;
+		Jugadores jugadores = partida.getJugadores();
+		jugadores.put(jugador);
+
+		partida.setJugadores(jugadores);
+		partida.setTamanioEscenarioX(tamanioEscenarioX);
+		partida.setTamanioEscenarioY(tamanioEscenarioY);
+
+		json.addProperty("mensaje", "OK");
+
+		return json;
+
 	}
 
 }

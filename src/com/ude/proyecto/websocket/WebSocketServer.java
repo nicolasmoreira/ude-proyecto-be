@@ -16,25 +16,15 @@ import javax.websocket.server.ServerEndpoint;
 
 import com.google.gson.JsonObject;
 
-
 @ServerEndpoint(value = "/websocket")
 public class WebSocketServer {
-	
-	private static final int MIN_SESSIONS = 2;
 
 	private enum EVENTS {
-		MOVIMIENTO_AVION("movimientoAvion"), 
-		MOVIMIENTO_TORRETA("movimientoTorreta"), 
-		DISPARO_AVION("disparoAvion"),
-		DISPARO_TORRETA("disparoTorreta"), 
-		PARTIDA_FINALIZADA("partidaFinalizada"), 
-		PARTIDA_INICIADA("partidaIniciada"),
-		PARTIDA_DETENIDA("partidaDetenida"), 
-		PARTIDA_REANUDADA("partidaReanudada"),
-		COLISION_ENTRE_AVIONES("colisionEntreAviones"), 
-		CARGA_COMBUSTIBLE("cargaCombustible"),
-		AVION_DERRIBADO("avionDerribado"), 
-		SALIR("salir");
+		AVION_DERRIBADO("avionDerribado"), CARGA_COMBUSTIBLE("cargaCombustible"),
+		COLISION_ENTRE_AVIONES("colisionEntreAviones"), DISPARO_AVION("disparoAvion"),
+		DISPARO_TORRETA("disparoTorreta"), MOVIMIENTO_AVION("movimientoAvion"), MOVIMIENTO_TORRETA("movimientoTorreta"),
+		PARTIDA_DETENIDA("partidaDetenida"), PARTIDA_FINALIZADA("partidaFinalizada"),
+		PARTIDA_INICIADA("partidaIniciada"), PARTIDA_REANUDADA("partidaReanudada"), SALIR("salir");
 
 		private String event;
 
@@ -46,6 +36,8 @@ public class WebSocketServer {
 			return this.event;
 		}
 	}
+
+	private static final int MIN_SESSIONS = 2;
 
 	private static final Map<String, Session> sessions = new HashMap<String, Session>();
 
@@ -90,34 +82,34 @@ public class WebSocketServer {
 
 	@OnMessage
 	public void onMessage(String message, Session session) throws Exception {
-		if (EVENTS.MOVIMIENTO_AVION.equals(message)) {		
-			
-		} else if(EVENTS.MOVIMIENTO_TORRETA.equals(message)) {
-			
-		} else if(EVENTS.DISPARO_AVION.equals(message)) {
-			
-		} else if(EVENTS.DISPARO_TORRETA.equals(message)) {
-			
-		} else if(EVENTS.PARTIDA_FINALIZADA.equals(message)) {
-			
-		} else if(EVENTS.PARTIDA_INICIADA.equals(message)) {
-			
-		} else if(EVENTS.PARTIDA_DETENIDA.equals(message)) {
-			
-		} else if(EVENTS.PARTIDA_REANUDADA.equals(message)) {
-			
-		} else if(EVENTS.COLISION_ENTRE_AVIONES.equals(message)) {
-			
-		} else if(EVENTS.CARGA_COMBUSTIBLE.equals(message)) {
-			
-		} else if(EVENTS.AVION_DERRIBADO.equals(message)) {
-			
-		} else if(EVENTS.SALIR.equals(message)) {
-			
+		if (EVENTS.MOVIMIENTO_AVION.equals(message)) {
+
+		} else if (EVENTS.MOVIMIENTO_TORRETA.equals(message)) {
+
+		} else if (EVENTS.DISPARO_AVION.equals(message)) {
+
+		} else if (EVENTS.DISPARO_TORRETA.equals(message)) {
+
+		} else if (EVENTS.PARTIDA_FINALIZADA.equals(message)) {
+
+		} else if (EVENTS.PARTIDA_INICIADA.equals(message)) {
+
+		} else if (EVENTS.PARTIDA_DETENIDA.equals(message)) {
+
+		} else if (EVENTS.PARTIDA_REANUDADA.equals(message)) {
+
+		} else if (EVENTS.COLISION_ENTRE_AVIONES.equals(message)) {
+
+		} else if (EVENTS.CARGA_COMBUSTIBLE.equals(message)) {
+
+		} else if (EVENTS.AVION_DERRIBADO.equals(message)) {
+
+		} else if (EVENTS.SALIR.equals(message)) {
+
 		} else {
 			throw new Exception("Event not implemented.");
 		}
-		
+
 		broadcastAll(message);
 	}
 
