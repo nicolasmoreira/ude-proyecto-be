@@ -14,7 +14,9 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.ude.proyecto.logica.Fachada;
 
 @ServerEndpoint(value = "/websocket")
 public class WebSocketServer {
@@ -41,13 +43,13 @@ public class WebSocketServer {
 
 	private static final Map<String, Session> sessions = new HashMap<String, Session>();
 
-	private static void broadcastAll(String msg) throws IOException {
+	private void broadcastAll(String msg) throws IOException {
 		for (Entry<String, Session> s : sessions.entrySet()) {
 			s.getValue().getBasicRemote().sendText(msg);
 		}
 	}
 
-	private static void broadcastOne(String msg, Session session) throws IOException {
+	private void broadcastOne(String msg, Session session) throws IOException {
 		for (Entry<String, Session> s : sessions.entrySet()) {
 			if (s.getValue().getId() != session.getId()) {
 				s.getValue().getBasicRemote().sendText(msg);
@@ -82,35 +84,44 @@ public class WebSocketServer {
 
 	@OnMessage
 	public void onMessage(String message, Session session) throws Exception {
-		if (EVENTS.MOVIMIENTO_AVION.equals(message)) {
 
-		} else if (EVENTS.MOVIMIENTO_TORRETA.equals(message)) {
+		String json = message;
+		JsonObject jsonObject = new Gson().fromJson(json, JsonObject.class);
+		String event = jsonObject.get("event").getAsString();
+		Fachada fachada = Fachada.getInstanceFachada();
+		
+		System.out.println(event);
 
-		} else if (EVENTS.DISPARO_AVION.equals(message)) {
+		if (EVENTS.MOVIMIENTO_AVION.getValue().equals(event)) {
+			this.broadcastOne(message, session);
 
-		} else if (EVENTS.DISPARO_TORRETA.equals(message)) {
+		} else if (EVENTS.MOVIMIENTO_TORRETA.getValue().equals(event)) {
 
-		} else if (EVENTS.PARTIDA_FINALIZADA.equals(message)) {
+		} else if (EVENTS.DISPARO_AVION.getValue().equals(event)) {
 
-		} else if (EVENTS.PARTIDA_INICIADA.equals(message)) {
+		} else if (EVENTS.DISPARO_TORRETA.getValue().equals(event)) {
 
-		} else if (EVENTS.PARTIDA_DETENIDA.equals(message)) {
+		} else if (EVENTS.PARTIDA_FINALIZADA.getValue().equals(event)) {
 
-		} else if (EVENTS.PARTIDA_REANUDADA.equals(message)) {
+		} else if (EVENTS.PARTIDA_INICIADA.getValue().equals(event)) {
 
-		} else if (EVENTS.COLISION_ENTRE_AVIONES.equals(message)) {
+		} else if (EVENTS.PARTIDA_DETENIDA.getValue().equals(event)) {
 
-		} else if (EVENTS.CARGA_COMBUSTIBLE.equals(message)) {
+		} else if (EVENTS.PARTIDA_REANUDADA.getValue().equals(event)) {
 
-		} else if (EVENTS.AVION_DERRIBADO.equals(message)) {
+		} else if (EVENTS.COLISION_ENTRE_AVIONES.getValue().equals(event)) {
 
-		} else if (EVENTS.SALIR.equals(message)) {
+		} else if (EVENTS.CARGA_COMBUSTIBLE.getValue().equals(event)) {
+
+		} else if (EVENTS.AVION_DERRIBADO.getValue().equals(event)) {
+
+		} else if (EVENTS.SALIR.getValue().equals(event)) {
 
 		} else {
 			throw new Exception("Event not implemented.");
 		}
 
-		broadcastAll(message);
+		
 	}
 
 	@OnOpen

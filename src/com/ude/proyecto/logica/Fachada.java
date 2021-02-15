@@ -34,7 +34,7 @@ public class Fachada {
 		InputStream input = null;
 
 		try {
-			input = getClass().getClassLoader().getResourceAsStream("resources/config.properties");
+			/*input = getClass().getClassLoader().getResourceAsStream("resources/config.properties");
 			p.load(input);
 
 			String driver = p.getProperty("db_driver");
@@ -49,7 +49,7 @@ public class Fachada {
 			Class.forName(driver);
 
 			daoJugadores = new DAOJugadores(url, user, password);
-			daoPartidas = new DAOPartidas(url, user, password);
+			daoPartidas = new DAOPartidas(url, user, password);*/
 		} catch (Exception e) {
 			System.out.println("Exception creando fachada");
 			e.printStackTrace();
