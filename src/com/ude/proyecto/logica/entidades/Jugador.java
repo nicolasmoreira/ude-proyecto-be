@@ -1,50 +1,82 @@
 package com.ude.proyecto.logica.entidades;
 
+import com.ude.proyecto.logica.colecciones.Artillerias;
 import com.ude.proyecto.logica.colecciones.Aviones;
 
 public class Jugador {
+	
+	private int idJugador;
+	private String nombre;
+	private Provision depositoCombustible;
+	private Provision depositoExplosivos;
+	private Defensa torreta;
+	private Artillerias JArtillerias;
+	private Aviones Javiones;
 
-	private Aviones aviones;
-	int id;
-	private String player;
 
-	public Jugador() {
-		aviones = new Aviones();
+	public Jugador(int idJugador, String nombre) {
+		super();
+		this.idJugador = idJugador;
+		this.nombre = nombre;
 	}
 
-	public Jugador(int id, String player, Aviones aviones) {
-		this.id = id;
-		this.player = player;
-		this.aviones = aviones;
+	public int getIdJugador() {
+		return idJugador;
 	}
 
-	public Aviones getAviones() {
-		return aviones;
+	public void setIdJugador(int idJugador) {
+		this.idJugador = idJugador;
 	}
 
-	public int getId() {
-		return id;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public String getPlayer() {
-		return player;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public void setAviones(Aviones aviones) {
-		this.aviones = aviones;
+	public Provision getDepositoCombustible() {
+		return depositoCombustible;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setDepositoCombustible(Provision depositoCombustible) {
+		this.depositoCombustible = depositoCombustible;
 	}
 
-	public void setPlayer(String player) {
-		this.player = player;
+	public Provision getDepositoExplosivos() {
+		return depositoExplosivos;
 	}
 
-	@Override
-	public String toString() {
-		return String.valueOf(id) + ", " + player;
+	public void setDepositoExplosivos(Provision depositoExplosivos) {
+		this.depositoExplosivos = depositoExplosivos;
 	}
 
+	public Defensa getTorreta() {
+		return torreta;
+	}
+
+	public void setTorreta(Defensa torreta) {
+		this.torreta = torreta;
+	}
+
+	public Artillerias getJArtillerias() {
+		return JArtillerias;
+	}
+
+	public void setJArtillerias(Artillerias jArtillerias) {
+		JArtillerias = jArtillerias;
+	}
+
+	public Aviones getJaviones() {
+		return Javiones;
+	}
+
+	public void setJaviones(Aviones javiones) {
+		Javiones = javiones;
+	}
+	
+	
+
+	
 }

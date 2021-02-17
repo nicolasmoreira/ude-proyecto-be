@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ude.proyecto.logica.entidades.Partida;
-
 public class DAOPartidas {
 
 	private String password;
@@ -64,7 +62,7 @@ public class DAOPartidas {
 
 		return lista;
 	}
-
+/*
 	public Partida getPartida() throws SQLException {
 
 		Connection con = DriverManager.getConnection(url, user, password);
@@ -130,5 +128,5 @@ public class DAOPartidas {
 		con.close();
 
 	}
-
+*/
 }

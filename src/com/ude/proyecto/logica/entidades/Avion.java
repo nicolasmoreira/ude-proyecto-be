@@ -1,46 +1,82 @@
 package com.ude.proyecto.logica.entidades;
 
-public class Avion {
+public class Avion extends Componente{
+	
+	private boolean altitudAlta;
+	private boolean tieneBomba;
+	private float barraCombustible;
+	private float rangoDisparo;
+	private boolean enfocado;
+	private Proyectil bomba;
+	private Proyectil municion;
 
-	private int id;
-	private float x;
-	private float y;
-
-	public Avion(float x, float y) {
-		super();
-		this.x = x;
-		this.y = y;
+	public Avion(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY, int vida, String sprite,
+			String sonido, boolean altitudAlta, boolean tieneBomba, float barraCombustible, float rangoDisparo,
+			boolean enfocado, Proyectil bomba, Proyectil municion) {
+		super(idComponente, tipoComponente, ubicacionX, ubicacionY, vida, sprite, sonido);
+		this.altitudAlta = altitudAlta;
+		this.tieneBomba = tieneBomba;
+		this.barraCombustible = barraCombustible;
+		this.rangoDisparo = rangoDisparo;
+		this.enfocado = enfocado;
+		this.bomba = bomba;
+		this.municion = municion;
 	}
 
-	public Avion(int id, float x, float y) {
-		super();
-		this.id = id;
-		this.x = x;
-		this.y = y;
+	public boolean isAltitudAlta() {
+		return altitudAlta;
 	}
 
-	public int getId() {
-		return id;
+	public void setAltitudAlta(boolean altitudAlta) {
+		this.altitudAlta = altitudAlta;
 	}
 
-	public float getX() {
-		return x;
+	public boolean isTieneBomba() {
+		return tieneBomba;
 	}
 
-	public float getY() {
-		return y;
+	public void setTieneBomba(boolean tieneBomba) {
+		this.tieneBomba = tieneBomba;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public float getBarraCombustible() {
+		return barraCombustible;
 	}
 
-	public void setX(float x) {
-		this.x = x;
+	public void setBarraCombustible(float barraCombustible) {
+		this.barraCombustible = barraCombustible;
 	}
 
-	public void setY(float y) {
-		this.y = y;
+	public float getRangoDisparo() {
+		return rangoDisparo;
 	}
 
+	public void setRangoDisparo(float rangoDisparo) {
+		this.rangoDisparo = rangoDisparo;
+	}
+
+	public boolean isEnfocado() {
+		return enfocado;
+	}
+
+	public void setEnfocado(boolean enfocado) {
+		this.enfocado = enfocado;
+	}
+
+	public Proyectil getBomba() {
+		return bomba;
+	}
+
+	public void setBomba(Proyectil bomba) {
+		this.bomba = bomba;
+	}
+
+	public Proyectil getMunicion() {
+		return municion;
+	}
+
+	public void setMunicion(Proyectil municion) {
+		this.municion = municion;
+	}
+	
 }

@@ -3,20 +3,20 @@ package com.ude.proyecto.logica.entidades;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.ude.proyecto.logica.colecciones.Jugadores;
+import com.ude.proyecto.logica.colecciones.JugadoresOLD;
 
-public class Partida {
+public class PartidaOLD {
 
 	private int id;
-	private Jugadores jugadores;
+	private JugadoresOLD jugadores;
 	private int tamanioEscenarioX;
 	private int tamanioEscenarioY;
 
-	public Partida() {
-		this.jugadores = new Jugadores();
+	public PartidaOLD() {
+		this.jugadores = new JugadoresOLD();
 	}
 
-	public Partida(int id, int tiempo, int pecesRestantes) {
+	public PartidaOLD(int id, int tiempo, int pecesRestantes) {
 
 		try {
 			Properties p = new Properties();
@@ -26,7 +26,7 @@ public class Partida {
 			p.load(input);
 
 			this.id = id;
-			this.jugadores = new Jugadores();
+			this.jugadores = new JugadoresOLD();
 			this.tamanioEscenarioX = Integer.parseInt(p.getProperty("width"));
 			this.tamanioEscenarioY = Integer.parseInt(p.getProperty("height"));
 
@@ -41,7 +41,7 @@ public class Partida {
 		return id;
 	}
 
-	public Jugadores getJugadores() {
+	public JugadoresOLD getJugadores() {
 		return jugadores;
 	}
 
@@ -57,7 +57,7 @@ public class Partida {
 		this.id = id;
 	}
 
-	public void setJugadores(Jugadores jugadores) {
+	public void setJugadores(JugadoresOLD jugadores) {
 		this.jugadores = jugadores;
 	}
 

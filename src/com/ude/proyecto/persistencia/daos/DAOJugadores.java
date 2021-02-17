@@ -36,7 +36,7 @@ public class DAOJugadores {
 		pstmt.close();
 		con.close();
 	}
-
+/*
 	public Jugador getJugador(int id) throws SQLException {
 
 		Connection con = DriverManager.getConnection(url, user, password);
@@ -100,5 +100,5 @@ public class DAOJugadores {
 		pstmt.close();
 		con.close();
 	}
-
+*/
 }

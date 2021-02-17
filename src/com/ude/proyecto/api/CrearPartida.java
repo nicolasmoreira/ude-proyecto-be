@@ -39,7 +39,7 @@ public class CrearPartida extends HttpServlet {
 				prop.load(input);
 
 				Fachada fachada = Fachada.getInstanceFachada();
-				json = fachada.crearPartida(player, 1, 1);
+				//json = fachada.Partida(player, 1, 1);
 			} else {
 				json.addProperty("mensaje", "Debe elegir un Player de jugador.");
 				response.setStatus(500);
