@@ -9,8 +9,6 @@ import com.ude.proyecto.logica.colecciones.JugadoresOLD;
 import com.ude.proyecto.logica.entidades.AvionOLD;
 import com.ude.proyecto.logica.entidades.JugadorOLD;
 import com.ude.proyecto.logica.entidades.PartidaOLD;
-import com.ude.proyecto.persistencia.daos.DAOJugadores;
-import com.ude.proyecto.persistencia.daos.DAOPartidas;
 
 public class FachadaOLD {
 
@@ -23,8 +21,8 @@ public class FachadaOLD {
 		return fachada;
 	}
 
-	private DAOJugadores daoJugadores;
-	private DAOPartidas daoPartidas;
+	//private DAOJugadores daoJugadores;
+	//private DAOPartidas daoPartidas;
 
 	private PartidaOLD partida;
 
