@@ -5,9 +5,9 @@ public class Provision extends Componente {
 	private String tipoProvision;
 	private float cantProvision;
 
-	public Provision(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY, int vida,
+	public Provision(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY,float rotacion, int vida,
 			String sprite, String sonido, String tipoProvision, float cantProvision) {
-		super(idComponente, tipoComponente, ubicacionX, ubicacionY, vida, sprite, sonido);
+		super(idComponente, tipoComponente, ubicacionX, ubicacionY,rotacion, vida, sprite, sonido);
 		this.tipoProvision = tipoProvision;
 		this.cantProvision = cantProvision;
 	}

@@ -10,7 +10,7 @@ public abstract class Componente {
 	private String sprite;
 	private String sonido;
 
-	public Componente(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY, int vida,
+	public Componente(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY,float rotacion, int vida,
 			String sprite, String sonido) {
 		super();
 		this.idComponente = idComponente;
@@ -54,6 +54,14 @@ public abstract class Componente {
 	public void setUbicacionY(float ubicacionY) {
 		this.ubicacionY = ubicacionY;
 	}
+	
+	public float getRotacion() {
+		return rotacion;
+	}
+
+	public void setRotacion(float rotacion) {
+		this.rotacion = rotacion;
+	}
 
 	public int getVida() {
 		return vida;
@@ -69,14 +77,6 @@ public abstract class Componente {
 
 	public void setSprite(String sprite) {
 		this.sprite = sprite;
-	}
-
-	public float getRotacion() {
-		return rotacion;
-	}
-
-	public void setRotacion(float rotacion) {
-		this.rotacion = rotacion;
 	}
 
 	public String getSonido() {

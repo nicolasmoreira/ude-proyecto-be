@@ -7,9 +7,9 @@ public class Defensa extends Componente {
 	private float demoraDesplazamiento;
 	private Proyectil municion;
 
-	public Defensa(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY, int vida, String sprite,
+	public Defensa(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY,float rotacion, int vida, String sprite,
 			String sonido, String tipoDefensa, float rangoDisparo, float demoraDesplazamiento, Proyectil municion) {
-		super(idComponente, tipoComponente, ubicacionX, ubicacionY, vida, sprite, sonido);
+		super(idComponente, tipoComponente, ubicacionX, ubicacionY,rotacion, vida, sprite, sonido);
 		this.tipoDefensa = tipoDefensa;
 		this.rangoDisparo = rangoDisparo;
 		this.demoraDesplazamiento = demoraDesplazamiento;

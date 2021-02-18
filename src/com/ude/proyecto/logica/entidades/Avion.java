@@ -10,10 +10,10 @@ public class Avion extends Componente {
 	private Proyectil bomba;
 	private Proyectil municion;
 
-	public Avion(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY, int vida, String sprite,
+	public Avion(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY,float rotacion, int vida, String sprite,
 			String sonido, boolean altitudAlta, boolean tieneBomba, float barraCombustible, float rangoDisparo,
 			boolean enfocado, Proyectil bomba, Proyectil municion) {
-		super(idComponente, tipoComponente, ubicacionX, ubicacionY, vida, sprite, sonido);
+		super(idComponente, tipoComponente, ubicacionX, ubicacionY,rotacion, vida, sprite, sonido);
 		this.altitudAlta = altitudAlta;
 		this.tieneBomba = tieneBomba;
 		this.barraCombustible = barraCombustible;

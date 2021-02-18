@@ -5,9 +5,9 @@ public class Proyectil extends Componente {
 	private String tipoProyectil;
 	private int cantidad;
 
-	public Proyectil(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY, int vida,
+	public Proyectil(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY,float rotacion, int vida,
 			String sprite, String sonido, String tipoProyectil, int cantidad) {
-		super(idComponente, tipoComponente, ubicacionX, ubicacionY, vida, sprite, sonido);
+		super(idComponente, tipoComponente, ubicacionX, ubicacionY,rotacion, vida, sprite, sonido);
 		this.tipoProyectil = tipoProyectil;
 		this.cantidad = cantidad;
 	}
