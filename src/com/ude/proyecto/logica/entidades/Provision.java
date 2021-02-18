@@ -1,7 +1,7 @@
 package com.ude.proyecto.logica.entidades;
 
-public class Provision extends Componente{
-	
+public class Provision extends Componente {
+
 	private String tipoProvision;
 	private float cantProvision;
 

@@ -25,23 +25,22 @@ public class JugadoresOLD {
 		return diccionario.get(nick);
 	}
 	/*
-	public JsonArray getASJson() {
-
-		JsonArray result = new JsonArray();
-
-		for (Entry<String, JugadorOLD> jugador : diccionario.entrySet()) {
-			JsonObject json = new JsonObject();
-
-			json.addProperty("player", this.get(jugador.getKey()).getPlayer());
-			json.add("aviones", this.get(jugador.getKey()).getAviones().getASJson());
-
-			result.add(json);
-
-		}
-
-		return result;
-	}
-	*/
+	 * public JsonArray getASJson() {
+	 * 
+	 * JsonArray result = new JsonArray();
+	 * 
+	 * for (Entry<String, JugadorOLD> jugador : diccionario.entrySet()) { JsonObject
+	 * json = new JsonObject();
+	 * 
+	 * json.addProperty("player", this.get(jugador.getKey()).getPlayer());
+	 * json.add("aviones", this.get(jugador.getKey()).getAviones().getASJson());
+	 * 
+	 * result.add(json);
+	 * 
+	 * }
+	 * 
+	 * return result; }
+	 */
 
 	public boolean isEmpty() {
 		return diccionario.isEmpty();

@@ -4,7 +4,7 @@ import com.ude.proyecto.logica.colecciones.Artillerias;
 import com.ude.proyecto.logica.colecciones.Aviones;
 
 public class Jugador {
-	
+
 	private int idJugador;
 	private String nombre;
 	private Provision depositoCombustible;
@@ -12,7 +12,6 @@ public class Jugador {
 	private Defensa torreta;
 	private Artillerias JArtillerias;
 	private Aviones Javiones;
-
 
 	public Jugador(int idJugador, String nombre) {
 		super();
@@ -75,8 +74,5 @@ public class Jugador {
 	public void setJaviones(Aviones javiones) {
 		Javiones = javiones;
 	}
-	
-	
 
-	
 }

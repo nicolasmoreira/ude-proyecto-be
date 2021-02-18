@@ -3,14 +3,14 @@ package com.ude.proyecto.logica.entidades;
 import com.ude.proyecto.logica.colecciones.Jugadores;
 
 public class Combate {
-	
+
 	private int idCombate;
 	private String nombrePartida;
 	private Jugadores combateJugadores;
 	private String fondoImagen;
 	private int tamanioAlto;
 	private int tamanioAncho;
-	
+
 	public Combate(int idCombate, String nombrePartida, String fondoImagen, int tamanioAlto, int tamanioAncho) {
 		super();
 		this.idCombate = idCombate;

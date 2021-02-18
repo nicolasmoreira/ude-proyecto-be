@@ -1,12 +1,12 @@
 package com.ude.proyecto.logica.entidades;
 
-public class Defensa extends Componente{
-	
+public class Defensa extends Componente {
+
 	private String tipoDefensa;
 	private float rangoDisparo;
 	private float demoraDesplazamiento;
 	private Proyectil municion;
-	
+
 	public Defensa(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY, int vida, String sprite,
 			String sonido, String tipoDefensa, float rangoDisparo, float demoraDesplazamiento, Proyectil municion) {
 		super(idComponente, tipoComponente, ubicacionX, ubicacionY, vida, sprite, sonido);
@@ -47,6 +47,5 @@ public class Defensa extends Componente{
 	public void setMunicion(Proyectil municion) {
 		this.municion = municion;
 	}
-	
-	
+
 }

@@ -21,8 +21,8 @@ public class FachadaOLD {
 		return fachada;
 	}
 
-	//private DAOJugadores daoJugadores;
-	//private DAOPartidas daoPartidas;
+	// private DAOJugadores daoJugadores;
+	// private DAOPartidas daoPartidas;
 
 	private PartidaOLD partida;
 
@@ -32,22 +32,24 @@ public class FachadaOLD {
 		InputStream input = null;
 
 		try {
-			/*input = getClass().getClassLoader().getResourceAsStream("resources/config.properties");
-			p.load(input);
-
-			String driver = p.getProperty("db_driver");
-			String host = p.getProperty("db_server");
-			String port = p.getProperty("db_port");
-			String database = p.getProperty("db_database");
-
-			String url = "jdbc:mysql://" + host + ":" + port + "/" + database;
-			String user = p.getProperty("db_user");
-			String password = p.getProperty("db_password");
-
-			Class.forName(driver);
-
-			daoJugadores = new DAOJugadores(url, user, password);
-			daoPartidas = new DAOPartidas(url, user, password);*/
+			/*
+			 * input =
+			 * getClass().getClassLoader().getResourceAsStream("resources/config.properties"
+			 * ); p.load(input);
+			 * 
+			 * String driver = p.getProperty("db_driver"); String host =
+			 * p.getProperty("db_server"); String port = p.getProperty("db_port"); String
+			 * database = p.getProperty("db_database");
+			 * 
+			 * String url = "jdbc:mysql://" + host + ":" + port + "/" + database; String
+			 * user = p.getProperty("db_user"); String password =
+			 * p.getProperty("db_password");
+			 * 
+			 * Class.forName(driver);
+			 * 
+			 * daoJugadores = new DAOJugadores(url, user, password); daoPartidas = new
+			 * DAOPartidas(url, user, password);
+			 */
 		} catch (Exception e) {
 			System.out.println("Exception creando fachada");
 			e.printStackTrace();
@@ -74,8 +76,8 @@ public class FachadaOLD {
 		}
 
 		Aviones aviones = new Aviones();
-		//aviones.put(v1);
-		//aviones.put(v2);
+		// aviones.put(v1);
+		// aviones.put(v2);
 
 		JugadorOLD jugador = new JugadorOLD(1, player, aviones);
 

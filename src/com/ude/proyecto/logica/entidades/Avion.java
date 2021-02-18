@@ -1,7 +1,7 @@
 package com.ude.proyecto.logica.entidades;
 
-public class Avion extends Componente{
-	
+public class Avion extends Componente {
+
 	private boolean altitudAlta;
 	private boolean tieneBomba;
 	private float barraCombustible;
@@ -78,5 +78,5 @@ public class Avion extends Componente{
 	public void setMunicion(Proyectil municion) {
 		this.municion = municion;
 	}
-	
+
 }

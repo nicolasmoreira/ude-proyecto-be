@@ -50,9 +50,11 @@ public class WebSocketServer {
 	}
 
 	private void broadcastOne(String msg, Session session) throws IOException {
+		//System.out.println(msg);
 		for (Entry<String, Session> s : sessions.entrySet()) {
 			if (s.getValue().getId() != session.getId()) {
 				s.getValue().getBasicRemote().sendText(msg);
+				//System.out.println("Va bala:" + msg);
 			}
 		}
 	}
@@ -61,6 +63,7 @@ public class WebSocketServer {
 	public void onClose(CloseReason reason, Session session) {
 		System.out.println("Cerrando la sessions: " + session.getId() + ", motivo: " + reason.getReasonPhrase());
 		System.out.println("Cantidad de sessions: " + sessions.size());
+		sessions.remove(session.getId());
 	}
 
 	@OnError
@@ -89,11 +92,19 @@ public class WebSocketServer {
 		JsonObject jsonObject = new Gson().fromJson(json, JsonObject.class);
 		String event = jsonObject.get("event").getAsString();
 		Fachada fachada = Fachada.getInstanceFachada();
-		
-		System.out.println(event);
+
 
 		if (EVENTS.MOVIMIENTO_AVION.getValue().equals(event)) {
 			this.broadcastOne(message, session);
+			
+			//System.out.println(jsonObject.get("data").getAsJsonArray());
+
+			/*
+			 * { "idComponente": 1, "tipoComponente": "avion", "ubicacionX": 1,
+			 * "ubicacionY": 1, "rotacion": 1, "vida": 100, "sprite": "ASDADASDAD", "sonido": "ASDADASDAD",
+			 * "altitudAlta": false, "tieneBomba": false, "barraCombustible": 100,
+			 * "rangoDisparo": 100, "enfocado": true }
+			 */
 
 		} else if (EVENTS.MOVIMIENTO_TORRETA.getValue().equals(event)) {
 
@@ -121,7 +132,6 @@ public class WebSocketServer {
 			throw new Exception("Event not implemented.");
 		}
 
-		
 	}
 
 	@OnOpen

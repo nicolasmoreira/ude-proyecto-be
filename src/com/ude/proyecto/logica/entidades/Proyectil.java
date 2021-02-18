@@ -1,6 +1,6 @@
 package com.ude.proyecto.logica.entidades;
 
-public class Proyectil extends Componente{
+public class Proyectil extends Componente {
 
 	private String tipoProyectil;
 	private int cantidad;
@@ -27,5 +27,5 @@ public class Proyectil extends Componente{
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	
+
 }
