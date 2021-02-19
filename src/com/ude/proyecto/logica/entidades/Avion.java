@@ -9,10 +9,11 @@ public class Avion extends Componente {
 	private boolean enfocado;
 	private Proyectil bomba;
 	private Proyectil municion;
+	private String spritesLaterales;
 
 	public Avion(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY,float rotacion, int vida, String sprite,
 			String sonido, boolean altitudAlta, boolean tieneBomba, float barraCombustible, float rangoDisparo,
-			boolean enfocado, Proyectil bomba, Proyectil municion) {
+			boolean enfocado, Proyectil bomba, Proyectil municion, String spritesLaterales) {
 		super(idComponente, tipoComponente, ubicacionX, ubicacionY,rotacion, vida, sprite, sonido);
 		this.altitudAlta = altitudAlta;
 		this.tieneBomba = tieneBomba;
@@ -21,6 +22,7 @@ public class Avion extends Componente {
 		this.enfocado = enfocado;
 		this.bomba = bomba;
 		this.municion = municion;
+		this.spritesLaterales = spritesLaterales;
 	}
 
 	public boolean isAltitudAlta() {
@@ -77,6 +79,14 @@ public class Avion extends Componente {
 
 	public void setMunicion(Proyectil municion) {
 		this.municion = municion;
+	}
+
+	public String getSpritesLaterales() {
+		return spritesLaterales;
+	}
+
+	public void setSpritesLaterales(String spritesLaterales) {
+		this.spritesLaterales = spritesLaterales;
 	}
 
 }
