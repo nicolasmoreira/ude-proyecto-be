@@ -30,7 +30,9 @@ public class Combate {
 		try {
 			//input = getClass().getClassLoader().getResourceAsStream("resources/config.properties");			
 			//p.load(input);
-
+			
+			//System.out.println(p.toString());
+			
 			//Combate combate = new Combate(idCombate, nombrePartida, fondoImagen, 600, 800);
 			this.nombrePartida =  p.getProperty("nombrePartida"); // "Fondo1";
 			this.fondoImagen   =  p.getProperty("fondoImagen"); // "Fondo1";

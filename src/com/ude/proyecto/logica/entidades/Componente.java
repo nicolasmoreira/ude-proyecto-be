@@ -40,8 +40,9 @@ public abstract class Componente {
 		this.idComponente = Componente.idAutonumerico ++;		
 		this.tipoComponente = tipoComponente;
 		
-		this.rotacion = Integer.parseInt(p.getProperty(tipoComponente + "Rotacion")); // 0;
-		   this.vida = Integer.parseInt(p.getProperty(tipoComponente + "Vida"));//1;
+		this.rotacion = Float.parseFloat(p.getProperty(tipoComponente.trim().toLowerCase() + "Rotacion")); // 0;
+		this.vida = Integer.parseInt(p.getProperty(tipoComponente.trim().toLowerCase() + "Vida"));//1;
+		
 //		/*
 //		switch(tipoComponente)
 //		{

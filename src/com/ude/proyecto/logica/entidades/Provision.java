@@ -38,12 +38,12 @@ public class Provision extends Componente {
 				
 		//combustible o explosivos
 		if (tipProv == "Combustible") {			
-			this.cantProvision = Integer.parseInt(p.getProperty("cantProvisionCombustible"));
+			this.cantProvision = Float.parseFloat(p.getProperty("cantProvisionCombustible"));
 			this.setSprite(p.getProperty("SpDepositoCombustible"));
 			this.setSonido(p.getProperty("SdDepositoCombustible"));
 		}		
 		else {			
-			this.cantProvision = Integer.parseInt(p.getProperty("cantProvisionExplosivos"));
+			this.cantProvision = Float.parseFloat(p.getProperty("cantProvisionExplosivos"));
 			this.setSprite(p.getProperty("SpDepositoExplosivos"));
 			this.setSonido(p.getProperty("SdDepositoExplosivos"));
 		}
