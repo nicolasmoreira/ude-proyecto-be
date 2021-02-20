@@ -3,8 +3,12 @@ package com.ude.proyecto.logica;
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.entidades.Combate;
+import com.ude.proyecto.persistencia.daos.DAOCombate;
+
+
 
 public class Fachada {
 
@@ -45,7 +49,26 @@ public class Fachada {
 	}
 
 	public JsonObject iniciarPartida() throws Exception {
-		return null;
+		JsonObject json = new JsonObject();
+		Gson gson = new Gson();
+		Properties p = new Properties();
+		InputStream input = null;
+		try {
+			input = getClass().getClassLoader().getResourceAsStream("config.properties");			
+			p.load(input);
+			
+			//System.out.println(p.toString());
+			combate = new Combate(p);//le paso la properties para crear la primer partida						
+			
+			gson.toJson(combate); //no se pasa asi nomas a json, hay que meterle che
+			
+		} catch (Exception e) {
+			System.out.println("Exception creando combate");
+			e.printStackTrace();
+		}			
+		System.out.println(combate.getCombateJugadores().find(1).getNombre());
+		System.out.println(combate.getCombateJugadores().find(1).getDepositoCombustible().getSprite());
+		return json;
 	}
 
 	public JsonObject unirsePartida() throws Exception {

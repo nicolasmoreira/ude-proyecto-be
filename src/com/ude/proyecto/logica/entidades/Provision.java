@@ -1,5 +1,7 @@
 package com.ude.proyecto.logica.entidades;
 
+import java.util.Properties;
+
 public class Provision extends Componente {
 
 	private String tipoProvision;
@@ -27,4 +29,38 @@ public class Provision extends Componente {
 	public void setCantProvision(float cantProvision) {
 		this.cantProvision = cantProvision;
 	}
+	
+	/*aca creo los por defecto*/	
+	public Provision(String tipProv, Properties p) {//provision 
+		super("Provision", p);
+				
+		this.tipoProvision = tipProv;
+				
+		//combustible o explosivos
+		if (tipProv == "Combustible") {			
+			this.cantProvision = Float.parseFloat(p.getProperty("cantProvisionCombustible"));
+			this.setSprite(p.getProperty("SpDepositoCombustible"));
+			this.setSonido(p.getProperty("SdDepositoCombustible"));
+		}		
+		else {			
+			this.cantProvision = Float.parseFloat(p.getProperty("cantProvisionExplosivos"));
+			this.setSprite(p.getProperty("SpDepositoExplosivos"));
+			this.setSonido(p.getProperty("SdDepositoExplosivos"));
+		}
+				
+		
+		this.setUbicacionX(100);
+		this.setUbicacionY(100);
+			
+		/*aca crear un iniciador por defecto de combustible (lo brinda el componente)*/
+		/*
+		this.setIdComponente(1);
+		//this.setTipoProvision("COMBUSTIBLE");
+		this.setRotacion(0);
+		this.setVida(1);		
+		
+		*/
+		//this.setTipoComponente(tipComp);
+	}	
+	
 }
