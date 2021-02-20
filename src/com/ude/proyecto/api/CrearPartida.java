@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.Fachada;
 
@@ -40,6 +41,9 @@ public class CrearPartida extends HttpServlet {
 
 				Fachada fachada = Fachada.getInstanceFachada();
 				// json = fachada.Partida(player, 1, 1);
+				Gson gson = new Gson();
+				gson = fachada.iniciarPartida();
+				//out.print(gson.toString());
 			} else {
 				json.addProperty("mensaje", "Debe elegir un Player de jugador.");
 				response.setStatus(500);
