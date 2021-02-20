@@ -35,21 +35,18 @@ public class CrearPartida extends HttpServlet {
 		try {
 			
 			Fachada fachada = Fachada.getInstanceFachada();
-			// json = fachada.Partida(player, 1, 1);
-			//Gson gson = new Gson();
-			fachada.iniciarPartida();
-			
-			player = request.getParameter("player");
+						
+			player = "player 1"; // a fuego por ahora
+					
+			//player = request.getParameter("player");
 
 			if (player != null) {
-				input = getClass().getClassLoader().getResourceAsStream("resources/config.properties");
+				input = getClass().getClassLoader().getResourceAsStream("config.properties");
 				prop.load(input);
 
 				fachada = Fachada.getInstanceFachada();
-				// json = fachada.Partida(player, 1, 1);
-				//gson = new Gson();
-				//gson = 
-				fachada.iniciarPartida();
+				
+				json = fachada.iniciarPartida();
 				//out.print(gson.toString());
 			} else {
 				json.addProperty("mensaje", "Debe elegir un Player de jugador.");
