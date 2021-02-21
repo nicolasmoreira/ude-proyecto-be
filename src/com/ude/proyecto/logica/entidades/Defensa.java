@@ -1,5 +1,7 @@
 package com.ude.proyecto.logica.entidades;
 
+import java.util.Properties;
+
 public class Defensa extends Componente {
 
 	private String tipoDefensa;
@@ -7,6 +9,10 @@ public class Defensa extends Componente {
 	private float demoraDesplazamiento;
 	private Proyectil municion;
 
+	public Defensa() {
+		super();
+	}
+	
 	public Defensa(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY,float rotacion, int vida, String sprite,
 			String sonido, String tipoDefensa, float rangoDisparo, float demoraDesplazamiento, Proyectil municion) {
 		super(idComponente, tipoComponente, ubicacionX, ubicacionY,rotacion, vida, sprite, sonido);
@@ -14,6 +20,18 @@ public class Defensa extends Componente {
 		this.rangoDisparo = rangoDisparo;
 		this.demoraDesplazamiento = demoraDesplazamiento;
 		this.municion = municion;
+	}
+	
+	public Defensa(String tipoDefensa, Properties p) {
+		super("Defensa", p);
+		this.tipoDefensa = tipoDefensa;			
+		//Torreta y Artilleria
+		
+		this.rangoDisparo = Float.parseFloat(p.getProperty("rangDisp" + tipoDefensa.trim()));
+		this.demoraDesplazamiento = Float.parseFloat(p.getProperty("demDesp" + tipoDefensa.trim()));
+		this.setSprite(p.getProperty("Sp" + tipoDefensa.trim()));
+		this.setSonido(p.getProperty("Sd" + tipoDefensa.trim()));
+		this.municion = null;
 	}
 
 	public String getTipoDefensa() {

@@ -60,8 +60,10 @@ public class Fachada {
 			//System.out.println(p.toString());
 			combate = new Combate(p);//le paso la properties para crear la primer partida						
 			String tmp = new Gson().toJson(combate);			
+			//String tmpAviones = new Gson().toJson(combate.getCombateJugadores().find(0));
 			json.addProperty("combate",tmp);
-			System.out.println(json);
+			
+			//System.out.println(json);
 			
 		} catch (Exception e) {
 			System.out.println("Exception creando combate");
