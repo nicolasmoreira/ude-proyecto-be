@@ -8,14 +8,14 @@ public abstract class Componente {
 	public static int idAutonumerico = 0;
 
 	// atributos
-	private int idComponente;
-	private float rotacion;
-	private String sonido;
-	private String sprite;
-	private String tipoComponente;
-	private float ubicacionX;
-	private float ubicacionY;
-	private int vida;
+	protected int idComponente;
+	protected float rotacion;
+	protected String sonido;
+	protected String sprite;
+	protected String tipoComponente;
+	protected float ubicacionX;
+	protected float ubicacionY;
+	protected int vida;
 
 	public Componente() {
 		super();

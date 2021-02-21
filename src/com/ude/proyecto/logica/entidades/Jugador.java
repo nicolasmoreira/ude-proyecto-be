@@ -72,7 +72,7 @@ public class Jugador {
 		this.artillerias = artillerias;
 	}
 
-	public void setJaviones(Aviones aviones) {
+	public void setAviones(Aviones aviones) {
 		this.aviones = aviones;
 	}
 

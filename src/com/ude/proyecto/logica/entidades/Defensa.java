@@ -8,6 +8,8 @@ public class Defensa extends Componente {
 	private Proyectil municion;
 	private float rangoDisparo;
 	private String tipoDefensa;
+	public static final String TIPO_DEFENSA_TORRETA = "TORRETA";
+	public static final String TIPO_DEFENSA_ARTILLERIA = "ARTILLERIA";	
 
 	public Defensa() {
 		super();
@@ -30,8 +32,8 @@ public class Defensa extends Componente {
 
 		this.rangoDisparo = Float.parseFloat(p.getProperty("rangDisp" + tipoDefensa.trim()));
 		this.demoraDesplazamiento = Float.parseFloat(p.getProperty("demDesp" + tipoDefensa.trim()));
-		this.setSprite(p.getProperty("Sp" + tipoDefensa.trim()));
-		this.setSonido(p.getProperty("Sd" + tipoDefensa.trim()));
+		this.sprite = p.getProperty("Sp" + tipoDefensa.trim());
+		this.sonido = p.getProperty("Sd" + tipoDefensa.trim());
 		this.municion = null;
 	}
 

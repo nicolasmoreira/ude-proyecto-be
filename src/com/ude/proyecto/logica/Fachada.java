@@ -51,20 +51,19 @@ public class Fachada {
 	}
 
 	public Combate iniciarPartida() throws Exception {
-		Combate combate = null;
 		Properties p = new Properties();
 		InputStream input = null;
 		try {
 			input = getClass().getClassLoader().getResourceAsStream("config.properties");
 			p.load(input);
-			combate = new Combate(p);
+			this.combate = new Combate(p);
 
 		} catch (Exception e) {
 			System.out.println("Exception creando combate");
 			e.printStackTrace();
 		}
 
-		return combate;
+		return this.combate;
 	}
 
 	public void salvarPartida(Combate c) throws Exception {

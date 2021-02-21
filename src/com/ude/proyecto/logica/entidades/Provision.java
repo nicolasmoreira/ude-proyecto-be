@@ -6,6 +6,8 @@ public class Provision extends Componente {
 
 	private float cantProvision;
 	private String tipoProvision;
+	public static final String TIPO_PROVISION_COMBUSTIBLE = "COMBUSTIBLE";
+	public static final String TIPO_PROVISION_EXPLOSIVOS = "EXPLOSIVOS";
 
 	public Provision() {
 		super();
@@ -25,15 +27,14 @@ public class Provision extends Componente {
 		this.tipoProvision = tipoProvision;
 
 		// combustible o explosivos
-		if (tipoProvision == "Combustible") {
+		if (tipoProvision.equals(Provision.TIPO_PROVISION_COMBUSTIBLE) ) {
 			this.cantProvision = Float.parseFloat(p.getProperty("cantProvisionCombustible"));
-			this.setSprite(p.getProperty("SpDepositoCombustible"));
-			this.setSonido(p.getProperty("SdDepositoCombustible"));
-
+			this.sprite = p.getProperty("SpDepositoCombustible");
+			this.sonido = p.getProperty("SdDepositoCombustible");
 		} else {
 			this.cantProvision = Float.parseFloat(p.getProperty("cantProvisionExplosivos"));
-			this.setSprite(p.getProperty("SpDepositoExplosivos"));
-			this.setSonido(p.getProperty("SdDepositoExplosivos"));
+			this.sprite = p.getProperty("SpDepositoExplosivos");
+			this.sonido = p.getProperty("SdDepositoExplosivos");
 		}
 
 		/*

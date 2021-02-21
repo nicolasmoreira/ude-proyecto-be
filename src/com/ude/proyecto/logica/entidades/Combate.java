@@ -7,7 +7,7 @@ import com.ude.proyecto.logica.colecciones.Jugadores;
 
 public class Combate {
 
-	private Jugadores combateJugadores;
+	private Jugadores jugadores;
 	private String fondoImagen;
 	private int idCombate;
 	private String nombrePartida;
@@ -46,9 +46,9 @@ public class Combate {
 
 			/*--- componentes player 1*/
 			// creo combustible
-			Provision depCombustible = new Provision("Combustible", p);
-			Provision depExplosivos = new Provision("Explosivos", p);
-			Defensa torreta = new Defensa("Torreta", p);
+			Provision depCombustible = new Provision(Provision.TIPO_PROVISION_COMBUSTIBLE, p);
+			Provision depExplosivos = new Provision(Provision.TIPO_PROVISION_EXPLOSIVOS, p);
+			Defensa torreta = new Defensa(Defensa.TIPO_DEFENSA_TORRETA, p);
 
 			// creo la base virtual, una L con eje como combustible
 
@@ -64,9 +64,8 @@ public class Combate {
 			Aviones aviones = new Aviones();
 			int cantAviones = Integer.parseInt(p.getProperty("cantAviones"));
 
-			Avion avion = null;
 			for (int i = 1; i <= cantAviones; ++i) {
-				avion = new Avion(p);
+				Avion avion = new Avion(p);
 
 				// lo ubico en la base
 				avion.setUbicacionY(depExplosivos.getUbicacionY() + (baseDistancia * i)); // deberia dibujar en las Y
@@ -81,14 +80,14 @@ public class Combate {
 			player1.setDepositoCombustible(depCombustible);
 			player1.setDepositoExplosivos(depExplosivos);
 			player1.setTorreta(torreta);
-			player1.setJaviones(aviones);
+			player1.setAviones(aviones);
 
 			/*----------------------Espejo player 2 ---------------------*/
 
 			// creo combustible
-			Provision depCombustible2 = new Provision("Combustible", p);
-			Provision depExplosivos2 = new Provision("Explosivos", p);
-			Defensa torreta2 = new Defensa("Torreta", p);
+			Provision depCombustible2 = new Provision(Provision.TIPO_PROVISION_COMBUSTIBLE, p);
+			Provision depExplosivos2 = new Provision(Provision.TIPO_PROVISION_EXPLOSIVOS, p);
+			Defensa torreta2 = new Defensa(Defensa.TIPO_DEFENSA_TORRETA, p);
 
 			// espejo para el player 2, mantengo los Y del player 1
 
@@ -104,9 +103,8 @@ public class Combate {
 			// aviones
 			Aviones aviones2 = new Aviones();
 
-			Avion avion2 = null;
 			for (int i = 1; i <= cantAviones; ++i) {
-				avion2 = new Avion(p);
+				Avion avion2 = new Avion(p);
 
 				// lo ubico en la base
 				avion2.setUbicacionY(depExplosivos2.getUbicacionY() + (baseDistancia * i)); // deberia dibujar en las Y
@@ -119,14 +117,14 @@ public class Combate {
 			player2.setDepositoCombustible(depCombustible2);
 			player2.setDepositoExplosivos(depExplosivos2);
 			player2.setTorreta(torreta2);
-			player2.setJaviones(aviones2);
+			player2.setAviones(aviones2);
 
 			// creo jugadores
 			Jugadores jugadores = new Jugadores();
 			jugadores.insert(player1);
 			jugadores.insert(player2);
 
-			this.combateJugadores = jugadores;
+			this.jugadores = jugadores;
 
 		} catch (Exception e) {
 			System.out.println("Exception creando combate");
@@ -135,7 +133,7 @@ public class Combate {
 	}
 
 	public Jugadores getCombateJugadores() {
-		return combateJugadores;
+		return jugadores;
 	}
 
 	public String getFondoImagen() {
@@ -159,7 +157,7 @@ public class Combate {
 	}
 
 	public void setCombateJugadores(Jugadores combateJugadores) {
-		this.combateJugadores = combateJugadores;
+		this.jugadores = combateJugadores;
 	}
 
 	public void setFondoImagen(String fondoImagen) {
