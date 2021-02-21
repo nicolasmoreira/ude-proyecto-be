@@ -50,30 +50,21 @@ public class Fachada {
 		return null;
 	}
 
-	public JsonObject iniciarPartida() throws Exception {
-		JsonObject json = new JsonObject();
+	public Combate iniciarPartida() throws Exception {
+		Combate combate = null;
 		Properties p = new Properties();
 		InputStream input = null;
 		try {
 			input = getClass().getClassLoader().getResourceAsStream("config.properties");
 			p.load(input);
-
-			// System.out.println(p.toString());
-			combate = new Combate(p);// le paso la properties para crear la primer partida
-			String tmp = new Gson().toJson(combate);
-			// String tmpAviones = new Gson().toJson(combate.getCombateJugadores().find(0));
-			json.addProperty("combate", tmp);
-
-			// System.out.println(json);
+			combate = new Combate(p);
 
 		} catch (Exception e) {
 			System.out.println("Exception creando combate");
 			e.printStackTrace();
 		}
 
-//		System.out.println(combate.getCombateJugadores().find(1).getNombre());
-//		System.out.println(combate.getCombateJugadores().find(1).getDepositoCombustible().getSprite());
-		return json;
+		return combate;
 	}
 
 	public void salvarPartida(Combate c) throws Exception {

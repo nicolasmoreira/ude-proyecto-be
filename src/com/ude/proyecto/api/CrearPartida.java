@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.Fachada;
+import com.ude.proyecto.logica.entidades.Combate;
 
 @WebServlet("/rest/partida")
 public class CrearPartida extends HttpServlet {
@@ -45,8 +47,8 @@ public class CrearPartida extends HttpServlet {
 
 				fachada = Fachada.getInstanceFachada();
 
-				json = fachada.iniciarPartida();
-				// out.print(gson.toString());
+				Combate combate = fachada.iniciarPartida();
+				json.add("partida", new Gson().toJsonTree(combate));
 			} else {
 				json.addProperty("mensaje", "Debe elegir un Player de jugador.");
 				response.setStatus(500);
