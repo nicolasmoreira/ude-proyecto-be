@@ -9,8 +9,8 @@ public class Jugador {
 	private Provision depositoCombustible;
 	private Provision depositoExplosivos;
 	private int idJugador;
-	private Artillerias JArtillerias;
-	private Aviones Javiones;
+	private Artillerias artillerias;
+	private Aviones aviones;
 	private String nombre;
 	private Defensa torreta;
 
@@ -36,12 +36,12 @@ public class Jugador {
 		return idJugador;
 	}
 
-	public Artillerias getJArtillerias() {
-		return JArtillerias;
+	public Artillerias getArtillerias() {
+		return artillerias;
 	}
 
-	public Aviones getJaviones() {
-		return Javiones;
+	public Aviones getAviones() {
+		return aviones;
 	}
 
 	public String getNombre() {
@@ -68,12 +68,12 @@ public class Jugador {
 		this.idJugador = idJugador;
 	}
 
-	public void setJArtillerias(Artillerias jArtillerias) {
-		JArtillerias = jArtillerias;
+	public void setArtillerias(Artillerias artillerias) {
+		this.artillerias = artillerias;
 	}
 
-	public void setJaviones(Aviones javiones) {
-		Javiones = javiones;
+	public void setJaviones(Aviones aviones) {
+		this.aviones = aviones;
 	}
 
 	public void setNombre(String nombre) {

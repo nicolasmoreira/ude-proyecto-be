@@ -18,7 +18,7 @@ public abstract class Componente {
 	private int vida;
 
 	public Componente() {
-
+		super();
 	}
 
 	public Componente(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY, float rotacion,
@@ -46,8 +46,8 @@ public abstract class Componente {
 		int margen = Integer.parseInt(p.getProperty("margen"));// 1;
 		int vertice = Integer.parseInt(p.getProperty("vertice"));// 1;
 
-		this.ubicacionX = UbicacionInicial(margen, vertice);
-		this.ubicacionY = UbicacionInicial(margen, vertice);
+		this.ubicacionX = ubicacionInicial(margen, vertice);
+		this.ubicacionY = ubicacionInicial(margen, vertice);
 
 		// System.out.print("this.ubicacionX " + String.valueOf(this.ubicacionX) +
 		// "this.ubicacionY " + String.valueOf(this.ubicacionY));
@@ -160,14 +160,14 @@ public abstract class Componente {
 		this.vida = vida;
 	}
 
-	public void UbicacionEspejar(int tamanioPantalla, float ubicacionY) {
+	public void ubicacionEspejar(int tamanioPantalla, float ubicacionY) {
 		// la forma de espejar es restando al tamanio de la pantalla la ubicacion X
 		// solamente
 		this.ubicacionX = tamanioPantalla - this.ubicacionX;
 		this.ubicacionY = ubicacionY;
 	}
 
-	public float UbicacionInicial(int margen, int veritce) {
+	public float ubicacionInicial(int margen, int veritce) {
 		// calcula un random en un area cuadrada a partir de un vertice (x e y) inicial,
 		// por ejemplo x=100 y=100
 		return (int) (Math.random() * margen + veritce); // para que no se construlla en campo enemigo

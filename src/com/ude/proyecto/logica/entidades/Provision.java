@@ -19,13 +19,13 @@ public class Provision extends Componente {
 	}
 
 	/* aca creo los por defecto */
-	public Provision(String tipProv, Properties p) {// provision
+	public Provision(String tipoProvision, Properties p) {// provision
 		super("Provision", p);
 
-		this.tipoProvision = tipProv;
+		this.tipoProvision = tipoProvision;
 
 		// combustible o explosivos
-		if (tipProv == "Combustible") {
+		if (tipoProvision == "Combustible") {
 			this.cantProvision = Float.parseFloat(p.getProperty("cantProvisionCombustible"));
 			this.setSprite(p.getProperty("SpDepositoCombustible"));
 			this.setSonido(p.getProperty("SdDepositoCombustible"));

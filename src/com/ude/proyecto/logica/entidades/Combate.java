@@ -46,8 +46,8 @@ public class Combate {
 
 			/*--- componentes player 1*/
 			// creo combustible
-			Provision DepCombustible = new Provision("Combustible", p);
-			Provision DepExplosivos = new Provision("Explosivos", p);
+			Provision depCombustible = new Provision("Combustible", p);
+			Provision depExplosivos = new Provision("Explosivos", p);
 			Defensa torreta = new Defensa("Torreta", p);
 
 			// creo la base virtual, una L con eje como combustible
@@ -55,10 +55,10 @@ public class Combate {
 			int baseDistancia = Integer.parseInt(p.getProperty("baseDistancia"));
 
 			// tomo el X DepCombustible y lo alineo con los explosivos
-			DepExplosivos.setUbicacionX(DepCombustible.getUbicacionX());
-			DepExplosivos.setUbicacionY(DepCombustible.getUbicacionY() + baseDistancia);
-			torreta.setUbicacionX(DepCombustible.getUbicacionX() + baseDistancia);
-			torreta.setUbicacionY(DepCombustible.getUbicacionY());
+			depExplosivos.setUbicacionX(depCombustible.getUbicacionX());
+			depExplosivos.setUbicacionY(depCombustible.getUbicacionY() + baseDistancia);
+			torreta.setUbicacionX(depCombustible.getUbicacionX() + baseDistancia);
+			torreta.setUbicacionY(depCombustible.getUbicacionY());
 
 			// aviones
 			Aviones aviones = new Aviones();
@@ -69,7 +69,7 @@ public class Combate {
 				avion = new Avion(p);
 
 				// lo ubico en la base
-				avion.setUbicacionY(DepExplosivos.getUbicacionY() + (baseDistancia * i)); // deberia dibujar en las Y
+				avion.setUbicacionY(depExplosivos.getUbicacionY() + (baseDistancia * i)); // deberia dibujar en las Y
 																							// una columna de aviones
 				aviones.insert(avion);
 				System.out.println(avion.toString());
@@ -78,23 +78,23 @@ public class Combate {
 			System.out.println(aviones.toString());
 
 			// asigno a player 1
-			player1.setDepositoCombustible(DepCombustible);
-			player1.setDepositoExplosivos(DepExplosivos);
+			player1.setDepositoCombustible(depCombustible);
+			player1.setDepositoExplosivos(depExplosivos);
 			player1.setTorreta(torreta);
 			player1.setJaviones(aviones);
 
 			/*----------------------Espejo player 2 ---------------------*/
 
 			// creo combustible
-			Provision DepCombustible2 = new Provision("Combustible", p);
-			Provision DepExplosivos2 = new Provision("Explosivos", p);
+			Provision depCombustible2 = new Provision("Combustible", p);
+			Provision depExplosivos2 = new Provision("Explosivos", p);
 			Defensa torreta2 = new Defensa("Torreta", p);
 
 			// espejo para el player 2, mantengo los Y del player 1
 
-			DepCombustible2.UbicacionEspejar(this.tamanioAncho, DepCombustible.getUbicacionY());
-			DepExplosivos2.UbicacionEspejar(this.tamanioAncho, DepExplosivos.getUbicacionY());
-			torreta2.UbicacionEspejar(this.tamanioAncho, torreta.getUbicacionY());
+			depCombustible2.ubicacionEspejar(this.tamanioAncho, depCombustible.getUbicacionY());
+			depExplosivos2.ubicacionEspejar(this.tamanioAncho, depExplosivos.getUbicacionY());
+			torreta2.ubicacionEspejar(this.tamanioAncho, torreta.getUbicacionY());
 
 			// mantengo los Y del player 1
 //			DepCombustible2.setUbicacionY(DepCombustible.getUbicacionY());
@@ -109,15 +109,15 @@ public class Combate {
 				avion2 = new Avion(p);
 
 				// lo ubico en la base
-				avion2.setUbicacionY(DepExplosivos2.getUbicacionY() + (baseDistancia * i)); // deberia dibujar en las Y
+				avion2.setUbicacionY(depExplosivos2.getUbicacionY() + (baseDistancia * i)); // deberia dibujar en las Y
 																							// una columna de aviones
-				avion2.UbicacionEspejar(this.tamanioAncho, avion2.getUbicacionY());
+				avion2.ubicacionEspejar(this.tamanioAncho, avion2.getUbicacionY());
 				aviones2.insert(avion2);
 			}
 
 			// asigno a player2
-			player2.setDepositoCombustible(DepCombustible2);
-			player2.setDepositoExplosivos(DepExplosivos2);
+			player2.setDepositoCombustible(depCombustible2);
+			player2.setDepositoExplosivos(depExplosivos2);
 			player2.setTorreta(torreta2);
 			player2.setJaviones(aviones2);
 
