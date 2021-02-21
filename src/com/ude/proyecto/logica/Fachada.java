@@ -5,16 +5,11 @@ import java.util.Properties;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializer;
 import com.ude.proyecto.logica.entidades.Combate;
-import com.ude.proyecto.persistencia.daos.DAOCombate;
-
-
 
 public class Fachada {
 
 	private static Fachada fachada;
-	private Combate combate;
 
 	public static Fachada getInstanceFachada() {
 		if (fachada == null) {
@@ -22,6 +17,8 @@ public class Fachada {
 		}
 		return fachada;
 	}
+
+	private Combate combate;
 
 	/**
 	 * 
@@ -31,58 +28,58 @@ public class Fachada {
 		Properties p = new Properties();
 		InputStream input = null;
 		try {
-			 input = getClass().getClassLoader().getResourceAsStream("config.properties");
-			 p.load(input);
-			 String driver = p.getProperty("db_driver");
-			 String host = p.getProperty("db_server");
-			 String port = p.getProperty("db_port");
-			 String database = p.getProperty("db_database");
-			 
-			 String url = "jdbc:mysql://" + host + ":" + port + "/" + database + "?serverTimezone=UTC";
-			 String user = p.getProperty("db_user");
-			 String password = p.getProperty("db_password");
-			 Class.forName(driver);
-				
+			input = getClass().getClassLoader().getResourceAsStream("config.properties");
+			p.load(input);
+			String driver = p.getProperty("db_driver");
+			String host = p.getProperty("db_server");
+			String port = p.getProperty("db_port");
+			String database = p.getProperty("db_database");
+
+			String url = "jdbc:mysql://" + host + ":" + port + "/" + database + "?serverTimezone=UTC";
+			String user = p.getProperty("db_user");
+			String password = p.getProperty("db_password");
+			Class.forName(driver);
+
 		} catch (Exception e) {
 			System.out.println("Exception creando fachada");
 			e.printStackTrace();
 		}
 	}
 
+	public JsonObject cargarPartida(int i) throws Exception {
+		return null;
+	}
+
 	public JsonObject iniciarPartida() throws Exception {
-		JsonObject json = new JsonObject();	
+		JsonObject json = new JsonObject();
 		Properties p = new Properties();
 		InputStream input = null;
 		try {
-			input = getClass().getClassLoader().getResourceAsStream("config.properties");			
+			input = getClass().getClassLoader().getResourceAsStream("config.properties");
 			p.load(input);
-			
-			//System.out.println(p.toString());
-			combate = new Combate(p);//le paso la properties para crear la primer partida						
-			String tmp = new Gson().toJson(combate);			
-			//String tmpAviones = new Gson().toJson(combate.getCombateJugadores().find(0));
-			json.addProperty("combate",tmp);
-			
-			//System.out.println(json);
-			
+
+			// System.out.println(p.toString());
+			combate = new Combate(p);// le paso la properties para crear la primer partida
+			String tmp = new Gson().toJson(combate);
+			// String tmpAviones = new Gson().toJson(combate.getCombateJugadores().find(0));
+			json.addProperty("combate", tmp);
+
+			// System.out.println(json);
+
 		} catch (Exception e) {
 			System.out.println("Exception creando combate");
 			e.printStackTrace();
 		}
-		
+
 //		System.out.println(combate.getCombateJugadores().find(1).getNombre());
 //		System.out.println(combate.getCombateJugadores().find(1).getDepositoCombustible().getSprite());
 		return json;
 	}
 
-	public JsonObject unirsePartida() throws Exception {
-		return null;
-	}
-
 	public void salvarPartida(Combate c) throws Exception {
 	}
 
-	public JsonObject cargarPartida(int i) throws Exception {
+	public JsonObject unirsePartida() throws Exception {
 		return null;
 	}
 

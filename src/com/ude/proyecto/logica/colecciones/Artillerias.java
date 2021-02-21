@@ -13,8 +13,12 @@ public class Artillerias {
 		Artillerias = new HashMap<Integer, Defensa>();
 	}
 
-	public boolean member(int idC) {
-		return Artillerias.containsKey(idC);
+	public void delete(int idC) {
+		Artillerias.remove(idC);
+	}
+
+	public Defensa find(int idC) {
+		return Artillerias.get(idC);
 	}
 
 	public void insert(Defensa a) {
@@ -22,12 +26,8 @@ public class Artillerias {
 		Artillerias.put(idC, a);
 	}
 
-	public Defensa find(int idC) {
-		return Artillerias.get(idC);
-	}
-
-	public void delete(int idC) {
-		Artillerias.remove(idC);
+	public boolean member(int idC) {
+		return Artillerias.containsKey(idC);
 	}
 
 }

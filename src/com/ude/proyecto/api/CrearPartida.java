@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.Fachada;
 
@@ -25,7 +24,7 @@ public class CrearPartida extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Properties prop = new Properties();
 		InputStream input = null;
@@ -33,21 +32,21 @@ public class CrearPartida extends HttpServlet {
 		String player = null;
 
 		try {
-			
+
 			Fachada fachada = Fachada.getInstanceFachada();
-						
+
 			player = "player 1"; // a fuego por ahora
-					
-			//player = request.getParameter("player");
+
+			// player = request.getParameter("player");
 
 			if (player != null) {
 				input = getClass().getClassLoader().getResourceAsStream("config.properties");
 				prop.load(input);
 
 				fachada = Fachada.getInstanceFachada();
-				
+
 				json = fachada.iniciarPartida();
-				//out.print(gson.toString());
+				// out.print(gson.toString());
 			} else {
 				json.addProperty("mensaje", "Debe elegir un Player de jugador.");
 				response.setStatus(500);

@@ -18,8 +18,12 @@ public class Aviones {
 		Aviones = new HashMap<Integer, Avion>();
 	}
 
-	public boolean member(int idC) {
-		return Aviones.containsKey(idC);
+	public void delete(int idC) {
+		Aviones.remove(idC);
+	}
+
+	public Avion find(int idC) {
+		return Aviones.get(idC);
 	}
 
 	public void insert(Avion a) {
@@ -27,11 +31,7 @@ public class Aviones {
 		Aviones.put(idC, a);
 	}
 
-	public Avion find(int idC) {
-		return Aviones.get(idC);
-	}
-
-	public void delete(int idC) {
-		Aviones.remove(idC);
+	public boolean member(int idC) {
+		return Aviones.containsKey(idC);
 	}
 }

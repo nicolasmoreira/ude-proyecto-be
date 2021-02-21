@@ -50,11 +50,11 @@ public class WebSocketServer {
 	}
 
 	private void broadcastOne(String msg, Session session) throws IOException {
-		//System.out.println(msg);
+		// System.out.println(msg);
 		for (Entry<String, Session> s : sessions.entrySet()) {
 			if (s.getValue().getId() != session.getId()) {
 				s.getValue().getBasicRemote().sendText(msg);
-				//System.out.println("Va bala:" + msg);
+				// System.out.println("Va bala:" + msg);
 			}
 		}
 	}
@@ -93,17 +93,16 @@ public class WebSocketServer {
 		String event = jsonObject.get("event").getAsString();
 		Fachada fachada = Fachada.getInstanceFachada();
 
-
 		if (EVENTS.MOVIMIENTO_AVION.getValue().equals(event)) {
 			this.broadcastOne(message, session);
-			
-			//System.out.println(jsonObject.get("data").getAsJsonArray());
+
+			// System.out.println(jsonObject.get("data").getAsJsonArray());
 
 			/*
 			 * { "idComponente": 1, "tipoComponente": "avion", "ubicacionX": 1,
-			 * "ubicacionY": 1, "rotacion": 1, "vida": 100, "sprite": "ASDADASDAD", "sonido": "ASDADASDAD",
-			 * "altitudAlta": false, "tieneBomba": false, "barraCombustible": 100,
-			 * "rangoDisparo": 100, "enfocado": true }
+			 * "ubicacionY": 1, "rotacion": 1, "vida": 100, "sprite": "ASDADASDAD",
+			 * "sonido": "ASDADASDAD", "altitudAlta": false, "tieneBomba": false,
+			 * "barraCombustible": 100, "rangoDisparo": 100, "enfocado": true }
 			 */
 
 		} else if (EVENTS.MOVIMIENTO_TORRETA.getValue().equals(event)) {

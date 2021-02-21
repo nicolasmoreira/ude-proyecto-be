@@ -13,8 +13,8 @@ public class Jugadores {
 		Jugadores = new HashMap<Integer, Jugador>();
 	}
 
-	public boolean member(int idC) {
-		return Jugadores.containsKey(idC);
+	public Jugador find(int idJ) {
+		return Jugadores.get(idJ);
 	}
 
 	public void insert(Jugador a) {
@@ -22,8 +22,8 @@ public class Jugadores {
 		Jugadores.put(idJ, a);
 	}
 
-	public Jugador find(int idJ) {
-		return Jugadores.get(idJ);
+	public boolean member(int idC) {
+		return Jugadores.containsKey(idC);
 	}
 
 }
