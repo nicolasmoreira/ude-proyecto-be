@@ -7,6 +7,7 @@ public class Jugador {
 
 	private int idJugador;
 	private String nombre;
+	private String bando;
 	private Provision depositoCombustible;
 	private Provision depositoExplosivos;
 	private Defensa torreta;
@@ -33,6 +34,14 @@ public class Jugador {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public String getBando() {
+		return bando;
+	}
+
+	public void setBando(String bando) {
+		this.bando = bando;
 	}
 
 	public Provision getDepositoCombustible() {

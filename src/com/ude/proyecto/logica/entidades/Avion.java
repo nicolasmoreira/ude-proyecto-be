@@ -1,5 +1,7 @@
 package com.ude.proyecto.logica.entidades;
 
+import java.util.Properties;
+
 public class Avion extends Componente {
 
 	private boolean altitudAlta;
@@ -10,6 +12,10 @@ public class Avion extends Componente {
 	private Proyectil bomba;
 	private Proyectil municion;
 
+	public Avion() {
+		super();
+	}
+	
 	public Avion(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY,float rotacion, int vida, String sprite,
 			String sonido, boolean altitudAlta, boolean tieneBomba, float barraCombustible, float rangoDisparo,
 			boolean enfocado, Proyectil bomba, Proyectil municion) {
@@ -22,6 +28,21 @@ public class Avion extends Componente {
 		this.bomba = bomba;
 		this.municion = municion;
 	}
+	
+	//creador inicial desde properties
+	public Avion(Properties p) {
+		super("Avion", p);
+		this.altitudAlta = Boolean.getBoolean(p.getProperty("altitudAlta")) ;
+		this.tieneBomba = Boolean.getBoolean(p.getProperty("tieneBomba")) ;
+		this.barraCombustible = Float.parseFloat(p.getProperty("barraCombustible"));
+		this.rangoDisparo = Float.parseFloat(p.getProperty("rangoDisparoAvion"));	//este es un multiplo del tamanio del avion
+		this.enfocado = Boolean.getBoolean(p.getProperty("enfocado"));
+		this.bomba = null;
+		this.municion = null;
+		this.setSprite(p.getProperty("SpAvion"));
+		this.setSonido(p.getProperty("SdAvion"));
+	}
+	
 
 	public boolean isAltitudAlta() {
 		return altitudAlta;

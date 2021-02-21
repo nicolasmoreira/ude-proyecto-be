@@ -43,6 +43,14 @@ public abstract class Componente {
 		this.rotacion = Float.parseFloat(p.getProperty(tipoComponente.trim().toLowerCase() + "Rotacion")); // 0;
 		this.vida = Integer.parseInt(p.getProperty(tipoComponente.trim().toLowerCase() + "Vida"));//1;
 		
+		int margen = Integer.parseInt(p.getProperty("margen"));//1;
+		int vertice = Integer.parseInt(p.getProperty("vertice"));//1;
+		
+		this.ubicacionX = UbicacionInicial(margen, vertice);
+		this.ubicacionY = UbicacionInicial(margen, vertice);
+		
+		//System.out.print("this.ubicacionX " + String.valueOf(this.ubicacionX) + "this.ubicacionY " + String.valueOf(this.ubicacionY));	 
+		
 //		/*
 //		switch(tipoComponente)
 //		{
@@ -150,5 +158,29 @@ public abstract class Componente {
 	public void setSonido(String sonido) {
 		this.sonido = sonido;
 	}
+	
+	
+	public float UbicacionInicial(int margen, int veritce) {
+		//calcula un random en un area cuadrada a partir de un vertice (x e y) inicial, por ejemplo x=100 y=100		
+		return (int) (Math.random() * margen + veritce); // para que no se construlla en campo enemigo
+		//https://programandoointentandolo.com/2013/10/como-generar-numeros-aleatorios-en-java.html#:~:text=La%20formula%20para%20obtener%20un,%3D%20(int)(Math.
+	}
+	
+	public void UbicacionEspejar(int tamanioPantalla, float ubicacionY) {
+		// la forma de espejar es restando al tamanio de la pantalla la ubicacion X solamente
+		this.ubicacionX = tamanioPantalla - this.ubicacionX;
+		this.ubicacionY = ubicacionY;
+	}
+	
+
+//	private void UbicacionInicial(float x, float y, int margen, int veritce) {
+//	//calcula un random en un area cuadrada a partir de un vertice (x e y) inicial, por ejemplo x=100 y=100
+//		
+//		x = (int) (Math.random() * margen + veritce); // para que no se construlla en campo enemigo
+//		y = (int) (Math.random() * margen + veritce);
+//		
+//		System.out.print("x " + String.valueOf(x) + "y " + String.valueOf(y));		
+//		
+//	}
 	
 }
