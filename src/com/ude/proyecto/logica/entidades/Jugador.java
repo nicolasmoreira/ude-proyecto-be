@@ -1,7 +1,6 @@
 package com.ude.proyecto.logica.entidades;
 
-import com.ude.proyecto.logica.colecciones.Artillerias;
-import com.ude.proyecto.logica.colecciones.Aviones;
+import java.util.ArrayList;
 
 public class Jugador {
 
@@ -9,8 +8,8 @@ public class Jugador {
 	private Provision depositoCombustible;
 	private Provision depositoExplosivos;
 	private int idJugador;
-	private Artillerias artillerias;
-	private Aviones aviones;
+	private ArrayList<Defensa> artillerias = new ArrayList<Defensa>();
+	private ArrayList<Avion> aviones = new ArrayList<Avion>();
 	private String nombre;
 	private Defensa torreta;
 
@@ -36,11 +35,11 @@ public class Jugador {
 		return idJugador;
 	}
 
-	public Artillerias getArtillerias() {
+	public ArrayList<Defensa> getArtillerias() {
 		return artillerias;
 	}
 
-	public Aviones getAviones() {
+	public ArrayList<Avion> getAviones() {
 		return aviones;
 	}
 
@@ -68,11 +67,11 @@ public class Jugador {
 		this.idJugador = idJugador;
 	}
 
-	public void setArtillerias(Artillerias artillerias) {
+	public void setArtillerias(ArrayList<Defensa> artillerias) {
 		this.artillerias = artillerias;
 	}
 
-	public void setAviones(Aviones aviones) {
+	public void setAviones(ArrayList<Avion> aviones) {
 		this.aviones = aviones;
 	}
 
