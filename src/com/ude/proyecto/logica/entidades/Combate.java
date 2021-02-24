@@ -63,12 +63,13 @@ public class Combate {
 			ArrayList<Avion> aviones = new ArrayList<Avion>();
 			int cantAviones = Integer.parseInt(p.getProperty("cantAviones"));
 
-			for (int i = 1; i <= cantAviones; ++i) {
+			for (int i = 1; i <= cantAviones; i++) {
 				Avion avion = new Avion(p);
 
 				// lo ubico en la base
 				avion.setUbicacionY(depExplosivos.getUbicacionY() + (baseDistancia * i)); // deberia dibujar en las Y
 																							// una columna de aviones
+				avion.setUbicacionX(depExplosivos.getUbicacionX() + (baseDistancia * i)); 
 				aviones.add(avion);
 				System.out.println(avion.toString());
 			}
@@ -102,7 +103,7 @@ public class Combate {
 			// aviones
 			ArrayList<Avion> aviones2 = new ArrayList<Avion>();
 
-			for (int i = 1; i <= cantAviones; ++i) {
+			for (int i = 1; i <= cantAviones; i++) {
 				Avion avion2 = new Avion(p);
 
 				// lo ubico en la base
