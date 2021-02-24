@@ -26,14 +26,7 @@ public class Combate {
 		// Properties p = new Properties();
 		// InputStream input = null;
 		try {
-			// input =
-			// getClass().getClassLoader().getResourceAsStream("resources/config.properties");
-			// p.load(input);
 
-			// System.out.println(p.toString());
-
-			// Combate combate = new Combate(idCombate, nombrePartida, fondoImagen, 600,
-			// 800);
 			this.nombrePartida = p.getProperty("nombrePartida"); // "Fondo1";
 			this.fondoImagen = p.getProperty("fondoImagen"); // "Fondo1";
 			this.tamanioAlto = Integer.parseInt(p.getProperty("tamanioAlto"));
@@ -58,9 +51,12 @@ public class Combate {
 			depExplosivos.setUbicacionY(depCombustible.getUbicacionY() + baseDistancia);
 			torreta.setUbicacionX(depCombustible.getUbicacionX() + baseDistancia);
 			torreta.setUbicacionY(depCombustible.getUbicacionY());
-
+			
+			System.out.println("-----------Primera vez-------------");
+					
 			System.out.println(depCombustible.getUbicacionX());
-			System.out.println(torreta.getUbicacionX());
+			System.out.println(depCombustible.getUbicacionY());
+			//System.out.println(torreta.getUbicacionX());
 			// aviones
 			ArrayList<Avion> aviones = new ArrayList<Avion>();
 			int cantAviones = Integer.parseInt(p.getProperty("cantAviones"));
@@ -79,6 +75,8 @@ public class Combate {
 
 			//System.out.println(aviones.toString());
 
+			int limiteCampo = Integer.parseInt(p.getProperty("limiteCampo"));
+			
 			//creo artilleria
 			ArrayList<Defensa> artillerias = new ArrayList<Defensa>();
 			
@@ -86,16 +84,26 @@ public class Combate {
 			int cantArtilleria = cantAviones * Integer.parseInt(p.getProperty("multARTILLERIA")); 
 			for (int i = 1; i <= cantArtilleria; i++) {
 				Defensa artilleria = new Defensa(Defensa.TIPO_DEFENSA_ARTILLERIA, p);
+				 
+				if (i <= cantArtilleria/2) 
+				{//si es la 1ra mitad del camino, dibujo diagonal arriba
+					artilleria.setUbicacionX(artilleria.ubicacionInicial(limiteCampo - depCombustible.getUbicacionX() - baseDistancia, depCombustible.getUbicacionX() + baseDistancia));
+					artilleria.setUbicacionY(artilleria.ubicacionInicial(depCombustible.getUbicacionY(),baseDistancia));
 
-				// lo ubico en el campo, es probable que se pisen en la pantalla
-				artilleria.setUbicacionY(artilleria.getUbicacionY() + depCombustible.getUbicacionY() + baseDistancia); //para que no caiga en el rango de la base																							
-				artilleria.setUbicacionX(artilleria.getUbicacionX() + depCombustible.getUbicacionX() + baseDistancia);//para que no caiga en el rango de la base
-				
+				}else	
+				{	//si es la 2da mitad del camino, dibujo diagonal abajo
+					artilleria.setUbicacionX(artilleria.ubicacionInicial(limiteCampo - depCombustible.getUbicacionX() - baseDistancia, depCombustible.getUbicacionX() + baseDistancia));
+					artilleria.setUbicacionY(artilleria.ubicacionInicial(limiteCampo - depCombustible.getUbicacionY() - baseDistancia, depCombustible.getUbicacionY() + baseDistancia));
+
+				}
+								
 				artillerias.add(artilleria);// .insert(avion);
-				//System.out.println(avion.toString());
+				System.out.println("-----------");
+				System.out.println(artilleria.getUbicacionX());
+				System.out.println(artilleria.getUbicacionY());
 			}
 
-			
+			//System.out.println(artillerias. toString());
 			
 			// asigno a player 1
 			player1.setDepositoCombustible(depCombustible);
@@ -115,7 +123,7 @@ public class Combate {
 			
 			depCombustible2.setUbicacionX(depCombustible.getUbicacionX());
 			depCombustible2.ubicacionEspejar(this.tamanioAncho, depCombustible.getUbicacionY());
-			System.out.println(depCombustible2.getUbicacionX());
+			//System.out.println(depCombustible2.getUbicacionX());
 			
 			depExplosivos2.setUbicacionX(depExplosivos.getUbicacionX());
 			depExplosivos2.ubicacionEspejar(this.tamanioAncho, depExplosivos.getUbicacionY());
@@ -124,12 +132,8 @@ public class Combate {
 			torreta2.ubicacionEspejar(this.tamanioAncho, torreta.getUbicacionY());
 
 			//System.out.println(depCombustible2.getUbicacionX() + ' ' + depCombustible.getUbicacionY() );
-			System.out.println(torreta2.getUbicacionX());
+			//System.out.println(torreta2.getUbicacionX());
 			
-			// mantengo los Y del player 1
-//			DepCombustible2.setUbicacionY(DepCombustible.getUbicacionY());
-//			DepExplosivos2.setUbicacionY(DepExplosivos.getUbicacionY());
-//			torreta2.setUbicacionY(torreta.getUbicacionY());
 
 			// aviones
 			ArrayList<Avion> aviones2 = new ArrayList<Avion>();
@@ -155,9 +159,17 @@ public class Combate {
 				//aca adentro espejar cada elemento de la lista anterior
 				Defensa artilleria2 = new Defensa(Defensa.TIPO_DEFENSA_ARTILLERIA, p);
 
-				// lo ubico en el campo, es probable que se pisen en la pantalla
-				artilleria2.setUbicacionY(artilleria2.getUbicacionY() + depCombustible2.getUbicacionY() + baseDistancia); //para que no caiga en el rango de la base																							
-				artilleria2.setUbicacionX(artilleria2.getUbicacionX() + depCombustible2.getUbicacionX() + baseDistancia);//para que no caiga en el rango de la base
+				if (i <= cantArtilleria/2) 
+				{//si es la 1ra mitad del camino, dibujo diagonal arriba
+					artilleria2.setUbicacionX(artilleria2.ubicacionInicial(limiteCampo - depCombustible2.getUbicacionX() - baseDistancia, depCombustible2.getUbicacionX() + baseDistancia));
+					artilleria2.setUbicacionY(artilleria2.ubicacionInicial(depCombustible2.getUbicacionY(),baseDistancia));
+					
+				}else	
+				{	//si es la 2da mitad del camino, dibujo diagonal abajo
+					artilleria2.setUbicacionX(artilleria2.ubicacionInicial(limiteCampo - depCombustible2.getUbicacionX() - baseDistancia, depCombustible2.getUbicacionX() + baseDistancia));
+					artilleria2.setUbicacionY(artilleria2.ubicacionInicial(limiteCampo - depCombustible2.getUbicacionY() - baseDistancia, depCombustible2.getUbicacionY() + baseDistancia));
+					
+				}
 				
 				artillerias2.add(artilleria2);// .insert(avion);
 				
