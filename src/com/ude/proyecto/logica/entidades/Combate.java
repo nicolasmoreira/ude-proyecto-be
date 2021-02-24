@@ -70,6 +70,8 @@ public class Combate {
 				// lo ubico en la base
 				avion.setUbicacionY(depExplosivos.getUbicacionY() + (baseDistancia * i)); // deberia dibujar en las Y
 																							// una columna de aviones
+				avion.setUbicacionX(depExplosivos.getUbicacionX());
+				
 				aviones.insert(avion);
 				System.out.println(avion.toString());
 			}
@@ -109,7 +111,8 @@ public class Combate {
 				// lo ubico en la base
 				avion2.setUbicacionY(depExplosivos2.getUbicacionY() + (baseDistancia * i)); // deberia dibujar en las Y
 																							// una columna de aviones
-				avion2.ubicacionEspejar(this.tamanioAncho, avion2.getUbicacionY());
+				avion2.setUbicacionX(depExplosivos2.getUbicacionX());
+				//avion2.ubicacionEspejar(this.tamanioAncho, avion2.getUbicacionY());
 				aviones2.insert(avion2);
 			}
 
