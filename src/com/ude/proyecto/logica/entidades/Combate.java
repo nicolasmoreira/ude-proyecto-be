@@ -59,8 +59,8 @@ public class Combate {
 			torreta.setUbicacionX(depCombustible.getUbicacionX() + baseDistancia);
 			torreta.setUbicacionY(depCombustible.getUbicacionY());
 
-			System.out.println(depCombustible.getUbicacionX() + ' ' + depCombustible.getUbicacionY() );
-			System.out.println(torreta.getUbicacionX() + ' ' + torreta.getUbicacionY() );
+			System.out.println(depCombustible.getUbicacionX());
+			System.out.println(torreta.getUbicacionX());
 			// aviones
 			ArrayList<Avion> aviones = new ArrayList<Avion>();
 			int cantAviones = Integer.parseInt(p.getProperty("cantAviones"));
@@ -111,14 +111,20 @@ public class Combate {
 			Provision depExplosivos2 = new Provision(Provision.TIPO_PROVISION_EXPLOSIVOS, p);
 			Defensa torreta2 = new Defensa(Defensa.TIPO_DEFENSA_TORRETA, p);
 
-			// espejo para el player 2, mantengo los Y del player 1
-
+			// espejo para el player 2, mantengo los Y del player 1			
+			
+			depCombustible2.setUbicacionX(depCombustible.getUbicacionX());
 			depCombustible2.ubicacionEspejar(this.tamanioAncho, depCombustible.getUbicacionY());
+			System.out.println(depCombustible2.getUbicacionX());
+			
+			depExplosivos2.setUbicacionX(depExplosivos.getUbicacionX());
 			depExplosivos2.ubicacionEspejar(this.tamanioAncho, depExplosivos.getUbicacionY());
+			
+			torreta2.setUbicacionX(torreta.getUbicacionX());
 			torreta2.ubicacionEspejar(this.tamanioAncho, torreta.getUbicacionY());
 
-			System.out.println(depCombustible2.getUbicacionX() + ' ' + depCombustible.getUbicacionY() );
-			System.out.println(torreta2.getUbicacionX() + ' ' + torreta.getUbicacionY() );
+			//System.out.println(depCombustible2.getUbicacionX() + ' ' + depCombustible.getUbicacionY() );
+			System.out.println(torreta2.getUbicacionX());
 			
 			// mantengo los Y del player 1
 //			DepCombustible2.setUbicacionY(DepCombustible.getUbicacionY());
