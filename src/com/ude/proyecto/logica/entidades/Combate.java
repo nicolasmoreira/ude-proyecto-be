@@ -1,13 +1,12 @@
 package com.ude.proyecto.logica.entidades;
 
+import java.util.ArrayList;
 import java.util.Properties;
 
-import com.ude.proyecto.logica.colecciones.Aviones;
-import com.ude.proyecto.logica.colecciones.Jugadores;
 
 public class Combate {
 
-	private Jugadores jugadores;
+	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 	private String fondoImagen;
 	private int idCombate;
 	private String nombrePartida;
@@ -61,10 +60,10 @@ public class Combate {
 			torreta.setUbicacionY(depCombustible.getUbicacionY());
 
 			// aviones
-			Aviones aviones = new Aviones();
+			ArrayList<Avion> aviones = new ArrayList<Avion>();
 			int cantAviones = Integer.parseInt(p.getProperty("cantAviones"));
 
-			for (int i = 1; i <= cantAviones; ++i) {
+			for (int i = 1; i <= cantAviones; i++) {
 				Avion avion = new Avion(p);
 
 				// lo ubico en la base
@@ -103,9 +102,9 @@ public class Combate {
 //			torreta2.setUbicacionY(torreta.getUbicacionY());
 
 			// aviones
-			Aviones aviones2 = new Aviones();
+			ArrayList<Avion> aviones2 = new ArrayList<Avion>();
 
-			for (int i = 1; i <= cantAviones; ++i) {
+			for (int i = 1; i <= cantAviones; i++) {
 				Avion avion2 = new Avion(p);
 
 				// lo ubico en la base
@@ -123,20 +122,14 @@ public class Combate {
 			player2.setAviones(aviones2);
 
 			// creo jugadores
-			Jugadores jugadores = new Jugadores();
-			jugadores.insert(player1);
-			jugadores.insert(player2);
-
-			this.jugadores = jugadores;
+			this.jugadores.clear();
+			this.jugadores.add(player1);
+			this.jugadores.add(player2);
 
 		} catch (Exception e) {
 			System.out.println("Exception creando combate");
 			e.printStackTrace();
 		}
-	}
-
-	public Jugadores getCombateJugadores() {
-		return jugadores;
 	}
 
 	public String getFondoImagen() {
@@ -157,10 +150,6 @@ public class Combate {
 
 	public int getTamanioAncho() {
 		return tamanioAncho;
-	}
-
-	public void setCombateJugadores(Jugadores combateJugadores) {
-		this.jugadores = combateJugadores;
 	}
 
 	public void setFondoImagen(String fondoImagen) {
