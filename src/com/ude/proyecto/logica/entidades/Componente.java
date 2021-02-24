@@ -44,10 +44,11 @@ public abstract class Componente {
 		this.vida = Integer.parseInt(p.getProperty(tipoComponente.trim().toLowerCase() + "Vida"));// 1;
 
 		int margen = Integer.parseInt(p.getProperty("margen"));// 1;
-		int vertice = Integer.parseInt(p.getProperty("vertice"));// 1;
+		int verticeX = Integer.parseInt(p.getProperty("verticeX"));// 1;
+		int verticeY = Integer.parseInt(p.getProperty("verticeY"));// 1;
 
-		this.ubicacionX = ubicacionInicial(margen, vertice);
-		this.ubicacionY = ubicacionInicial(margen, vertice);
+		this.ubicacionX = ubicacionInicial(margen, verticeX);
+		this.ubicacionY = ubicacionInicial(margen, verticeY);
 
 		// System.out.print("this.ubicacionX " + String.valueOf(this.ubicacionX) +
 		// "this.ubicacionY " + String.valueOf(this.ubicacionY));
@@ -167,21 +168,11 @@ public abstract class Componente {
 		this.ubicacionY = ubicacionY;
 	}
 
-	public float ubicacionInicial(int margen, int veritce) {
+	public float ubicacionInicial(float margen, float veritce) {
 		// calcula un random en un area cuadrada a partir de un vertice (x e y) inicial,
 		// por ejemplo x=100 y=100
 		return (int) (Math.random() * margen + veritce); // para que no se construlla en campo enemigo
 		// https://programandoointentandolo.com/2013/10/como-generar-numeros-aleatorios-en-java.html#:~:text=La%20formula%20para%20obtener%20un,%3D%20(int)(Math.
 	}
-
-//	private void UbicacionInicial(float x, float y, int margen, int veritce) {
-//	//calcula un random en un area cuadrada a partir de un vertice (x e y) inicial, por ejemplo x=100 y=100
-//		
-//		x = (int) (Math.random() * margen + veritce); // para que no se construlla en campo enemigo
-//		y = (int) (Math.random() * margen + veritce);
-//		
-//		System.out.print("x " + String.valueOf(x) + "y " + String.valueOf(y));		
-//		
-//	}
 
 }
