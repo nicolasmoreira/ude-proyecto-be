@@ -71,7 +71,7 @@ public class Combate {
 																							// una columna de aviones
 				avion.setUbicacionX(depExplosivos.getUbicacionX());
 				
-				aviones.insert(avion);
+				aviones.add(avion);// .insert(avion);
 				System.out.println(avion.toString());
 			}
 
@@ -112,7 +112,7 @@ public class Combate {
 																							// una columna de aviones
 				avion2.setUbicacionX(depExplosivos2.getUbicacionX());
 				//avion2.ubicacionEspejar(this.tamanioAncho, avion2.getUbicacionY());
-				aviones2.insert(avion2);
+				aviones2.add(avion2);// insert(avion2);
 			}
 
 			// asigno a player2
