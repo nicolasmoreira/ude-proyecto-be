@@ -17,6 +17,7 @@ import javax.websocket.server.ServerEndpoint;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.Fachada;
+import com.ude.proyecto.logica.entidades.Avion;
 
 @ServerEndpoint(value = "/websocket")
 public class WebSocketServer {
@@ -94,10 +95,19 @@ public class WebSocketServer {
 		Fachada fachada = Fachada.getInstanceFachada();
 
 		if (EVENTS.MOVIMIENTO_AVION.getValue().equals(event)) {
+			
+			JsonObject data = jsonObject.get("data").getAsJsonObject();
+			
+			int idJugador 	 = data.get("idJugador").getAsInt();
+			int idComponente = data.get("idComponente").getAsInt();
+			float ubicacionX = data.get("ubicacionX").getAsFloat();
+			float ubicacionY = data.get("ubicacionY").getAsFloat();
+			float rotacion 	 = data.get("rotacion").getAsFloat();
+			
+//			fachada.setCoordenadaComponente(idJugador, idComponente, Avion.TIPO_AVION, ubicacionX, ubicacionY, rotacion); //creo que explota porque hay dos sessiones
+			//System.out.println(data.toString());
 			this.broadcastOne(message, session);
-
-			// System.out.println(jsonObject.get("data").getAsJsonArray());
-
+			
 			/*
 			 * { "idComponente": 1, "tipoComponente": "avion", "ubicacionX": 1,
 			 * "ubicacionY": 1, "rotacion": 1, "vida": 100, "sprite": "ASDADASDAD",

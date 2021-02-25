@@ -228,4 +228,12 @@ public class Combate {
 		this.tamanioAncho = tamanioAncho;
 	}
 
+	public ArrayList<Jugador> getJugadores(){
+		return this.jugadores;
+	}
+	
+	public void setJugadores( ArrayList<Jugador> j){
+		this.jugadores = j;
+	}
+	
 }
