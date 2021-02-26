@@ -20,6 +20,7 @@ import com.ude.proyecto.logica.entidades.Combate;
 public class CrearPartida extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	JsonObject json = new JsonObject();
+	Combate combate = null;
 
 	public CrearPartida() {
 		super();
@@ -46,8 +47,12 @@ public class CrearPartida extends HttpServlet {
 				prop.load(input);
 
 				fachada = Fachada.getInstanceFachada();
+				
+				if (this.combate == null) {
+					this.combate = fachada.iniciarPartida();
+				}
 
-				Combate combate = fachada.iniciarPartida();
+				
 				json.add("partida", new Gson().toJsonTree(combate));
 			} else {
 				json.addProperty("mensaje", "Debe elegir un Player de jugador.");

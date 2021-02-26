@@ -116,6 +116,7 @@ public class WebSocketServer {
 			 */
 
 		} else if (EVENTS.MOVIMIENTO_TORRETA.getValue().equals(event)) {
+			this.broadcastOne(message, session);
 
 		} else if (EVENTS.DISPARO_AVION.getValue().equals(event)) {
 
@@ -132,6 +133,7 @@ public class WebSocketServer {
 		} else if (EVENTS.COLISION_ENTRE_AVIONES.getValue().equals(event)) {
 
 		} else if (EVENTS.CARGA_COMBUSTIBLE.getValue().equals(event)) {
+			this.broadcastOne(message, session);
 
 		} else if (EVENTS.AVION_DERRIBADO.getValue().equals(event)) {
 
