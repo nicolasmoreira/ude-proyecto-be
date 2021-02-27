@@ -52,13 +52,14 @@ public class Fachada {
 		return null;
 	}
 
-	public Combate iniciarPartida() throws Exception {
+	public Combate iniciarPartida(String player, String bando) throws Exception {
 		Properties p = new Properties();
 		InputStream input = null;
+//		System.out.println(bando);
 		try {
 			input = getClass().getClassLoader().getResourceAsStream("config.properties");
 			p.load(input);
-			this.combate = new Combate(p);
+			this.combate = new Combate(p, player, bando);
 
 		} catch (Exception e) {
 			System.out.println("Exception creando combate");

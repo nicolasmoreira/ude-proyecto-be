@@ -22,7 +22,7 @@ public class Combate {
 		this.tamanioAncho = tamanioAncho;
 	}
 
-	public Combate(Properties p) { // combate inicial
+	public Combate(Properties p, String player, String bando) { // combate inicial
 		// Properties p = new Properties();
 		// InputStream input = null;
 		try {
@@ -31,11 +31,30 @@ public class Combate {
 			this.fondoImagen = p.getProperty("fondoImagen"); // "Fondo1";
 			this.tamanioAlto = Integer.parseInt(p.getProperty("tamanioAlto"));
 			this.tamanioAncho = Integer.parseInt(p.getProperty("tamanioAncho"));
-
+			
+			System.out.println(player);
+			System.out.println(p.getProperty("player1"));
+			
+			Jugador player1 = new Jugador(1, p.getProperty("player1"), "");
+			Jugador player2 = new Jugador(2, p.getProperty("player2"), "");
+			
+			String elOtroBando = null;
+			
+			if (bando.equals(Jugador.TIPO_BANDO_ROJO))
+				elOtroBando = Jugador.TIPO_BANDO_AZUL;
+			else
+				elOtroBando = Jugador.TIPO_BANDO_ROJO;
+			
 			// creo player 1 y 2
-			Jugador player1 = new Jugador(1, p.getProperty("player1"));
-			Jugador player2 = new Jugador(2, p.getProperty("player2"));
-
+			if (player.equals(p.getProperty("player1"))){
+				player1.setBando(bando);
+				player2.setBando(elOtroBando);
+			}
+			else {
+				player1.setBando(elOtroBando);
+				player2.setBando(bando);
+			}
+			
 			/*--- componentes player 1*/
 			// creo combustible
 			Provision depCombustible = new Provision(Provision.TIPO_PROVISION_COMBUSTIBLE, p);
@@ -68,6 +87,8 @@ public class Combate {
 				avion.setUbicacionY(depExplosivos.getUbicacionY() + (baseDistancia * i)); // deberia dibujar en las Y
 																							// una columna de aviones
 				avion.setUbicacionX(depExplosivos.getUbicacionX());
+				
+				avion.setSprite(avion.getSprite() + player1.getBando());
 				
 				aviones.add(avion);// .insert(avion);
 				//System.out.println(avion.toString());
@@ -145,7 +166,8 @@ public class Combate {
 				avion2.setUbicacionY(depExplosivos2.getUbicacionY() + (baseDistancia * i)); // deberia dibujar en las Y
 																							// una columna de aviones
 				avion2.setUbicacionX(depExplosivos2.getUbicacionX());
-				//avion2.ubicacionEspejar(this.tamanioAncho, avion2.getUbicacionY());
+				avion2.setSprite(avion2.getSprite() + player2.getBando());
+				
 				aviones2.add(avion2);// insert(avion2);
 			}
 

@@ -12,11 +12,15 @@ public class Jugador {
 	private ArrayList<Avion> aviones = new ArrayList<Avion>();
 	private String nombre;
 	private Defensa torreta;
-
-	public Jugador(int idJugador, String nombre) {
+	
+	public static final String TIPO_BANDO_ROJO = "ROJO";	
+	public static final String TIPO_BANDO_AZUL = "AZUL";
+		
+	public Jugador(int idJugador, String nombre, String bando) {
 		super();
 		this.idJugador = idJugador;
 		this.nombre = nombre;
+		this.bando = bando;
 	}
 
 	public String getBando() {

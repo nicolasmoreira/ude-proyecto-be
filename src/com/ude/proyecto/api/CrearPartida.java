@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.Fachada;
 import com.ude.proyecto.logica.entidades.Combate;
+import com.ude.proyecto.logica.entidades.Jugador;
 
 @WebServlet("/rest/partida")
 public class CrearPartida extends HttpServlet {
@@ -33,29 +34,39 @@ public class CrearPartida extends HttpServlet {
 		InputStream input = null;
 
 		String player = null;
+		String bando = null;
 
 		try {
+			
 
 			Fachada fachada = Fachada.getInstanceFachada();
 
-			player = "player 1"; // a fuego por ahora
-
+			player = "Player1"; // a fuego por ahora
+			bando = Jugador.TIPO_BANDO_ROJO; // a fuego por ahora	
+			System.out.println(bando);		
 			// player = request.getParameter("player");
+			// bando = request.getParameter("bando");
 
-			if (player != null) {
+			if (player != null && bando!=null) {
 				input = getClass().getClassLoader().getResourceAsStream("config.properties");
 				prop.load(input);
 
 				fachada = Fachada.getInstanceFachada();
 				
 				if (this.combate == null) {
-					this.combate = fachada.iniciarPartida();
+					player = "Player1"; // a fuego por ahora
+					bando = Jugador.TIPO_BANDO_ROJO; // a fuego por ahora
+					this.combate = fachada.iniciarPartida(player, bando);
+				}
+				else	//seria player 2 sin problemas
+				{
+					this.combate = fachada.getPartida();
 				}
 
 				
 				json.add("partida", new Gson().toJsonTree(combate));
 			} else {
-				json.addProperty("mensaje", "Debe elegir un Player de jugador.");
+				json.addProperty("mensaje", "Debe elegir un bando de jugador.");
 				response.setStatus(500);
 			}
 		} catch (Exception e) {
