@@ -9,7 +9,7 @@
 		var ws = null;
 
 		function connect() {
-			ws = new WebSocket("ws://localhost:8080/JuegoServer/websocket");
+			ws = new WebSocket("ws://localhost:8081/JuegoServer/websocket");
 
 			ws.onopen = function(message) {
 				console.log("Connection: " + message);
