@@ -3,7 +3,6 @@ package com.ude.proyecto.logica;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.entidades.Avion;
 import com.ude.proyecto.logica.entidades.Combate;
@@ -52,14 +51,17 @@ public class Fachada {
 		return null;
 	}
 
-	public Combate iniciarPartida(String player, String bando) throws Exception {
+	public Combate getPartida() {
+		return this.combate;
+	}
+
+	public Combate iniciarPartida(String player, String color) throws Exception {
 		Properties p = new Properties();
 		InputStream input = null;
-//		System.out.println(bando);
 		try {
 			input = getClass().getClassLoader().getResourceAsStream("config.properties");
 			p.load(input);
-			this.combate = new Combate(p, player, bando);
+			this.combate = new Combate(p, player, color);
 
 		} catch (Exception e) {
 			System.out.println("Exception creando combate");
@@ -68,30 +70,27 @@ public class Fachada {
 
 		return this.combate;
 	}
-	
-	public Combate getPartida() {
-		return this.combate;
-	}
 
 	public void salvarPartida(Combate c) throws Exception {
 	}
 
-	public JsonObject unirsePartida() throws Exception {
-		return null;
-	}
-	
-	public void setCoordenadaComponente(int idJugador, int idComponente, String TipoComponente,  float x, float y, float rotacion) {
-		if (TipoComponente == Avion.TIPO_AVION) { 
+	public void setCoordenadaComponente(int idJugador, int idComponente, String TipoComponente, float x, float y,
+			float rotacion) {
+		if (TipoComponente == Avion.TIPO_AVION) {
 			this.combate.getJugadores().get(idJugador).getAviones().get(idComponente).setUbicacionX(x);
 			this.combate.getJugadores().get(idJugador).getAviones().get(idComponente).setUbicacionY(y);
 			this.combate.getJugadores().get(idJugador).getAviones().get(idComponente).setRotacion(rotacion);
-			//System.out.println(this.combate.getJugadores().get(idJugador).getAviones().get(idComponente).getUbicacionX());
+			// System.out.println(this.combate.getJugadores().get(idJugador).getAviones().get(idComponente).getUbicacionX());
 		}
-		if (TipoComponente == Defensa.TIPO_DEFENSA_ARTILLERIA) { 
+		if (TipoComponente == Defensa.TIPO_DEFENSA_ARTILLERIA) {
 			this.combate.getJugadores().get(idJugador).getArtillerias().get(idComponente).setUbicacionX(x);
 			this.combate.getJugadores().get(idJugador).getArtillerias().get(idComponente).setUbicacionY(y);
 			this.combate.getJugadores().get(idJugador).getArtillerias().get(idComponente).setRotacion(rotacion);
-		}		
+		}
+	}
+
+	public JsonObject unirsePartida() throws Exception {
+		return null;
 	}
 
 }

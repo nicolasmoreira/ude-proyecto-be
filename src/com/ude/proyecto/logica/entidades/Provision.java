@@ -4,10 +4,10 @@ import java.util.Properties;
 
 public class Provision extends Componente {
 
-	private float cantProvision;
-	private String tipoProvision;
 	public static final String TIPO_PROVISION_COMBUSTIBLE = "COMBUSTIBLE";
 	public static final String TIPO_PROVISION_EXPLOSIVOS = "EXPLOSIVOS";
+	private float cantProvision;
+	private String tipoProvision;
 
 	public Provision() {
 		super();
@@ -27,7 +27,7 @@ public class Provision extends Componente {
 		this.tipoProvision = tipoProvision;
 
 		// combustible o explosivos
-		if (tipoProvision.equals(Provision.TIPO_PROVISION_COMBUSTIBLE) ) {
+		if (tipoProvision.equals(Provision.TIPO_PROVISION_COMBUSTIBLE)) {
 			this.cantProvision = Float.parseFloat(p.getProperty("cantProvisionCombustible"));
 			this.sprite = p.getProperty("SpDepositoCombustible");
 			this.sonido = p.getProperty("SdDepositoCombustible");
