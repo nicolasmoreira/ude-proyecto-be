@@ -83,28 +83,26 @@ public class Fachada {
 				
 		if (TipoComponente == Avion.TIPO_AVION) { 
 			  
-//			this.combate.getJugadores().get(idJugador).getAviones().get(idComponente).setUbicacionX(x);
-//			this.combate.getJugadores().get(idJugador).getAviones().get(idComponente).setUbicacionY(y);
-//			this.combate.getJugadores().get(idJugador).getAviones().get(idComponente).setRotacion(rotacion);
-			
-//			System.out.println(this.combate.getJugadores().get(idJugador).getAviones().get(idComponente).getUbicacionX());
-			System.out.println(this.combate.toString());
-			System.out.println(combate.getJugadores().get(idJugador).getAviones());
+			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setUbicacionX(x);
+			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setUbicacionY(y);
+			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setRotacion(rotacion);		
+
+//			System.out.println(this.combate.toString());
+			System.out.println(combate.getJugadores().get(idJugador).getAvion(idComponente).getUbicacionX());
 		}
 		if (TipoComponente == Defensa.TIPO_DEFENSA_ARTILLERIA) { 
-//			this.combate.getJugadores().get(idJugador).getArtillerias().get(idComponente).setUbicacionX(x);
-//			this.combate.getJugadores().get(idJugador).getArtillerias().get(idComponente).setUbicacionY(y);
-//			this.combate.getJugadores().get(idJugador).getArtillerias().get(idComponente).setRotacion(rotacion);
+			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setUbicacionX(x);
+			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setUbicacionY(y);
+			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setRotacion(rotacion);
 		}		
 	}
 	
 	public void setDerribarComponente(int idJugador, int idComponente, String TipoComponente) {
 		if (TipoComponente == Avion.TIPO_AVION) { 
-			this.combate.getJugadores().get(idJugador).getAviones().get(idComponente).setVida(0);
-			//System.out.println(this.combate.getJugadores().get(idJugador).getAviones().get(idComponente).getUbicacionX());
+			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setVida(0);		
 		}
 		if (TipoComponente == Defensa.TIPO_DEFENSA_ARTILLERIA) { 
-			this.combate.getJugadores().get(idJugador).getArtillerias().get(idComponente).setVida(0);			
+			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setVida(0);			
 		}
 		if (TipoComponente == Defensa.TIPO_DEFENSA_TORRETA) { 
 			this.combate.getJugadores().get(idJugador).getTorreta().setVida(0);			

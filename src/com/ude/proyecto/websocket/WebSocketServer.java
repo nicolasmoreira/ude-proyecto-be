@@ -17,6 +17,7 @@ import javax.websocket.server.ServerEndpoint;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.Fachada;
+import com.ude.proyecto.logica.entidades.Avion;
 
 @ServerEndpoint(value = "/websocket")
 public class WebSocketServer {
@@ -106,7 +107,7 @@ public class WebSocketServer {
 			
 			idJugador = idJugador - 1;	//esto es porque los id en las listas van del 0 en adelante, en FE deben consultar contra 1 y 2
 
-			fachada.setCoordenadaComponente(idJugador, idComponente, Avion.TIPO_AVION , ubicacionX, ubicacionY, rotacion); //creo que explota porque hay dos sessiones
+			fachada.setCoordenadaComponente(idJugador, idComponente, Avion.TIPO_AVION, ubicacionX, ubicacionY, rotacion); 
 			System.out.println(idJugador);
 			System.out.println(idComponente);
 			this.broadcastOne(message, session);

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Jugador {
 
 	public static final String AZUL = "AZUL";
-	public static final String ROJO = "ROJO";
+	public static final String ROJO = "ROJO";	
 	private ArrayList<Defensa> artillerias = new ArrayList<Defensa>();
 	private ArrayList<Avion> aviones = new ArrayList<Avion>();
 	private String bando;
@@ -87,4 +87,26 @@ public class Jugador {
 		this.torreta = torreta;
 	}
 
+	//primitivas de avion
+	public Avion getAvion(int idComponente) {
+		
+		for (Avion avion : this.aviones) {
+		        if (avion.getIdComponente()==idComponente) {
+		            return avion;
+		        }
+		    }
+		return null;
+	}
+	
+	//primitivas de Artilleria
+	public Defensa getArtilleria(int idComponente) {
+		 
+		for (Defensa artilleria : this.artillerias) {
+		        if (artilleria.getIdComponente()==idComponente) {
+		            return artilleria;
+		        }
+		    }
+		 return null;
+	}
+	
 }
