@@ -4,6 +4,7 @@ import java.util.Properties;
 
 public class Avion extends Componente {
 
+	public static final String TIPO_AVION = "AVION";
 	private boolean altitudAlta;
 	private float barraCombustible;
 	private Proyectil bomba;
@@ -12,8 +13,7 @@ public class Avion extends Componente {
 	private float rangoDisparo;
 	private String spritesLaterales;
 	private boolean tieneBomba;
-	public static final String TIPO_AVION = "AVION";
-	
+
 	public Avion() {
 		super();
 	}

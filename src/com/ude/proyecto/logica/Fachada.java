@@ -3,7 +3,6 @@ package com.ude.proyecto.logica;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.entidades.Avion;
 import com.ude.proyecto.logica.entidades.Combate;
@@ -53,24 +52,23 @@ public class Fachada {
 		return null;
 	}
 
-	public Combate iniciarPartida(String player, String bando) throws Exception {
+	public Combate getPartida() {
+		return this.combate;
+	}
+
+	public Combate iniciarPartida(String player, String color) throws Exception {
 		Properties p = new Properties();
 		InputStream input = null;
-//		System.out.println(bando);
 		try {
 			input = getClass().getClassLoader().getResourceAsStream("config.properties");
 			p.load(input);
-			this.combate = new Combate(p, player, bando);
+			this.combate = new Combate(p, player, color);
 
 		} catch (Exception e) {
 			System.out.println("Exception creando combate");
 			e.printStackTrace();
 		}
 
-		return this.combate;
-	}
-	
-	public Combate getPartida() {
 		return this.combate;
 	}
 

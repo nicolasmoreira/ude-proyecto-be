@@ -4,12 +4,12 @@ import java.util.Properties;
 
 public class Defensa extends Componente {
 
+	public static final String TIPO_DEFENSA_ARTILLERIA = "ARTILLERIA";
+	public static final String TIPO_DEFENSA_TORRETA = "TORRETA";
 	private float demoraDesplazamiento;
 	private Proyectil municion;
 	private float rangoDisparo;
 	private String tipoDefensa;
-	public static final String TIPO_DEFENSA_TORRETA = "TORRETA";
-	public static final String TIPO_DEFENSA_ARTILLERIA = "ARTILLERIA";	
 
 	public Defensa() {
 		super();

@@ -4,23 +4,31 @@ import java.util.ArrayList;
 
 public class Jugador {
 
+	public static final String AZUL = "AZUL";
+	public static final String ROJO = "ROJO";
+	private ArrayList<Defensa> artillerias = new ArrayList<Defensa>();
+	private ArrayList<Avion> aviones = new ArrayList<Avion>();
 	private String bando;
 	private Provision depositoCombustible;
 	private Provision depositoExplosivos;
 	private int idJugador;
-	private ArrayList<Defensa> artillerias = new ArrayList<Defensa>();
-	private ArrayList<Avion> aviones = new ArrayList<Avion>();
+
 	private String nombre;
 	private Defensa torreta;
-	
-	public static final String TIPO_BANDO_ROJO = "ROJO";	
-	public static final String TIPO_BANDO_AZUL = "AZUL";
-		
+
 	public Jugador(int idJugador, String nombre, String bando) {
 		super();
 		this.idJugador = idJugador;
 		this.nombre = nombre;
 		this.bando = bando;
+	}
+
+	public ArrayList<Defensa> getArtillerias() {
+		return artillerias;
+	}
+
+	public ArrayList<Avion> getAviones() {
+		return aviones;
 	}
 
 	public String getBando() {
@@ -39,20 +47,20 @@ public class Jugador {
 		return idJugador;
 	}
 
-	public ArrayList<Defensa> getArtillerias() {
-		return artillerias;
-	}
-
-	public ArrayList<Avion> getAviones() {
-		return aviones;
-	}
-
 	public String getNombre() {
 		return nombre;
 	}
 
 	public Defensa getTorreta() {
 		return torreta;
+	}
+
+	public void setArtillerias(ArrayList<Defensa> artillerias) {
+		this.artillerias = artillerias;
+	}
+
+	public void setAviones(ArrayList<Avion> aviones) {
+		this.aviones = aviones;
 	}
 
 	public void setBando(String bando) {
@@ -69,14 +77,6 @@ public class Jugador {
 
 	public void setIdJugador(int idJugador) {
 		this.idJugador = idJugador;
-	}
-
-	public void setArtillerias(ArrayList<Defensa> artillerias) {
-		this.artillerias = artillerias;
-	}
-
-	public void setAviones(ArrayList<Avion> aviones) {
-		this.aviones = aviones;
 	}
 
 	public void setNombre(String nombre) {

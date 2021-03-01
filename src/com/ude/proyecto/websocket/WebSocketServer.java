@@ -17,7 +17,6 @@ import javax.websocket.server.ServerEndpoint;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.Fachada;
-import com.ude.proyecto.logica.entidades.Avion;
 
 @ServerEndpoint(value = "/websocket")
 public class WebSocketServer {
@@ -111,7 +110,7 @@ public class WebSocketServer {
 			System.out.println(idJugador);
 			System.out.println(idComponente);
 			this.broadcastOne(message, session);
-			
+
 			/*
 			 * { "idComponente": 1, "tipoComponente": "avion", "ubicacionX": 1,
 			 * "ubicacionY": 1, "rotacion": 1, "vida": 100, "sprite": "ASDADASDAD",
