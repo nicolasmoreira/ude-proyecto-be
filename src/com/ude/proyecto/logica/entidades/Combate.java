@@ -90,7 +90,8 @@ public class Combate {
 				
 				avion.setSprite(avion.getSprite() + player1.getBando());
 				
-				aviones.add(avion);// .insert(avion);
+				aviones.add(avion);
+				//aviones.add(avion.getIdComponente(),avion);no anda porque deben ser consecutivos
 				//System.out.println(avion.toString());
 			}
 
@@ -167,7 +168,7 @@ public class Combate {
 																							// una columna de aviones
 				avion2.setUbicacionX(depExplosivos2.getUbicacionX());
 				avion2.setSprite(avion2.getSprite() + player2.getBando());
-				
+				//System.out.println(avion2.getIdComponente());
 				aviones2.add(avion2);// insert(avion2);
 			}
 

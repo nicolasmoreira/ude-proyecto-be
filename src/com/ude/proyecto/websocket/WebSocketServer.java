@@ -88,24 +88,28 @@ public class WebSocketServer {
 
 	@OnMessage
 	public void onMessage(String message, Session session) throws Exception {
-
+		//System.out.println("Sesion " + session.getId() + " dice: " + message);
+		
 		String json = message;
 		JsonObject jsonObject = new Gson().fromJson(json, JsonObject.class);
 		String event = jsonObject.get("event").getAsString();
 		Fachada fachada = Fachada.getInstanceFachada();
-
+		JsonObject data = jsonObject.get("data").getAsJsonObject();
+		
 		if (EVENTS.MOVIMIENTO_AVION.getValue().equals(event)) {
-			
-			JsonObject data = jsonObject.get("data").getAsJsonObject();
-			
+					
 			int idJugador 	 = data.get("idJugador").getAsInt();
 			int idComponente = data.get("idComponente").getAsInt();
 			float ubicacionX = data.get("ubicacionX").getAsFloat();
 			float ubicacionY = data.get("ubicacionY").getAsFloat();
 			float rotacion 	 = data.get("rotacion").getAsFloat();
+
 			
-//			fachada.setCoordenadaComponente(idJugador, idComponente, Avion.TIPO_AVION, ubicacionX, ubicacionY, rotacion); //creo que explota porque hay dos sessiones
-			//System.out.println(data.toString());
+			idJugador = idJugador - 1;	//esto es porque los id en las listas van del 0 en adelante, en FE deben consultar contra 1 y 2
+
+			fachada.setCoordenadaComponente(idJugador, idComponente, Avion.TIPO_AVION , ubicacionX, ubicacionY, rotacion); //creo que explota porque hay dos sessiones
+			System.out.println(idJugador);
+			System.out.println(idComponente);
 			this.broadcastOne(message, session);
 			
 			/*
@@ -132,10 +136,15 @@ public class WebSocketServer {
 
 		} else if (EVENTS.COLISION_ENTRE_AVIONES.getValue().equals(event)) {
 
-		} else if (EVENTS.CARGA_COMBUSTIBLE.getValue().equals(event)) {
+		} else if (EVENTS.CARGA_COMBUSTIBLE.getValue().equals(event)) {			
 			this.broadcastOne(message, session);
 
 		} else if (EVENTS.AVION_DERRIBADO.getValue().equals(event)) {
+			
+			int idJugador 	 = data.get("idJugador").getAsInt();
+			int idComponente = data.get("idComponente").getAsInt();
+			
+			this.broadcastOne(message, session);
 
 		} else if (EVENTS.SALIR.getValue().equals(event)) {
 

@@ -60,6 +60,7 @@ public class CrearPartida extends HttpServlet {
 				}
 				else	//seria player 2 sin problemas
 				{
+					System.out.println("entro al else partida ya creada");	
 					this.combate = fachada.getPartida();
 				}
 
