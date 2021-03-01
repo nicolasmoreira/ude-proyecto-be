@@ -16,7 +16,6 @@ import com.ude.proyecto.logica.Fachada;
 @WebServlet("/rest/join-partida")
 public class JoinPartida extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	JsonObject json = new JsonObject();
 
 	public JoinPartida() {
 		super();
@@ -26,7 +25,9 @@ public class JoinPartida extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		try {
+		JsonObject json = new JsonObject();
+		
+		try {			
 			Fachada fachada = Fachada.getInstanceFachada();
 			json.add("partida", new Gson().toJsonTree(fachada.getPartida()));
 		} catch (Exception e) {
