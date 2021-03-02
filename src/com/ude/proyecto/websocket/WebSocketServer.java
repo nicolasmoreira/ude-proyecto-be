@@ -123,6 +123,7 @@ public class WebSocketServer {
 			this.broadcastOne(message, session);
 
 		} else if (EVENTS.DISPARO_AVION.getValue().equals(event)) {
+			this.broadcastOne(message, session);
 
 		} else if (EVENTS.DISPARO_TORRETA.getValue().equals(event)) {
 
