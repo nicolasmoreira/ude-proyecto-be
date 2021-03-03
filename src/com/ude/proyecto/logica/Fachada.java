@@ -73,12 +73,12 @@ public class Fachada {
 	public void setCoordenadaComponente(int idJugador, int idComponente, String TipoComponente, float x, float y,
 			float rotacion) {
 
-		if (TipoComponente == Avion.TIPO_AVION) {
+		if (this.combate != null && TipoComponente == Avion.TIPO_AVION) {
 			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setUbicacionX(x);
 			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setUbicacionY(y);
 			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setRotacion(rotacion);
 		}
-		if (TipoComponente == Defensa.TIPO_DEFENSA_ARTILLERIA) {
+		if (this.combate != null && TipoComponente == Defensa.TIPO_DEFENSA_ARTILLERIA) {
 			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setUbicacionX(x);
 			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setUbicacionY(y);
 			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setRotacion(rotacion);
@@ -102,9 +102,10 @@ public class Fachada {
 			this.combate.getJugadores().get(idJugador).getDepositoExplosivos().setVida(0);
 		}
 	}
-
-	public JsonObject unirsePartida() throws Exception {
-		return null;
-	}
+	
+	public void finalizarPartida() throws Exception {
+		//@todo GUARDAR PARTIDA ACA
+		this.combate = null;
+	}	
 
 }

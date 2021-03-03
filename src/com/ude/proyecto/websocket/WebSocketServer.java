@@ -21,6 +21,8 @@ import com.ude.proyecto.logica.entidades.Avion;
 
 @ServerEndpoint(value = "/websocket")
 public class WebSocketServer {
+	
+	private static Fachada fachada = Fachada.getInstanceFachada();
 
 	private enum EVENTS {
 		AVION_DERRIBADO("avionDerribado"), CARGA_COMBUSTIBLE("cargaCombustible"),
@@ -59,10 +61,14 @@ public class WebSocketServer {
 	}
 
 	@OnClose
-	public void onClose(CloseReason reason, Session session) {
+	public void onClose(CloseReason reason, Session session) throws Exception {
 		System.out.println("Cerrando la sessions: " + session.getId() + ", motivo: " + reason.getReasonPhrase());
 		System.out.println("Cantidad de sessions: " + sessions.size());
 		sessions.remove(session.getId());
+		if (sessions.size() == 0) {			
+			fachada.finalizarPartida();
+		}
+		
 	}
 
 	@OnError
@@ -70,7 +76,7 @@ public class WebSocketServer {
 		// Most likely cause is a user closing their browser. Check to see if
 		// the root cause is EOF and if it is ignore it.
 		// Protect against infinite loops.
-		int count = 0;
+		/*int count = 0;
 		Throwable root = t;
 		while (root.getCause() != null && count < 20) {
 			root = root.getCause();
@@ -81,7 +87,7 @@ public class WebSocketServer {
 			// ignore it.
 		} else {
 			throw t;
-		}
+		}*/
 	}
 
 	@OnMessage
