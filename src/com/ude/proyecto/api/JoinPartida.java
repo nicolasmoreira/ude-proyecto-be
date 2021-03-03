@@ -26,8 +26,8 @@ public class JoinPartida extends HttpServlet {
 			throws ServletException, IOException {
 
 		JsonObject json = new JsonObject();
-		
-		try {			
+
+		try {
 			Fachada fachada = Fachada.getInstanceFachada();
 			json.add("partida", new Gson().toJsonTree(fachada.getPartida()));
 		} catch (Exception e) {

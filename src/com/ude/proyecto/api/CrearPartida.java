@@ -18,7 +18,7 @@ import com.ude.proyecto.logica.entidades.Combate;
 
 @WebServlet("/rest/partida")
 public class CrearPartida extends HttpServlet {
-	private static final long serialVersionUID = 1L;	
+	private static final long serialVersionUID = 1L;
 
 	public CrearPartida() {
 		super();
@@ -30,7 +30,7 @@ public class CrearPartida extends HttpServlet {
 		Properties prop = new Properties();
 		InputStream input = null;
 
-		JsonObject json = new JsonObject();		
+		JsonObject json = new JsonObject();
 		String player = null;
 		String color = null;
 		Combate combate = null;
@@ -41,7 +41,7 @@ public class CrearPartida extends HttpServlet {
 
 			player = "Player1"; // a fuego por ahora
 
-			color = request.getParameter("color");		
+			color = request.getParameter("color");
 
 			if (player != null && color != null) {
 				input = getClass().getClassLoader().getResourceAsStream("config.properties");

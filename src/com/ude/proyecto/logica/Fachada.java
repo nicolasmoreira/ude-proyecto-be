@@ -75,44 +75,45 @@ public class Fachada {
 	public void salvarPartida(Combate c) throws Exception {
 	}
 
-	public JsonObject unirsePartida() throws Exception {
-		return null;
-	}
-	
-	public void setCoordenadaComponente(int idJugador, int idComponente, String TipoComponente,  float x, float y, float rotacion) {
-				
-		if (TipoComponente == Avion.TIPO_AVION) { 
-			  
+	public void setCoordenadaComponente(int idJugador, int idComponente, String TipoComponente, float x, float y,
+			float rotacion) {
+
+		if (TipoComponente == Avion.TIPO_AVION) {
+
 			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setUbicacionX(x);
 			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setUbicacionY(y);
-			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setRotacion(rotacion);		
+			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setRotacion(rotacion);
 
 //			System.out.println(this.combate.toString());
 			System.out.println(combate.getJugadores().get(idJugador).getAvion(idComponente).getUbicacionX());
 		}
-		if (TipoComponente == Defensa.TIPO_DEFENSA_ARTILLERIA) { 
+		if (TipoComponente == Defensa.TIPO_DEFENSA_ARTILLERIA) {
 			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setUbicacionX(x);
 			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setUbicacionY(y);
 			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setRotacion(rotacion);
-		}		
+		}
 	}
-	
+
 	public void setDerribarComponente(int idJugador, int idComponente, String TipoComponente) {
-		if (TipoComponente == Avion.TIPO_AVION) { 
-			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setVida(0);		
+		if (TipoComponente == Avion.TIPO_AVION) {
+			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setVida(0);
 		}
-		if (TipoComponente == Defensa.TIPO_DEFENSA_ARTILLERIA) { 
-			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setVida(0);			
+		if (TipoComponente == Defensa.TIPO_DEFENSA_ARTILLERIA) {
+			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setVida(0);
 		}
-		if (TipoComponente == Defensa.TIPO_DEFENSA_TORRETA) { 
-			this.combate.getJugadores().get(idJugador).getTorreta().setVida(0);			
+		if (TipoComponente == Defensa.TIPO_DEFENSA_TORRETA) {
+			this.combate.getJugadores().get(idJugador).getTorreta().setVida(0);
 		}
-		if (TipoComponente == Provision.TIPO_PROVISION_COMBUSTIBLE) { 
-			this.combate.getJugadores().get(idJugador).getDepositoCombustible().setVida(0);			
+		if (TipoComponente == Provision.TIPO_PROVISION_COMBUSTIBLE) {
+			this.combate.getJugadores().get(idJugador).getDepositoCombustible().setVida(0);
 		}
-		if (TipoComponente == Provision.TIPO_PROVISION_EXPLOSIVOS) { 
-			this.combate.getJugadores().get(idJugador).getDepositoExplosivos().setVida(0);			
+		if (TipoComponente == Provision.TIPO_PROVISION_EXPLOSIVOS) {
+			this.combate.getJugadores().get(idJugador).getDepositoExplosivos().setVida(0);
 		}
+	}
+
+	public JsonObject unirsePartida() throws Exception {
+		return null;
 	}
 
 }
