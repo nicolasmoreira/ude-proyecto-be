@@ -31,8 +31,8 @@ public class Combate {
 			this.tamanioAlto = Integer.parseInt(p.getProperty("tamanioAlto"));
 			this.tamanioAncho = Integer.parseInt(p.getProperty("tamanioAncho"));
 
-			System.out.println(player);
-			System.out.println(p.getProperty("player1"));
+			//System.out.println(player);
+			//System.out.println(p.getProperty("player1"));
 
 			Jugador player1 = new Jugador(1, p.getProperty("player1"), "");
 			Jugador player2 = new Jugador(2, p.getProperty("player2"), "");
@@ -69,10 +69,10 @@ public class Combate {
 			torreta.setUbicacionX(depCombustible.getUbicacionX() + baseDistancia);
 			torreta.setUbicacionY(depCombustible.getUbicacionY());
 
-			System.out.println("-----------Primera vez-------------");
+			//System.out.println("-----------Primera vez-------------");
 
-			System.out.println(depCombustible.getUbicacionX());
-			System.out.println(depCombustible.getUbicacionY());
+			//System.out.println(depCombustible.getUbicacionX());
+			//System.out.println(depCombustible.getUbicacionY());
 			// System.out.println(torreta.getUbicacionX());
 			// aviones
 			ArrayList<Avion> aviones = new ArrayList<Avion>();
@@ -121,9 +121,9 @@ public class Combate {
 				}
 
 				artillerias.add(artilleria);// .insert(avion);
-				System.out.println("-----------");
-				System.out.println(artilleria.getUbicacionX());
-				System.out.println(artilleria.getUbicacionY());
+				//System.out.println("-----------");
+				//System.out.println(artilleria.getUbicacionX());
+				//System.out.println(artilleria.getUbicacionY());
 			}
 
 			// System.out.println(artillerias. toString());

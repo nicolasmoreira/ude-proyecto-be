@@ -20,7 +20,6 @@ public class Provision extends Componente {
 		this.cantProvision = cantProvision;
 	}
 
-	/* aca creo los por defecto */
 	public Provision(String tipoProvision, Properties p) {// provision
 		super("Provision", p);
 

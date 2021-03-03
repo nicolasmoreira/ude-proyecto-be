@@ -23,7 +23,6 @@ public class Jugador {
 		this.bando = bando;
 	}
 
-	// primitivas de Artilleria
 	public Defensa getArtilleria(int idComponente) {
 
 		for (Defensa artilleria : this.artillerias) {

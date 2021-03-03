@@ -4,10 +4,8 @@ import java.util.Properties;
 
 public abstract class Componente {
 
-	// autonumerico
 	public static int idAutonumerico = 0;
 
-	// atributos
 	protected int idComponente;
 	protected float rotacion;
 	protected String sonido;
@@ -34,7 +32,6 @@ public abstract class Componente {
 		this.sonido = sonido;
 	}
 
-	// constructor para tipo de componente
 	public Componente(String tipoComponente, Properties p) {
 
 		this.idComponente = Componente.idAutonumerico++;

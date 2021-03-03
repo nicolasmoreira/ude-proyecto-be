@@ -51,11 +51,9 @@ public class WebSocketServer {
 	}
 
 	private void broadcastOne(String msg, Session session) throws IOException {
-		// System.out.println(msg);
 		for (Entry<String, Session> s : sessions.entrySet()) {
 			if (s.getValue().getId() != session.getId()) {
 				s.getValue().getBasicRemote().sendText(msg);
-				// System.out.println("Va bala:" + msg);
 			}
 		}
 	}
@@ -88,8 +86,6 @@ public class WebSocketServer {
 
 	@OnMessage
 	public void onMessage(String message, Session session) throws Exception {
-		// System.out.println("Sesion " + session.getId() + " dice: " + message);
-
 		String json = message;
 		JsonObject jsonObject = new Gson().fromJson(json, JsonObject.class);
 		String event = jsonObject.get("event").getAsString();
@@ -109,8 +105,7 @@ public class WebSocketServer {
 
 			fachada.setCoordenadaComponente(idJugador, idComponente, Avion.TIPO_AVION, ubicacionX, ubicacionY,
 					rotacion);
-			System.out.println(idJugador);
-			System.out.println(idComponente);
+
 			this.broadcastOne(message, session);
 
 			/*

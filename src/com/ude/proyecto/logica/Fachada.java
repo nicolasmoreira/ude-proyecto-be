@@ -12,7 +12,8 @@ import com.ude.proyecto.logica.entidades.Provision;
 public class Fachada {
 
 	private static Fachada fachada;
-
+	private Combate combate;
+	
 	public static Fachada getInstanceFachada() {
 		if (fachada == null) {
 			fachada = new Fachada();
@@ -20,13 +21,7 @@ public class Fachada {
 		return fachada;
 	}
 
-	private Combate combate;
-
-	/**
-	 * 
-	 */
 	private Fachada() {
-		// combate = new Combate();
 		Properties p = new Properties();
 		InputStream input = null;
 		try {
@@ -79,13 +74,9 @@ public class Fachada {
 			float rotacion) {
 
 		if (TipoComponente == Avion.TIPO_AVION) {
-
 			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setUbicacionX(x);
 			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setUbicacionY(y);
 			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setRotacion(rotacion);
-
-//			System.out.println(this.combate.toString());
-			System.out.println(combate.getJugadores().get(idJugador).getAvion(idComponente).getUbicacionX());
 		}
 		if (TipoComponente == Defensa.TIPO_DEFENSA_ARTILLERIA) {
 			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setUbicacionX(x);
