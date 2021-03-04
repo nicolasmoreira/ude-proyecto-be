@@ -71,7 +71,7 @@ public class creaBase {
 
 			/* Creo tabla DAOCombate */
 
-			String creaTabla = "create table DAOCombate (codigo VARCHAR(60) primary key, nombre_partida VARCHAR(60), partida VARCHAR(900) )";
+			String creaTabla = "create table DAOCombate (codigo int (3) AUTO_INCREMENT primary key, nombre_partida VARCHAR(60), partida VARCHAR(900) )";
 			Statement stmt2 = con.createStatement();
 			cant = stmt2.executeUpdate(creaTabla);
 			stmt2.close();

@@ -1,6 +1,8 @@
 package com.ude.proyecto.logica;
 
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.Properties;
 
 import com.google.gson.JsonObject;
@@ -8,11 +10,13 @@ import com.ude.proyecto.logica.entidades.Avion;
 import com.ude.proyecto.logica.entidades.Combate;
 import com.ude.proyecto.logica.entidades.Defensa;
 import com.ude.proyecto.logica.entidades.Provision;
+import com.ude.proyecto.persistencia.daos.*;
 
 public class Fachada {
 
 	private static Fachada fachada;
 	private Combate combate;
+	private DAOCombate daoCombate;
 	
 	public static Fachada getInstanceFachada() {
 		if (fachada == null) {
@@ -37,16 +41,22 @@ public class Fachada {
 			String password = p.getProperty("db_password");
 			Class.forName(driver);
 
+			//Connection con = DriverManager.getConnection(url, user, password);
+			
+			daoCombate = new DAOCombate(url, user, password);
+			
 		} catch (Exception e) {
 			System.out.println("Exception creando fachada");
 			e.printStackTrace();
 		}
 	}
 
-	public JsonObject cargarPartida(int i) throws Exception {
-		return null;
+	
+	public void setPartida(Combate c) {
+		Fachada f = getInstanceFachada();
+		f.combate = c;
 	}
-
+	
 	public Combate getPartida() {
 		return this.combate;
 	}
@@ -68,10 +78,14 @@ public class Fachada {
 	}
 
 	public void salvarPartida(String nombrePartida, String data) throws Exception {
-		System.out.println(data);
-		
+		daoCombate.guardarCombate(nombrePartida, data);
+		System.out.println(data);		
 	}
-
+	
+	public JsonObject cargarPartida(int id, String nombrePartida ) throws Exception {		
+		daoCombate.cargarCombate(id, nombrePartida);
+		return null;
+	}
 	
 	
 	public void setCoordenadaComponente(int idJugador, int idComponente, String TipoComponente, float x, float y,
