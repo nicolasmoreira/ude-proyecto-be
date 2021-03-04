@@ -67,9 +67,13 @@ public class Fachada {
 		return this.combate;
 	}
 
-	public void salvarPartida(Combate c) throws Exception {
+	public void salvarPartida(String nombrePartida, String data) throws Exception {
+		System.out.println(data);
+		
 	}
 
+	
+	
 	public void setCoordenadaComponente(int idJugador, int idComponente, String TipoComponente, float x, float y,
 			float rotacion) {
 
@@ -83,6 +87,94 @@ public class Fachada {
 			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setUbicacionY(y);
 			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setRotacion(rotacion);
 		}
+	}
+	
+	public void setComponente(int idJugador, int idComponente, String TipoComponente, JsonObject data) {
+		
+		float ubicacionX = data.get("ubicacionX").getAsFloat();
+		float ubicacionY = data.get("ubicacionY").getAsFloat();
+		float rotacion = data.get("rotacion").getAsFloat();
+		int vida = data.get("vida").getAsInt();            
+        String sprite = data.get("sprite").getAsString();
+        String sonido = data.get("sonido").getAsString();
+        boolean altitudAlta = data.get("altitudAlta").getAsBoolean();
+        boolean tieneBomba = data.get("tieneBomba").getAsBoolean();
+        float barraCombustible = data.get("barraCombustible").getAsFloat();
+        //datos que aun no vienen
+        //Proyectil bomba;
+    	//boolean enfocado = false;        	
+    	//float rangoDisparo = 0;
+    	//String spritesLaterales = "";
+    	
+		if (vida <= 0) { 	//hay veces que viene negativo
+			vida = 0;
+		}			
+		if (this.combate != null) {
+			if (TipoComponente == Avion.TIPO_AVION) {
+				Avion componente = this.combate.getJugadores().get(idJugador).getAvion(idComponente);
+				componente.setAltitudAlta(altitudAlta);
+				componente.setBarraCombustible(barraCombustible);
+				componente.setTieneBomba(tieneBomba);
+				
+				//datos componente
+				componente.setRotacion(rotacion);
+				componente.setSonido(sonido);
+				componente.setSprite(sprite);				
+				componente.setTipoComponente(TipoComponente);
+				componente.setUbicacionX(ubicacionX);
+				componente.setUbicacionY(ubicacionY);
+				componente.setVida(vida);
+				
+			}
+			if (TipoComponente == Defensa.TIPO_DEFENSA_ARTILLERIA) {
+				Defensa componente = this.combate.getJugadores().get(idJugador).getArtilleria(idComponente);
+				/* ir habilitando lo que precisemos */
+				//datos componente
+//				componente.setRotacion(rotacion);
+//				componente.setSonido(sonido);
+//				componente.setSprite(sprite);				
+//				componente.setUbicacionX(ubicacionX);
+//				componente.setUbicacionY(ubicacionY);
+				componente.setVida(vida);
+						
+			}
+			if (TipoComponente == Defensa.TIPO_DEFENSA_TORRETA) {
+				Defensa componente = this.combate.getJugadores().get(idJugador).getTorreta();
+				/* ir habilitando lo que precisemos */
+				//datos componente
+//				componente.setRotacion(rotacion);
+//				componente.setSonido(sonido);
+//				componente.setSprite(sprite);				
+//				componente.setUbicacionX(ubicacionX);
+//				componente.setUbicacionY(ubicacionY);
+				componente.setVida(vida);
+			}
+			if (TipoComponente == Provision.TIPO_PROVISION_COMBUSTIBLE) {
+				Provision componente = this.combate.getJugadores().get(idJugador).getDepositoCombustible();
+				/* ir habilitando lo que precisemos */
+				//datos componente
+//				componente.setRotacion(rotacion);
+//				componente.setSonido(sonido);
+//				componente.setSprite(sprite);				
+//				componente.setUbicacionX(ubicacionX);
+//				componente.setUbicacionY(ubicacionY);
+				componente.setVida(vida);
+			}
+			if (TipoComponente == Provision.TIPO_PROVISION_EXPLOSIVOS) {
+				Provision componente = this.combate.getJugadores().get(idJugador).getDepositoExplosivos();
+				/* ir habilitando lo que precisemos */
+				//datos componente
+//				componente.setRotacion(rotacion);
+//				componente.setSonido(sonido);
+//				componente.setSprite(sprite);				
+//				componente.setUbicacionX(ubicacionX);
+//				componente.setUbicacionY(ubicacionY);
+				componente.setVida(vida);
+			}
+		}
+//		}else 
+//			System.out.print("no deveria llegar vida menor a cero");			
+//		
 	}
 
 	public void setDerribarComponente(int idJugador, int idComponente, String TipoComponente) {

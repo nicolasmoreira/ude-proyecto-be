@@ -34,7 +34,7 @@ public class Avion extends Componente {
 
 	// creador inicial desde properties
 	public Avion(Properties p) {
-		super("Avion", p);
+		super(TIPO_AVION, p);
 		this.altitudAlta = Boolean.getBoolean(p.getProperty("altitudAlta"));
 		this.tieneBomba = Boolean.getBoolean(p.getProperty("tieneBomba"));
 		this.barraCombustible = Float.parseFloat(p.getProperty("barraCombustible"));

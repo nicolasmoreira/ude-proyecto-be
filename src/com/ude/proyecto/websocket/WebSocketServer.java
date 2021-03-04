@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.Fachada;
 import com.ude.proyecto.logica.entidades.Avion;
+import com.ude.proyecto.logica.entidades.Proyectil;
 
 @ServerEndpoint(value = "/websocket")
 public class WebSocketServer {
@@ -99,19 +100,20 @@ public class WebSocketServer {
 		JsonObject data = jsonObject.get("data").getAsJsonObject();
 
 		if (EVENTS.MOVIMIENTO_AVION.getValue().equals(event)) {
-
+			
 			int idJugador = data.get("idJugador").getAsInt();
 			int idComponente = data.get("idComponente").getAsInt();
-			float ubicacionX = data.get("ubicacionX").getAsFloat();
-			float ubicacionY = data.get("ubicacionY").getAsFloat();
-			float rotacion = data.get("rotacion").getAsFloat();
-
+			String tipoComponente = data.get("tipoComponente").getAsString();
+			
 			idJugador = idJugador - 1; // esto es porque los id en las listas van del 0 en adelante, en FE deben
-										// consultar contra 1 y 2
-
-			fachada.setCoordenadaComponente(idJugador, idComponente, Avion.TIPO_AVION, ubicacionX, ubicacionY,
-					rotacion);
-
+										// consultar contra 1 y 2			
+			
+			//System.out.println(data);			
+			//fachada.setCoordenadaComponente(idJugador, idComponente, Avion.TIPO_AVION, ubicacionX, ubicacionY,rotacion);
+			
+			//esto es para setear la vida del avion
+			fachada.setComponente(idJugador, idComponente, Avion.TIPO_AVION, data);
+						
 			this.broadcastOne(message, session);
 
 			/*
@@ -146,7 +148,7 @@ public class WebSocketServer {
 
 			int idJugador = data.get("idJugador").getAsInt();
 			int idComponente = data.get("idComponente").getAsInt();
-
+			fachada.setDerribarComponente(idJugador, idComponente, Avion.TIPO_AVION);
 			this.broadcastOne(message, session);
 
 		} else if (EVENTS.SALIR.getValue().equals(event)) {
