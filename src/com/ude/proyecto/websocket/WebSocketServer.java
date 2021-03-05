@@ -147,8 +147,8 @@ public class WebSocketServer {
 			this.broadcastOne(message, session);
 
 		}else if(EVENTS.DESTRUCCION_PROVISION.getValue().equals(event)) {
-			//this.broadcastOne(message, session);
-			System.out.print("se hizo");
+			this.broadcastOne(message, session);
+			//System.out.print("se hizo");
 		}
 		else if (EVENTS.AVION_DERRIBADO.getValue().equals(event)) {
 
