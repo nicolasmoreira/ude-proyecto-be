@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.Fachada;
 import com.ude.proyecto.logica.entidades.Avion;
+import com.ude.proyecto.logica.entidades.Provision;
 import com.ude.proyecto.logica.entidades.Proyectil;
 
 @ServerEndpoint(value = "/websocket")
@@ -30,7 +31,8 @@ public class WebSocketServer {
 		COLISION_ENTRE_AVIONES("colisionEntreAviones"), DISPARO_AVION("disparoAvion"),
 		DISPARO_TORRETA("disparoTorreta"), MOVIMIENTO_AVION("movimientoAvion"), MOVIMIENTO_TORRETA("movimientoTorreta"),
 		PARTIDA_DETENIDA("partidaDetenida"), PARTIDA_FINALIZADA("partidaFinalizada"),
-		PARTIDA_INICIADA("partidaIniciada"), PARTIDA_REANUDADA("partidaReanudada"), SALIR("salir");
+		PARTIDA_INICIADA("partidaIniciada"), PARTIDA_REANUDADA("partidaReanudada"), SALIR("salir"),
+		DESTRUCCION_PROVISION("destruccionProvision");
 
 		private String event;
 
@@ -144,7 +146,11 @@ public class WebSocketServer {
 		} else if (EVENTS.CARGA_COMBUSTIBLE.getValue().equals(event)) {
 			this.broadcastOne(message, session);
 
-		} else if (EVENTS.AVION_DERRIBADO.getValue().equals(event)) {
+		}else if(EVENTS.DESTRUCCION_PROVISION.getValue().equals(event)) {
+			//this.broadcastOne(message, session);
+			System.out.print("se hizo");
+		}
+		else if (EVENTS.AVION_DERRIBADO.getValue().equals(event)) {
 
 			int idJugador = data.get("idJugador").getAsInt();
 			int idComponente = data.get("idComponente").getAsInt();
