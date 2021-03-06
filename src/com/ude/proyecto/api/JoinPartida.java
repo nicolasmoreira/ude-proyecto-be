@@ -30,6 +30,7 @@ public class JoinPartida extends HttpServlet {
 		try {
 			Fachada fachada = Fachada.getInstanceFachada();
 			json.add("partida", new Gson().toJsonTree(fachada.getPartida()));
+			response.setStatus(200);
 		} catch (Exception e) {
 			json.addProperty("mensaje", e.getMessage());
 			response.setStatus(500);

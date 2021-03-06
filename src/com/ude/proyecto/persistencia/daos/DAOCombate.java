@@ -5,71 +5,98 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.ude.proyecto.logica.entidades.Combate;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DAOCombate {
 
+	private String password;
 	private String url;
 	private String user;
-	private String password;
-	
+
 	public DAOCombate(String url, String user, String password) {
 		this.url = url;
 		this.user = user;
 		this.password = password;
-		
+
+	}
+
+	public String cargarCombate(int codigo) {
+
+		// levanto el combate
+		String query = "SELECT partida from DAOCombate WHERE codigo = ?";
+		String combateStr = "";
+
+		Connection con;
+		try {
+			con = DriverManager.getConnection(url, user, password);
+			PreparedStatement pstmt = con.prepareStatement(query);
+
+			pstmt.setInt(1, codigo);
+
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+
+			combateStr = rs.getString("partida");
+			
+			System.out.println(combateStr);
+
+			pstmt.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return combateStr;
 	}
 
 	public void guardarCombate(String nombrePartida, String partida) {
-		String query = 	"INSERT INTO DAOCombate (codigo, nombre_partida, partida)" + 
-						"VALUES (?,?,?)";
-		
+		String query = "INSERT INTO DAOCombate (nombre_partida, partida)" + "VALUES (?,?)";
+
 		Connection con;
 		try {
 			con = DriverManager.getConnection(url, user, password);
 			PreparedStatement pstmt = con.prepareStatement(query);
-			
-			//pstmt.setInt(1, j.getId());
-			pstmt.setString(2, nombrePartida);
-			pstmt.setString(3, partida);
-			
-			pstmt.executeUpdate();
-			
+
+			pstmt.setString(1, nombrePartida);
+			pstmt.setString(2, partida);
+
+			pstmt.execute();
+
 			pstmt.close();
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	public String cargarCombate(int idCombate, String nombre_partida) {
-		
-		// creo el combate
-		String query = "SELECT codigo, nombre_partida, partida from DAOCombate WHERE codigo = ? and nombre_partida = ?"; 
-		String Combate = "";	
-		
+
+	public ArrayList<HashMap> listarCombates() {
+		ArrayList<HashMap> combates = new ArrayList<>();
+
+		String query = "SELECT codigo, nombre_partida FROM DAOCombate ORDER BY codigo DESC";
+
 		Connection con;
 		try {
 			con = DriverManager.getConnection(url, user, password);
 			PreparedStatement pstmt = con.prepareStatement(query);
-			
-			pstmt.setInt(1, idCombate);
-			pstmt.setString(2, nombre_partida);
-			
-			ResultSet rs = pstmt.executeQuery();			
-			rs.next();
-			
-			Combate = rs.getString("partida");
-			
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				HashMap<String, String> combate = new HashMap<String, String>();
+				combate.put("nombre_partida", rs.getString("nombre_partida"));
+				combate.put("codigo", rs.getString("codigo"));
+				combates.add(combate);
+			}
+
 			pstmt.close();
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return Combate;
+		return combates;
 	}
 }

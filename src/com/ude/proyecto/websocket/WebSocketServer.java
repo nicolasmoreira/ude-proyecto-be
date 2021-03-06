@@ -134,12 +134,15 @@ public class WebSocketServer {
 		} else if (EVENTS.DISPARO_TORRETA.getValue().equals(event)) {
 
 		} else if (EVENTS.PARTIDA_FINALIZADA.getValue().equals(event)) {
+			this.broadcastOne(message, session);
 
 		} else if (EVENTS.PARTIDA_INICIADA.getValue().equals(event)) {
 
 		} else if (EVENTS.PARTIDA_DETENIDA.getValue().equals(event)) {
+			this.broadcastOne(message, session);
 
 		} else if (EVENTS.PARTIDA_REANUDADA.getValue().equals(event)) {
+			this.broadcastOne(message, session);
 
 		} else if (EVENTS.COLISION_ENTRE_AVIONES.getValue().equals(event)) {
 

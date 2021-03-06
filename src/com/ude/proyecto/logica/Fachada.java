@@ -3,8 +3,12 @@ package com.ude.proyecto.logica;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.entidades.Avion;
 import com.ude.proyecto.logica.entidades.Combate;
@@ -77,16 +81,18 @@ public class Fachada {
 		return this.combate;
 	}
 
-	public void salvarPartida(String nombrePartida, String data) throws Exception {
-		daoCombate.guardarCombate(nombrePartida, data);
-		System.out.println(data);		
+	public void salvarPartida(String nombrePartida, Combate combate) throws Exception {
+		daoCombate.guardarCombate(nombrePartida, new Gson().toJsonTree(combate).toString());		
 	}
 	
-	public JsonObject cargarPartida(int id, String nombrePartida ) throws Exception {		
-		daoCombate.cargarCombate(id, nombrePartida);
-		return null;
+	public void cargarPartida(int codigo) throws Exception {		
+		String combateStr = daoCombate.cargarCombate(codigo);		
+		this.combate = new Gson().fromJson(combateStr, Combate.class);	
 	}
 	
+	public ArrayList<HashMap> listarPartidas() {		
+		return daoCombate.listarCombates();	
+	}	
 	
 	public void setCoordenadaComponente(int idJugador, int idComponente, String TipoComponente, float x, float y,
 			float rotacion) {

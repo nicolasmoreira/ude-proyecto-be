@@ -11,46 +11,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.Fachada;
-import com.ude.proyecto.logica.entidades.Combate;
 
-
-
-@WebServlet("/rest/salvarpartida")
+@WebServlet("/rest/salvar-partida")
 public class SalvarPartida extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	public SalvarPartida() {
-        super();
-    }
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		Properties prop = new Properties();
 		InputStream input = null;
 
 		JsonObject json = new JsonObject();
-		
-		Combate combate = null;
 
 		try {
 
 			Fachada fachada = Fachada.getInstanceFachada();
-			String nombrePartida = "NombreAFuego";
+			String nombrePartida = request.getParameter("nombrePartida");
 
-			
 			if (nombrePartida != null && fachada.getPartida() != null) {
 				input = getClass().getClassLoader().getResourceAsStream("config.properties");
 				prop.load(input);
-				
-				combate = fachada.getPartida();			
-				json.add("partida", new Gson().toJsonTree(combate));
-				fachada.salvarPartida(nombrePartida, json.toString());
-				json.addProperty("mensaje", "OK");	
-				
+
+				fachada.salvarPartida(nombrePartida, fachada.getPartida());
+				json.addProperty("mensaje", "OK");
+				response.setStatus(201);
 			} else {
 				json.addProperty("mensaje", "Debe elegir nombre para guardar la partida.");
 				response.setStatus(500);
@@ -66,4 +57,3 @@ public class SalvarPartida extends HttpServlet {
 		out.print(json);
 	}
 }
-

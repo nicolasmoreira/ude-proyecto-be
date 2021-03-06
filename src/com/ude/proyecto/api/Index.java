@@ -22,7 +22,6 @@ public class Index extends HttpServlet {
 
 		json.addProperty("mensaje", "Server running...");
 		response.setStatus(200);
-
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
