@@ -114,12 +114,13 @@ public class Fachada {
 		float ubicacionX = data.get("ubicacionX").getAsFloat();
 		float ubicacionY = data.get("ubicacionY").getAsFloat();
 		float rotacion = data.get("rotacion").getAsFloat();
-		int vida = data.get("vida").getAsInt();            
+		int vida = data.get("vida").getAsInt();       
+		
         String sprite = data.get("sprite").getAsString();
         String sonido = data.get("sonido").getAsString();
-        boolean altitudAlta = data.get("altitudAlta").getAsBoolean();
-        boolean tieneBomba = data.get("tieneBomba").getAsBoolean();
-        float barraCombustible = data.get("barraCombustible").getAsFloat();
+        
+        //System.out.println(TipoComponente);
+        
         //datos que aun no vienen
         //Proyectil bomba;
     	//boolean enfocado = false;        	
@@ -130,7 +131,12 @@ public class Fachada {
 			vida = 0;
 		}			
 		if (this.combate != null) {
-			if (TipoComponente == Avion.TIPO_AVION) {
+			if (TipoComponente.equals(Avion.TIPO_AVION)) {
+				
+				boolean altitudAlta = data.get("altitudAlta").getAsBoolean();
+		        boolean tieneBomba = data.get("tieneBomba").getAsBoolean();
+		        float barraCombustible = data.get("barraCombustible").getAsFloat();
+		        
 				Avion componente = this.combate.getJugadores().get(idJugador).getAvion(idComponente);
 				componente.setAltitudAlta(altitudAlta);
 				componente.setBarraCombustible(barraCombustible);
@@ -146,7 +152,10 @@ public class Fachada {
 				componente.setVida(vida);
 				
 			}
-			if (TipoComponente == Defensa.TIPO_DEFENSA_ARTILLERIA) {
+			if (TipoComponente.equals( Defensa.TIPO_DEFENSA )) {
+				String tipoDefensa = data.get("tipoDefensa").getAsString();
+				
+				if (tipoDefensa.equals( Defensa.TIPO_DEFENSA_ARTILLERIA )) {
 				Defensa componente = this.combate.getJugadores().get(idJugador).getArtilleria(idComponente);
 				/* ir habilitando lo que precisemos */
 				//datos componente
@@ -157,39 +166,46 @@ public class Fachada {
 //				componente.setUbicacionY(ubicacionY);
 				componente.setVida(vida);
 						
+				}
+		
+				if (tipoDefensa.equals( Defensa.TIPO_DEFENSA_TORRETA )) {
+					Defensa componente = this.combate.getJugadores().get(idJugador).getTorreta();
+					/* ir habilitando lo que precisemos */
+					//datos componente
+	//				componente.setRotacion(rotacion);
+	//				componente.setSonido(sonido);
+	//				componente.setSprite(sprite);				
+	//				componente.setUbicacionX(ubicacionX);
+	//				componente.setUbicacionY(ubicacionY);
+					componente.setVida(vida);
+				}
 			}
-			if (TipoComponente == Defensa.TIPO_DEFENSA_TORRETA) {
-				Defensa componente = this.combate.getJugadores().get(idJugador).getTorreta();
-				/* ir habilitando lo que precisemos */
-				//datos componente
-//				componente.setRotacion(rotacion);
-//				componente.setSonido(sonido);
-//				componente.setSprite(sprite);				
-//				componente.setUbicacionX(ubicacionX);
-//				componente.setUbicacionY(ubicacionY);
-				componente.setVida(vida);
-			}
-			if (TipoComponente == Provision.TIPO_PROVISION_COMBUSTIBLE) {
-				Provision componente = this.combate.getJugadores().get(idJugador).getDepositoCombustible();
-				/* ir habilitando lo que precisemos */
-				//datos componente
-//				componente.setRotacion(rotacion);
-//				componente.setSonido(sonido);
-//				componente.setSprite(sprite);				
-//				componente.setUbicacionX(ubicacionX);
-//				componente.setUbicacionY(ubicacionY);
-				componente.setVida(vida);
-			}
-			if (TipoComponente == Provision.TIPO_PROVISION_EXPLOSIVOS) {
-				Provision componente = this.combate.getJugadores().get(idJugador).getDepositoExplosivos();
-				/* ir habilitando lo que precisemos */
-				//datos componente
-//				componente.setRotacion(rotacion);
-//				componente.setSonido(sonido);
-//				componente.setSprite(sprite);				
-//				componente.setUbicacionX(ubicacionX);
-//				componente.setUbicacionY(ubicacionY);
-				componente.setVida(vida);
+			if (TipoComponente.equals(Provision.TIPO_PROVISION)) {
+				String tipoProvision = data.get("tipoProvision").getAsString();
+				System.out.println(tipoProvision);				
+				System.out.println(vida);
+				if (tipoProvision == Provision.TIPO_PROVISION_COMBUSTIBLE) {
+					Provision componente = this.combate.getJugadores().get(idJugador).getDepositoCombustible();
+					/* ir habilitando lo que precisemos */
+					//datos componente
+	//				componente.setRotacion(rotacion);
+	//				componente.setSonido(sonido);
+	//				componente.setSprite(sprite);				
+	//				componente.setUbicacionX(ubicacionX);
+	//				componente.setUbicacionY(ubicacionY);
+					componente.setVida(vida);
+				}
+				if (tipoProvision == Provision.TIPO_PROVISION_EXPLOSIVOS) {
+					Provision componente = this.combate.getJugadores().get(idJugador).getDepositoExplosivos();
+					/* ir habilitando lo que precisemos */
+					//datos componente
+					componente.setRotacion(rotacion);
+					componente.setSonido(sonido);
+					componente.setSprite(sprite);				
+					componente.setUbicacionX(ubicacionX);
+					componente.setUbicacionY(ubicacionY);
+					componente.setVida(vida);
+				}
 			}
 		}
 //		}else 

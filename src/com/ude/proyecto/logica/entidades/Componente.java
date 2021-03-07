@@ -14,7 +14,10 @@ public abstract class Componente {
 	protected float ubicacionX;
 	protected float ubicacionY;
 	protected int vida;
-
+	
+	public static final String TIPO_PROVISION = "PROVISION";
+	public static final String TIPO_DEFENSA = "DEFENSA";
+	
 	public Componente() {
 		super();
 	}

@@ -26,7 +26,7 @@ public class Defensa extends Componente {
 	}
 
 	public Defensa(String tipoDefensa, Properties p) {
-		super("Defensa", p);
+		super(TIPO_DEFENSA, p);
 		this.tipoDefensa = tipoDefensa;
 		// Torreta y Artilleria
 

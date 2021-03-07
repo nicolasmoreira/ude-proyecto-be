@@ -6,6 +6,7 @@ public class Provision extends Componente {
 
 	public static final String TIPO_PROVISION_COMBUSTIBLE = "COMBUSTIBLE";
 	public static final String TIPO_PROVISION_EXPLOSIVOS = "EXPLOSIVOS";
+	
 	private float cantProvision;
 	private String tipoProvision;
 
@@ -21,7 +22,7 @@ public class Provision extends Componente {
 	}
 
 	public Provision(String tipoProvision, Properties p) {// provision
-		super("Provision", p);
+		super(TIPO_PROVISION, p);
 
 		this.tipoProvision = tipoProvision;
 

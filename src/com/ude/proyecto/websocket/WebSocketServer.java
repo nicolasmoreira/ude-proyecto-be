@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.swing.plaf.basic.BasicToolTipUI;
 import javax.websocket.CloseReason;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -101,11 +102,12 @@ public class WebSocketServer {
 		Fachada fachada = Fachada.getInstanceFachada();
 		JsonObject data = jsonObject.get("data").getAsJsonObject();
 
+		
 		if (EVENTS.MOVIMIENTO_AVION.getValue().equals(event)) {
-			
 			int idJugador = data.get("idJugador").getAsInt();
 			int idComponente = data.get("idComponente").getAsInt();
-			String tipoComponente = data.get("tipoComponente").getAsString();
+			String tipoComponente = data.get("tipoComponente").getAsString();	
+			
 			
 			idJugador = idJugador - 1; // esto es porque los id en las listas van del 0 en adelante, en FE deben
 										// consultar contra 1 y 2			
@@ -150,8 +152,17 @@ public class WebSocketServer {
 			this.broadcastOne(message, session);
 
 		}else if(EVENTS.DESTRUCCION_PROVISION.getValue().equals(event)) {
+			int idJugador = data.get("idJugador").getAsInt();
+			int idComponente = data.get("idComponente").getAsInt();
+			String tipoComponente = data.get("tipoComponente").getAsString();	
+			
+//			if (tipoComponente.equals(Provision.TIPO_PROVISION_EXPLOSIVOS))			
+				fachada.setComponente(idJugador, idComponente, tipoComponente , data);
+//			else
+//				fachada.setComponente(idJugador, idComponente, Provision.TIPO_PROVISION_COMBUSTIBLE , data);
+//			
 			this.broadcastOne(message, session);
-			//System.out.print("se hizo");
+			//System.out.println(data);	
 		}
 		else if (EVENTS.AVION_DERRIBADO.getValue().equals(event)) {
 
