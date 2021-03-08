@@ -120,7 +120,7 @@ public class Combate {
 									depCombustible.getUbicacionY() + baseDistancia));
 
 				}
-				artilleria.setSprite("IZQ" + artilleria.getSprite());
+				//artilleria.setSprite("IZQ" + artilleria.getSprite());
 				artillerias.add(artilleria);// .insert(avion);
 				//System.out.println("-----------");
 				//System.out.println(artilleria.getUbicacionX());
@@ -191,7 +191,7 @@ public class Combate {
 //				System.out.println(artilleria2.getUbicacionX());
 //				System.out.println(artilleria2.getUbicacionY());
 
-				artilleria2.setSprite("DER" + artilleria2.getSprite());
+				//artilleria2.setSprite("DER" + artilleria2.getSprite());
 				artillerias2.add(artilleria2);// .insert(avion);
 
 			}
