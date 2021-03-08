@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -81,8 +82,10 @@ public class Fachada {
 		return this.combate;
 	}
 
-	public void salvarPartida(String nombrePartida, Combate combate) throws Exception {
-		daoCombate.guardarCombate(nombrePartida, new Gson().toJsonTree(combate).toString());		
+	@SuppressWarnings("deprecation")
+	public void salvarPartida(Combate combate) throws Exception {
+		Date now = new Date();
+		daoCombate.guardarCombate(now.toLocaleString(), new Gson().toJsonTree(combate).toString());		
 	}
 	
 	public void cargarPartida(int codigo) throws Exception {		

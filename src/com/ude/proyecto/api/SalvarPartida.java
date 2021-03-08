@@ -33,13 +33,12 @@ public class SalvarPartida extends HttpServlet {
 		try {
 
 			Fachada fachada = Fachada.getInstanceFachada();
-			String nombrePartida = request.getParameter("nombrePartida");
 
-			if (nombrePartida != null && fachada.getPartida() != null) {
+			if (fachada.getPartida() != null) {
 				input = getClass().getClassLoader().getResourceAsStream("config.properties");
 				prop.load(input);
 
-				fachada.salvarPartida(nombrePartida, fachada.getPartida());
+				fachada.salvarPartida(fachada.getPartida());
 				json.addProperty("mensaje", "OK");
 				response.setStatus(201);
 			} else {
