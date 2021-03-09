@@ -10,6 +10,7 @@ import com.ude.proyecto.logica.Fachada;
 import com.ude.proyecto.logica.entidades.Avion;
 import com.ude.proyecto.logica.entidades.Combate;
 import com.ude.proyecto.logica.entidades.Jugador;
+import com.ude.proyecto.logica.entidades.Provision;
 
 /**
  * @author MTory
@@ -59,6 +60,9 @@ public class MainTesting {
 		System.out.println(combate.getJugadores().get(1));
 		System.out.println(combate.getJugadores().get(0).getAvion(3).getUbicacionY()); // get(6).getIdComponente());
 																						// //.get(3).getUbicacionX());
+		
+		Provision componente = combate.getJugadores().get(0).getDepositoCombustible();
+		System.out.println(componente.getSprite());
 	}
 
 }

@@ -108,10 +108,6 @@ public class WebSocketServer {
 			int idComponente = data.get("idComponente").getAsInt();
 			String tipoComponente = data.get("tipoComponente").getAsString();	
 			
-			
-			idJugador = idJugador - 1; // esto es porque los id en las listas van del 0 en adelante, en FE deben
-										// consultar contra 1 y 2			
-			
 			//System.out.println(data);			
 			//fachada.setCoordenadaComponente(idJugador, idComponente, Avion.TIPO_AVION, ubicacionX, ubicacionY,rotacion);
 			
@@ -155,12 +151,9 @@ public class WebSocketServer {
 			int idJugador = data.get("idJugador").getAsInt();
 			int idComponente = data.get("idComponente").getAsInt();
 			String tipoComponente = data.get("tipoComponente").getAsString();	
+						
+			fachada.setComponente(idJugador, idComponente, tipoComponente , data);
 			
-//			if (tipoComponente.equals(Provision.TIPO_PROVISION_EXPLOSIVOS))			
-				fachada.setComponente(idJugador, idComponente, tipoComponente , data);
-//			else
-//				fachada.setComponente(idJugador, idComponente, Provision.TIPO_PROVISION_COMBUSTIBLE , data);
-//			
 			this.broadcastOne(message, session);
 			//System.out.println(data);	
 		}

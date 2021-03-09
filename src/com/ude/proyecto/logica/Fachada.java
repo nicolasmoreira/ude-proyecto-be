@@ -113,6 +113,7 @@ public class Fachada {
 	}
 	
 	public void setComponente(int idJugador, int idComponente, String TipoComponente, JsonObject data) {
+		idJugador = idJugador - 1; // esto es porque los id en las listas van del 0 en adelante, en FE deben consultar contra 1 y 2
 		
 		float ubicacionX = data.get("ubicacionX").getAsFloat();
 		float ubicacionY = data.get("ubicacionY").getAsFloat();
@@ -167,7 +168,7 @@ public class Fachada {
 //				componente.setSprite(sprite);				
 //				componente.setUbicacionX(ubicacionX);
 //				componente.setUbicacionY(ubicacionY);
-				componente.setVida(vida);
+//				componente.setVida(vida);
 						
 				}
 		
@@ -180,25 +181,27 @@ public class Fachada {
 	//				componente.setSprite(sprite);				
 	//				componente.setUbicacionX(ubicacionX);
 	//				componente.setUbicacionY(ubicacionY);
-					componente.setVida(vida);
+//					componente.setVida(vida);
 				}
 			}
 			if (TipoComponente.equals(Provision.TIPO_PROVISION)) {
 				String tipoProvision = data.get("tipoProvision").getAsString();
-				System.out.println(tipoProvision);				
-				System.out.println(vida);
-				if (tipoProvision == Provision.TIPO_PROVISION_COMBUSTIBLE) {
+				//System.out.println(tipoProvision);				
+				//System.out.println(vida);
+				if (tipoProvision.equals(Provision.TIPO_PROVISION_COMBUSTIBLE)) {
+//					System.out.println(idJugador);
+//					System.out.println(vida);
 					Provision componente = this.combate.getJugadores().get(idJugador).getDepositoCombustible();
 					/* ir habilitando lo que precisemos */
 					//datos componente
-	//				componente.setRotacion(rotacion);
-	//				componente.setSonido(sonido);
-	//				componente.setSprite(sprite);				
-	//				componente.setUbicacionX(ubicacionX);
-	//				componente.setUbicacionY(ubicacionY);
+					componente.setRotacion(rotacion);
+					componente.setSonido(sonido);
+					componente.setSprite(sprite);				
+					componente.setUbicacionX(ubicacionX);
+					componente.setUbicacionY(ubicacionY);
 					componente.setVida(vida);
 				}
-				if (tipoProvision == Provision.TIPO_PROVISION_EXPLOSIVOS) {
+				if (tipoProvision.equals(Provision.TIPO_PROVISION_EXPLOSIVOS)) {
 					Provision componente = this.combate.getJugadores().get(idJugador).getDepositoExplosivos();
 					/* ir habilitando lo que precisemos */
 					//datos componente
