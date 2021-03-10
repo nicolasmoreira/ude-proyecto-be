@@ -75,7 +75,7 @@ public class DAOCombate {
 	public ArrayList<HashMap> listarCombates() {
 		ArrayList<HashMap> combates = new ArrayList<>();
 
-		String query = "SELECT codigo, nombre_partida FROM DAOCombate ORDER BY codigo DESC";
+		String query = "SELECT codigo, nombre_partida FROM DAOCombate ORDER BY codigo DESC LIMIT 5";
 
 		Connection con;
 		try {
