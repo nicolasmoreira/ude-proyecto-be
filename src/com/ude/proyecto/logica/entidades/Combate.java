@@ -64,7 +64,7 @@ public class Combate {
 			int baseDistancia = Integer.parseInt(p.getProperty("baseDistancia"));
 
 			// tomo el X DepCombustible y lo alineo con los explosivos
-			depExplosivos.setUbicacionX(depCombustible.getUbicacionX());
+			depExplosivos.setUbicacionX(depCombustible.getUbicacionX() + baseDistancia/2);
 			depExplosivos.setUbicacionY(depCombustible.getUbicacionY() + baseDistancia);
 			depExplosivos.setSprite("IZQ" + depExplosivos.getSprite());
 			
