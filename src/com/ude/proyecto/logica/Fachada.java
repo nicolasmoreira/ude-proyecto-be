@@ -163,25 +163,25 @@ public class Fachada {
 				Defensa componente = this.combate.getJugadores().get(idJugador).getArtilleria(idComponente);
 				/* ir habilitando lo que precisemos */
 				//datos componente
-//				componente.setRotacion(rotacion);
-//				componente.setSonido(sonido);
-//				componente.setSprite(sprite);				
-//				componente.setUbicacionX(ubicacionX);
-//				componente.setUbicacionY(ubicacionY);
-//				componente.setVida(vida);
-						
+				componente.setRotacion(rotacion);
+				componente.setSonido(sonido);
+				componente.setSprite(sprite);				
+				componente.setUbicacionX(ubicacionX);
+				componente.setUbicacionY(ubicacionY);
+				componente.setVida(vida);
+				//System.out.println(vida);		
 				}
 		
 				if (tipoDefensa.equals( Defensa.TIPO_DEFENSA_TORRETA )) {
 					Defensa componente = this.combate.getJugadores().get(idJugador).getTorreta();
 					/* ir habilitando lo que precisemos */
 					//datos componente
-	//				componente.setRotacion(rotacion);
-	//				componente.setSonido(sonido);
-	//				componente.setSprite(sprite);				
-	//				componente.setUbicacionX(ubicacionX);
-	//				componente.setUbicacionY(ubicacionY);
-//					componente.setVida(vida);
+					componente.setRotacion(rotacion);
+					componente.setSonido(sonido);
+					componente.setSprite(sprite);				
+					componente.setUbicacionX(ubicacionX);
+					componente.setUbicacionY(ubicacionY);
+					componente.setVida(vida);
 				}
 			}
 			if (TipoComponente.equals(Provision.TIPO_PROVISION)) {

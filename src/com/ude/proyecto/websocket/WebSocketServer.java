@@ -124,6 +124,11 @@ public class WebSocketServer {
 			 */
 
 		} else if (EVENTS.MOVIMIENTO_TORRETA.getValue().equals(event)) {
+			int idJugador = data.get("idJugador").getAsInt();
+			int idComponente = data.get("idComponente").getAsInt();
+			String tipoComponente = data.get("tipoComponente").getAsString();	
+						
+			fachada.setComponente(idJugador, idComponente, tipoComponente , data);
 			this.broadcastOne(message, session);
 
 		} else if (EVENTS.DISPARO_AVION.getValue().equals(event)) {
@@ -132,11 +137,12 @@ public class WebSocketServer {
 		} else if (EVENTS.DISPARO_TORRETA.getValue().equals(event)) {
 
 		} else if (EVENTS.PARTIDA_FINALIZADA.getValue().equals(event)) {
-			this.broadcastOne(message, session);
+			this.broadcastAll(message);//, session);
 
 		} else if (EVENTS.PARTIDA_INICIADA.getValue().equals(event)) {
 
 		} else if (EVENTS.PARTIDA_DETENIDA.getValue().equals(event)) {
+			//System.out.println(event.toString());
 			this.broadcastOne(message, session);
 
 		} else if (EVENTS.PARTIDA_REANUDADA.getValue().equals(event)) {
