@@ -237,9 +237,14 @@ public class Fachada {
 		}
 	}
 	
-	public void finalizarPartida() throws Exception {
-		//@todo GUARDAR PARTIDA ACA
-		this.combate = null;
+	
+	public void finalizarPartida() throws Exception {		
+		if (this.combate != null) {				
+			fachada = null;
+			this.combate = null;
+		}
+		else
+			throw new Exception("No hay una partida creada.");
 	}	
 
 }
