@@ -137,7 +137,8 @@ public class WebSocketServer {
 		} else if (EVENTS.DISPARO_TORRETA.getValue().equals(event)) {
 
 		} else if (EVENTS.PARTIDA_FINALIZADA.getValue().equals(event)) {
-			this.broadcastAll(message);//, session);
+			this.broadcastOne(message, session);
+			//this.broadcastAll(message);//, session);
 
 		} else if (EVENTS.PARTIDA_INICIADA.getValue().equals(event)) {
 
