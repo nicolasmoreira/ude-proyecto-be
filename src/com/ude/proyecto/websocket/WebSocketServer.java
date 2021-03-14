@@ -1,12 +1,10 @@
 package com.ude.proyecto.websocket;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.swing.plaf.basic.BasicToolTipUI;
 import javax.websocket.CloseReason;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -19,21 +17,17 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.Fachada;
 import com.ude.proyecto.logica.entidades.Avion;
-import com.ude.proyecto.logica.entidades.Provision;
-import com.ude.proyecto.logica.entidades.Proyectil;
 
 @ServerEndpoint(value = "/websocket")
 public class WebSocketServer {
-	
-	private static Fachada fachada = Fachada.getInstanceFachada();
 
 	private enum EVENTS {
 		AVION_DERRIBADO("avionDerribado"), CARGA_COMBUSTIBLE("cargaCombustible"),
-		COLISION_ENTRE_AVIONES("colisionEntreAviones"), DISPARO_AVION("disparoAvion"),
-		DISPARO_TORRETA("disparoTorreta"), MOVIMIENTO_AVION("movimientoAvion"), MOVIMIENTO_TORRETA("movimientoTorreta"),
-		PARTIDA_DETENIDA("partidaDetenida"), PARTIDA_FINALIZADA("partidaFinalizada"),
-		PARTIDA_INICIADA("partidaIniciada"), PARTIDA_REANUDADA("partidaReanudada"), SALIR("salir"),
-		DESTRUCCION_PROVISION("destruccionProvision");
+		COLISION_ENTRE_AVIONES("colisionEntreAviones"), DESTRUCCION_PROVISION("destruccionProvision"),
+		DISPARO_AVION("disparoAvion"), DISPARO_TORRETA("disparoTorreta"), MOVIMIENTO_AVION("movimientoAvion"),
+		MOVIMIENTO_TORRETA("movimientoTorreta"), PARTIDA_DETENIDA("partidaDetenida"),
+		PARTIDA_FINALIZADA("partidaFinalizada"), PARTIDA_INICIADA("partidaIniciada"),
+		PARTIDA_REANUDADA("partidaReanudada"), SALIR("salir");
 
 		private String event;
 
@@ -45,6 +39,8 @@ public class WebSocketServer {
 			return this.event;
 		}
 	}
+
+	private static Fachada fachada = Fachada.getInstanceFachada();
 
 	private static final int MIN_SESSIONS = 2;
 
@@ -69,10 +65,10 @@ public class WebSocketServer {
 		System.out.println("Cerrando la sessions: " + session.getId() + ", motivo: " + reason.getReasonPhrase());
 		System.out.println("Cantidad de sessions: " + sessions.size());
 		sessions.remove(session.getId());
-		if (sessions.size() == 0) {			
+		if (sessions.size() == 0) {
 			fachada.finalizarPartida();
 		}
-		
+
 	}
 
 	@OnError
@@ -80,18 +76,12 @@ public class WebSocketServer {
 		// Most likely cause is a user closing their browser. Check to see if
 		// the root cause is EOF and if it is ignore it.
 		// Protect against infinite loops.
-		/*int count = 0;
-		Throwable root = t;
-		while (root.getCause() != null && count < 20) {
-			root = root.getCause();
-			count++;
-		}
-		if (root instanceof EOFException) {
-			// Assume this is triggered by the user closing their browser and
-			// ignore it.
-		} else {
-			throw t;
-		}*/
+		/*
+		 * int count = 0; Throwable root = t; while (root.getCause() != null && count <
+		 * 20) { root = root.getCause(); count++; } if (root instanceof EOFException) {
+		 * // Assume this is triggered by the user closing their browser and // ignore
+		 * it. } else { throw t; }
+		 */
 	}
 
 	@OnMessage
@@ -102,18 +92,18 @@ public class WebSocketServer {
 		Fachada fachada = Fachada.getInstanceFachada();
 		JsonObject data = jsonObject.get("data").getAsJsonObject();
 
-		
 		if (EVENTS.MOVIMIENTO_AVION.getValue().equals(event)) {
 			int idJugador = data.get("idJugador").getAsInt();
 			int idComponente = data.get("idComponente").getAsInt();
-			String tipoComponente = data.get("tipoComponente").getAsString();	
-			
-			//System.out.println(data);			
-			//fachada.setCoordenadaComponente(idJugador, idComponente, Avion.TIPO_AVION, ubicacionX, ubicacionY,rotacion);
-			
-			//esto es para setear la vida del avion
+			String tipoComponente = data.get("tipoComponente").getAsString();
+
+			// System.out.println(data);
+			// fachada.setCoordenadaComponente(idJugador, idComponente, Avion.TIPO_AVION,
+			// ubicacionX, ubicacionY,rotacion);
+
+			// esto es para setear la vida del avion
 			fachada.setComponente(idJugador, idComponente, Avion.TIPO_AVION, data);
-						
+
 			this.broadcastOne(message, session);
 
 			/*
@@ -126,9 +116,9 @@ public class WebSocketServer {
 		} else if (EVENTS.MOVIMIENTO_TORRETA.getValue().equals(event)) {
 			int idJugador = data.get("idJugador").getAsInt();
 			int idComponente = data.get("idComponente").getAsInt();
-			String tipoComponente = data.get("tipoComponente").getAsString();	
-						
-			fachada.setComponente(idJugador, idComponente, tipoComponente , data);
+			String tipoComponente = data.get("tipoComponente").getAsString();
+
+			fachada.setComponente(idJugador, idComponente, tipoComponente, data);
 			this.broadcastOne(message, session);
 
 		} else if (EVENTS.DISPARO_AVION.getValue().equals(event)) {
@@ -138,12 +128,12 @@ public class WebSocketServer {
 
 		} else if (EVENTS.PARTIDA_FINALIZADA.getValue().equals(event)) {
 			this.broadcastOne(message, session);
-			//this.broadcastAll(message);//, session);
+			// this.broadcastAll(message);//, session);
 
 		} else if (EVENTS.PARTIDA_INICIADA.getValue().equals(event)) {
 
 		} else if (EVENTS.PARTIDA_DETENIDA.getValue().equals(event)) {
-			//System.out.println(event.toString());
+			// System.out.println(event.toString());
 			this.broadcastOne(message, session);
 
 		} else if (EVENTS.PARTIDA_REANUDADA.getValue().equals(event)) {
@@ -154,17 +144,16 @@ public class WebSocketServer {
 		} else if (EVENTS.CARGA_COMBUSTIBLE.getValue().equals(event)) {
 			this.broadcastOne(message, session);
 
-		}else if(EVENTS.DESTRUCCION_PROVISION.getValue().equals(event)) {
+		} else if (EVENTS.DESTRUCCION_PROVISION.getValue().equals(event)) {
 			int idJugador = data.get("idJugador").getAsInt();
 			int idComponente = data.get("idComponente").getAsInt();
-			String tipoComponente = data.get("tipoComponente").getAsString();	
-						
-			fachada.setComponente(idJugador, idComponente, tipoComponente , data);
-			
+			String tipoComponente = data.get("tipoComponente").getAsString();
+
+			fachada.setComponente(idJugador, idComponente, tipoComponente, data);
+
 			this.broadcastOne(message, session);
-			//System.out.println(data);	
-		}
-		else if (EVENTS.AVION_DERRIBADO.getValue().equals(event)) {
+			// System.out.println(data);
+		} else if (EVENTS.AVION_DERRIBADO.getValue().equals(event)) {
 
 			int idJugador = data.get("idJugador").getAsInt();
 			int idComponente = data.get("idComponente").getAsInt();

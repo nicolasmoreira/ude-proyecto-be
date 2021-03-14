@@ -6,7 +6,7 @@ public class Provision extends Componente {
 
 	public static final String TIPO_PROVISION_COMBUSTIBLE = "COMBUSTIBLE";
 	public static final String TIPO_PROVISION_EXPLOSIVOS = "EXPLOSIVOS";
-	
+
 	private float cantProvision;
 	private String tipoProvision;
 

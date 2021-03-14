@@ -38,7 +38,7 @@ public class DAOCombate {
 			rs.next();
 
 			combateStr = rs.getString("partida");
-			
+
 			System.out.println(combateStr);
 
 			pstmt.close();

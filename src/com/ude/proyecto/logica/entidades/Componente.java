@@ -6,18 +6,18 @@ public abstract class Componente {
 
 	public static int idAutonumerico = 0;
 
+	public static final String TIPO_DEFENSA = "DEFENSA";
+	public static final String TIPO_PROVISION = "PROVISION";
 	protected int idComponente;
 	protected float rotacion;
 	protected String sonido;
 	protected String sprite;
 	protected String tipoComponente;
 	protected float ubicacionX;
+
 	protected float ubicacionY;
 	protected int vida;
-	
-	public static final String TIPO_PROVISION = "PROVISION";
-	public static final String TIPO_DEFENSA = "DEFENSA";
-	
+
 	public Componente() {
 		super();
 	}

@@ -1,10 +1,7 @@
 package com.ude.proyecto.api;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.Fachada;
-import com.ude.proyecto.logica.entidades.Combate;
 
 @WebServlet("/rest/cargar-partida")
 public class CargarPartida extends HttpServlet {
@@ -32,11 +28,11 @@ public class CargarPartida extends HttpServlet {
 
 		try {
 			Fachada fachada = Fachada.getInstanceFachada();
-			
-			int codigo = Integer.parseInt(request.getParameter("codigo"));	
-			
+
+			int codigo = Integer.parseInt(request.getParameter("codigo"));
+
 			fachada.cargarPartida(codigo);
-			
+
 			json.add("partida", new Gson().toJsonTree(fachada.getPartida()));
 			response.setStatus(200);
 		} catch (Exception e) {

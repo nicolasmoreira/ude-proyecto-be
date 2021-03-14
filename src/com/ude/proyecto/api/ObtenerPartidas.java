@@ -1,10 +1,7 @@
 package com.ude.proyecto.api;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +28,7 @@ public class ObtenerPartidas extends HttpServlet {
 
 		try {
 			Fachada fachada = Fachada.getInstanceFachada();
-			
+
 			json.add("partidas", new Gson().toJsonTree(fachada.listarPartidas()));
 			response.setStatus(200);
 		} catch (Exception e) {

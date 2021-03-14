@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
@@ -18,17 +16,15 @@ import java.util.Properties;
 public class creaBase {
 
 	public static void main(String[] args) {
-		//Properties p = new Properties();
+		// Properties p = new Properties();
 		InputStream input = null;
 		try {
-			//Properties p = new Properties();
-			//String nomArch = "config.properties";
-			//p.load(new FileInputStream("config.properties"));
+			// Properties p = new Properties();
+			// String nomArch = "config.properties";
+			// p.load(new FileInputStream("config.properties"));
 			Properties p = new Properties();
 			p.load(new FileInputStream("src/config.properties"));
-			
-				
-			
+
 			String driver = p.getProperty("db_driver");
 			String host = p.getProperty("db_server");
 			String port = p.getProperty("db_port");
@@ -53,7 +49,7 @@ public class creaBase {
 
 			/* Creo la base de datos */
 
-			creaBase = "Create database " + database; //  Juego";
+			creaBase = "Create database " + database; // Juego";
 			stmt = con.prepareStatement(creaBase);
 			cant = stmt.executeUpdate(creaBase);
 			stmt.close();

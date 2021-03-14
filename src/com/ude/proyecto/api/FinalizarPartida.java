@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ude.proyecto.logica.Fachada;
 
@@ -29,10 +28,11 @@ public class FinalizarPartida extends HttpServlet {
 
 		try {
 			Fachada fachada = Fachada.getInstanceFachada();
-			
-			//json.add("partida", new Gson().toJsonTree(fachada.getPartida())); //devuelvo la partida para que se muestre como un scorre
+
+			// json.add("partida", new Gson().toJsonTree(fachada.getPartida())); //devuelvo
+			// la partida para que se muestre como un scorre
 			json.addProperty("mensaje", "OK");
-			fachada.finalizarPartida();//la finalizo y la borro del Backend
+			fachada.finalizarPartida();// la finalizo y la borro del Backend
 			response.setStatus(200);
 		} catch (Exception e) {
 			json.addProperty("mensaje", e.getMessage());
