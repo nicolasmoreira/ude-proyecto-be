@@ -64,8 +64,7 @@ public class Fachada {
 		if (this.combate != null) {
 			fachada = null;
 			this.combate = null;
-		} else
-			throw new Exception("No hay una partida creada.");
+		}
 	}
 
 	public Combate getPartida() {
