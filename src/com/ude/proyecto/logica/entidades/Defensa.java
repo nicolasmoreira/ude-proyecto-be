@@ -7,7 +7,6 @@ public class Defensa extends Componente {
 	public static final String TIPO_DEFENSA_ARTILLERIA = "ARTILLERIA";
 	public static final String TIPO_DEFENSA_TORRETA = "TORRETA";
 	private float demoraDesplazamiento;
-	private Proyectil municion;
 	private float rangoDisparo;
 	private String tipoDefensa;
 
@@ -16,13 +15,13 @@ public class Defensa extends Componente {
 	}
 
 	public Defensa(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY, float rotacion,
-			int vida, String sprite, String sonido, String tipoDefensa, float rangoDisparo, float demoraDesplazamiento,
-			Proyectil municion) {
+			int vida, String sprite, String sonido, String tipoDefensa, float rangoDisparo, float demoraDesplazamiento) {
+
 		super(idComponente, tipoComponente, ubicacionX, ubicacionY, rotacion, vida, sprite, sonido);
 		this.tipoDefensa = tipoDefensa;
 		this.rangoDisparo = rangoDisparo;
 		this.demoraDesplazamiento = demoraDesplazamiento;
-		this.municion = municion;
+
 	}
 
 	public Defensa(String tipoDefensa, Properties p) {
@@ -34,15 +33,11 @@ public class Defensa extends Componente {
 		this.demoraDesplazamiento = Float.parseFloat(p.getProperty("demDesp" + tipoDefensa.trim()));
 		this.sprite = p.getProperty("Sp" + tipoDefensa.trim());
 		this.sonido = p.getProperty("Sd" + tipoDefensa.trim());
-		this.municion = null;
+
 	}
 
 	public float getDemoraDesplazamiento() {
 		return demoraDesplazamiento;
-	}
-
-	public Proyectil getMunicion() {
-		return municion;
 	}
 
 	public float getRangoDisparo() {
@@ -55,10 +50,6 @@ public class Defensa extends Componente {
 
 	public void setDemoraDesplazamiento(float demoraDesplazamiento) {
 		this.demoraDesplazamiento = demoraDesplazamiento;
-	}
-
-	public void setMunicion(Proyectil municion) {
-		this.municion = municion;
 	}
 
 	public void setRangoDisparo(float rangoDisparo) {

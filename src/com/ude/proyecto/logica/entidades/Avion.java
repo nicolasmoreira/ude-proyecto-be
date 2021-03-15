@@ -7,9 +7,9 @@ public class Avion extends Componente {
 	public static final String TIPO_AVION = "AVION";
 	private boolean altitudAlta;
 	private float barraCombustible;
-	private Proyectil bomba;
+	
 	private boolean enfocado;
-	private Proyectil municion;
+	
 	private float rangoDisparo;
 	private String spritesLaterales;
 	private boolean tieneBomba;
@@ -20,15 +20,13 @@ public class Avion extends Componente {
 
 	public Avion(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY, float rotacion, int vida,
 			String sprite, String sonido, boolean altitudAlta, boolean tieneBomba, float barraCombustible,
-			float rangoDisparo, boolean enfocado, Proyectil bomba, Proyectil municion, String spritesLaterales) {
+			float rangoDisparo, boolean enfocado, String spritesLaterales) {
 		super(idComponente, tipoComponente, ubicacionX, ubicacionY, rotacion, vida, sprite, sonido);
 		this.altitudAlta = altitudAlta;
 		this.tieneBomba = tieneBomba;
 		this.barraCombustible = barraCombustible;
 		this.rangoDisparo = rangoDisparo;
 		this.enfocado = enfocado;
-		this.bomba = bomba;
-		this.municion = municion;
 		this.spritesLaterales = spritesLaterales;
 	}
 
@@ -41,22 +39,12 @@ public class Avion extends Componente {
 		this.rangoDisparo = Float.parseFloat(p.getProperty("rangoDisparoAvion")); // este es un multiplo del tamanio del
 																					// avion
 		this.enfocado = Boolean.getBoolean(p.getProperty("enfocado"));
-		this.bomba = null;
-		this.municion = null;
 		this.setSprite(p.getProperty("SpAvion"));
 		this.setSonido(p.getProperty("SdAvion"));
 	}
 
 	public float getBarraCombustible() {
 		return barraCombustible;
-	}
-
-	public Proyectil getBomba() {
-		return bomba;
-	}
-
-	public Proyectil getMunicion() {
-		return municion;
 	}
 
 	public float getRangoDisparo() {
@@ -87,17 +75,10 @@ public class Avion extends Componente {
 		this.barraCombustible = barraCombustible;
 	}
 
-	public void setBomba(Proyectil bomba) {
-		this.bomba = bomba;
-	}
-
 	public void setEnfocado(boolean enfocado) {
 		this.enfocado = enfocado;
 	}
 
-	public void setMunicion(Proyectil municion) {
-		this.municion = municion;
-	}
 
 	public void setRangoDisparo(float rangoDisparo) {
 		this.rangoDisparo = rangoDisparo;

@@ -45,8 +45,6 @@ public class Fachada {
 			String password = p.getProperty("db_password");
 			Class.forName(driver);
 
-			// Connection con = DriverManager.getConnection(url, user, password);
-
 			daoCombate = new DAOCombate(url, user, password);
 
 		} catch (Exception e) {
@@ -110,12 +108,6 @@ public class Fachada {
 		String sonido = data.get("sonido").getAsString();
 
 		// System.out.println(TipoComponente);
-
-		// datos que aun no vienen
-		// Proyectil bomba;
-		// boolean enfocado = false;
-		// float rangoDisparo = 0;
-		// String spritesLaterales = "";
 
 		if (vida <= 0) { // hay veces que viene negativo
 			vida = 0;
