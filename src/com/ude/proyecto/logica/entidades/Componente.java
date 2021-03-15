@@ -9,14 +9,14 @@ public abstract class Componente {
 	public static final String TIPO_DEFENSA = "DEFENSA";
 	public static final String TIPO_PROVISION = "PROVISION";
 	protected int idComponente;
-	protected float rotacion;
-	protected String sonido;
-	protected String sprite;
 	protected String tipoComponente;
 	protected float ubicacionX;
 	protected float ubicacionY;
+	protected float rotacion;
 	protected int vida;
-
+	protected String sprite;
+	protected String sonido;
+	
 	protected Componente() {
 		super();
 	}
@@ -52,65 +52,65 @@ public abstract class Componente {
 	public int getIdComponente() {
 		return idComponente;
 	}
-
-	public float getRotacion() {
-		return rotacion;
-	}
-
-	public String getSonido() {
-		return sonido;
-	}
-
-	public String getSprite() {
-		return sprite;
-	}
-
-	public String getTipoComponente() {
-		return tipoComponente;
-	}
-
-	public float getUbicacionX() {
-		return ubicacionX;
-	}
-
-	public float getUbicacionY() {
-		return ubicacionY;
-	}
-
-	public int getVida() {
-		return vida;
-	}
-
+	
 	public void setIdComponente(int idComponente) {
 		this.idComponente = idComponente;
 	}
-
-	public void setRotacion(float rotacion) {
-		this.rotacion = rotacion;
+	
+	public String getTipoComponente() {
+		return tipoComponente;
 	}
-
-	public void setSonido(String sonido) {
-		this.sonido = sonido;
-	}
-
-	public void setSprite(String sprite) {
-		this.sprite = sprite;
-	}
-
+	
 	public void setTipoComponente(String tipoComponente) {
 		this.tipoComponente = tipoComponente;
+	}
+	
+	public float getUbicacionX() {
+		return ubicacionX;
 	}
 
 	public void setUbicacionX(float ubicacionX) {
 		this.ubicacionX = ubicacionX;
 	}
-
+	
+	public float getUbicacionY() {
+		return ubicacionY;
+	}
+	
 	public void setUbicacionY(float ubicacionY) {
 		this.ubicacionY = ubicacionY;
 	}
+	
+	public float getRotacion() {
+		return rotacion;
+	}
 
+	public void setRotacion(float rotacion) {
+		this.rotacion = rotacion;
+	}
+	
+	public int getVida() {
+		return vida;
+	}
+	
 	public void setVida(int vida) {
 		this.vida = vida;
+	}
+	
+	public String getSprite() {
+		return sprite;
+	}
+	
+	public void setSprite(String sprite) {
+		this.sprite = sprite;
+	}
+	
+	public String getSonido() {
+		return sonido;
+	}
+
+	public void setSonido(String sonido) {
+		this.sonido = sonido;
 	}
 
 	public void ubicacionEspejar(int tamanioPantalla, float ubicacionY) {

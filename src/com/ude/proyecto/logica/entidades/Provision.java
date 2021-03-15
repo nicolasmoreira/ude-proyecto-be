@@ -37,20 +37,19 @@ public class Provision extends Componente {
 		}
 	}
 
-	public float getCantProvision() {
-		return cantProvision;
-	}
-
 	public String getTipoProvision() {
 		return tipoProvision;
 	}
-
-	public void setCantProvision(float cantProvision) {
-		this.cantProvision = cantProvision;
-	}
-
+	
 	public void setTipoProvision(String tipoProvision) {
 		this.tipoProvision = tipoProvision;
 	}
 
+	public float getCantProvision() {
+		return cantProvision;
+	}
+	
+	public void setCantProvision(float cantProvision) {
+		this.cantProvision = cantProvision;
+	}
 }

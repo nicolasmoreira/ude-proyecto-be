@@ -30,7 +30,6 @@ public class Fachada {
 	}
 
 	private Combate combate;
-
 	private DAOCombate daoCombate;
 
 	private Fachada() {

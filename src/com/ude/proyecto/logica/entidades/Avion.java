@@ -6,13 +6,11 @@ public class Avion extends Componente {
 
 	public static final String TIPO_AVION = "AVION";
 	private boolean altitudAlta;
-	private float barraCombustible;
-	
-	private boolean enfocado;
-	
-	private float rangoDisparo;
-	private String spritesLaterales;
 	private boolean tieneBomba;
+	private float barraCombustible;
+	private float rangoDisparo;
+	private boolean enfocado;
+	private String spritesLaterales;
 
 	public Avion() {
 		super();
@@ -40,54 +38,53 @@ public class Avion extends Componente {
 		this.setSprite(p.getProperty("SpAvion"));
 		this.setSonido(p.getProperty("SdAvion"));
 	}
+	
 
+	public boolean isAltitudAlta() {
+		return altitudAlta;
+	}
+
+	public void setAltitudAlta(boolean altitudAlta) {
+		this.altitudAlta = altitudAlta;
+	}
+	
+	public boolean isTieneBomba() {
+		return tieneBomba;
+	}
+	
+	public void setTieneBomba(boolean tieneBomba) {
+		this.tieneBomba = tieneBomba;
+	}
+	
 	public float getBarraCombustible() {
 		return barraCombustible;
+	}
+	
+	public void setBarraCombustible(float barraCombustible) {
+		this.barraCombustible = barraCombustible;
 	}
 
 	public float getRangoDisparo() {
 		return rangoDisparo;
+	}
+	
+	public void setRangoDisparo(float rangoDisparo) {
+		this.rangoDisparo = rangoDisparo;
+	}
+	
+	public boolean isEnfocado() {
+		return enfocado;
+	}
+	
+	public void setEnfocado(boolean enfocado) {
+		this.enfocado = enfocado;
 	}
 
 	public String getSpritesLaterales() {
 		return spritesLaterales;
 	}
 
-	public boolean isAltitudAlta() {
-		return altitudAlta;
-	}
-
-	public boolean isEnfocado() {
-		return enfocado;
-	}
-
-	public boolean isTieneBomba() {
-		return tieneBomba;
-	}
-
-	public void setAltitudAlta(boolean altitudAlta) {
-		this.altitudAlta = altitudAlta;
-	}
-
-	public void setBarraCombustible(float barraCombustible) {
-		this.barraCombustible = barraCombustible;
-	}
-
-	public void setEnfocado(boolean enfocado) {
-		this.enfocado = enfocado;
-	}
-
-
-	public void setRangoDisparo(float rangoDisparo) {
-		this.rangoDisparo = rangoDisparo;
-	}
-
 	public void setSpritesLaterales(String spritesLaterales) {
 		this.spritesLaterales = spritesLaterales;
 	}
-
-	public void setTieneBomba(boolean tieneBomba) {
-		this.tieneBomba = tieneBomba;
-	}
-
 }
