@@ -5,12 +5,12 @@ import java.util.Properties;
 
 public class Combate {
 
-	private String fondoImagen;
 	private int idCombate;
-	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 	private String nombrePartida;
+	private String fondoImagen;
 	private int tamanioAlto;
 	private int tamanioAncho;
+	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 
 	public Combate(int idCombate, String nombrePartida, String fondoImagen, int tamanioAlto, int tamanioAncho) {
 		super();
@@ -185,52 +185,51 @@ public class Combate {
 		}
 	}
 
+	public int getIdCombate() {
+		return idCombate;
+	}
+	
+	public void setIdCombate(int idCombate) {
+		this.idCombate = idCombate;
+	}
+	
+	public String getNombrePartida() {
+		return nombrePartida;
+	}
+	
+	public void setNombrePartida(String nombrePartida) {
+		this.nombrePartida = nombrePartida;
+	}
+	
 	public String getFondoImagen() {
 		return fondoImagen;
 	}
+	
+	public void setFondoImagen(String fondoImagen) {
+		this.fondoImagen = fondoImagen;
+	}
+	
+	public int getTamanioAlto() {
+		return tamanioAlto;
+	}
+	
+	public void setTamanioAlto(int tamanioAlto) {
+		this.tamanioAlto = tamanioAlto;
+	}
 
-	public int getIdCombate() {
-		return idCombate;
+	public int getTamanioAncho() {
+		return tamanioAncho;
+	}
+	
+	public void setTamanioAncho(int tamanioAncho) {
+		this.tamanioAncho = tamanioAncho;
 	}
 
 	public ArrayList<Jugador> getJugadores() {
 		return this.jugadores;
 	}
 
-	public String getNombrePartida() {
-		return nombrePartida;
-	}
-
-	public int getTamanioAlto() {
-		return tamanioAlto;
-	}
-
-	public int getTamanioAncho() {
-		return tamanioAncho;
-	}
-
-	public void setFondoImagen(String fondoImagen) {
-		this.fondoImagen = fondoImagen;
-	}
-
-	public void setIdCombate(int idCombate) {
-		this.idCombate = idCombate;
-	}
-
 	public void setJugadores(ArrayList<Jugador> j) {
 		this.jugadores = j;
 	}
-
-	public void setNombrePartida(String nombrePartida) {
-		this.nombrePartida = nombrePartida;
-	}
-
-	public void setTamanioAlto(int tamanioAlto) {
-		this.tamanioAlto = tamanioAlto;
-	}
-
-	public void setTamanioAncho(int tamanioAncho) {
-		this.tamanioAncho = tamanioAncho;
-	}
-
 }

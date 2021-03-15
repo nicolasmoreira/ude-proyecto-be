@@ -6,10 +6,10 @@ public class Defensa extends Componente {
 
 	public static final String TIPO_DEFENSA_ARTILLERIA = "ARTILLERIA";
 	public static final String TIPO_DEFENSA_TORRETA = "TORRETA";
-	private float demoraDesplazamiento;
-	private float rangoDisparo;
 	private String tipoDefensa;
-
+	private float rangoDisparo;
+	private float demoraDesplazamiento;
+	
 	public Defensa() {
 		super();
 	}
@@ -32,28 +32,27 @@ public class Defensa extends Componente {
 		this.sonido = p.getProperty("Sd" + tipoDefensa.trim());
 	}
 
-	public float getDemoraDesplazamiento() {
-		return demoraDesplazamiento;
-	}
-
-	public float getRangoDisparo() {
-		return rangoDisparo;
-	}
-
 	public String getTipoDefensa() {
 		return tipoDefensa;
 	}
-
-	public void setDemoraDesplazamiento(float demoraDesplazamiento) {
-		this.demoraDesplazamiento = demoraDesplazamiento;
+	
+	public void setTipoDefensa(String tipoDefensa) {
+		this.tipoDefensa = tipoDefensa;
 	}
 
 	public void setRangoDisparo(float rangoDisparo) {
 		this.rangoDisparo = rangoDisparo;
 	}
-
-	public void setTipoDefensa(String tipoDefensa) {
-		this.tipoDefensa = tipoDefensa;
+	
+	public float getRangoDisparo() {
+		return rangoDisparo;
 	}
-
+	
+	public float getDemoraDesplazamiento() {
+		return demoraDesplazamiento;
+	}
+	
+	public void setDemoraDesplazamiento(float demoraDesplazamiento) {
+		this.demoraDesplazamiento = demoraDesplazamiento;
+	}
 }
