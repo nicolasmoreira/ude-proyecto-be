@@ -1,8 +1,11 @@
 package com.ude.proyecto.logica;
 
 import java.io.InputStream;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -90,10 +93,13 @@ public class Fachada {
 		return daoCombate.listarCombates();
 	}
 
-	@SuppressWarnings("deprecation")
 	public void salvarPartida(Combate combate) throws Exception {
-		Date now = new Date();
-		daoCombate.guardarCombate(now.toLocaleString(), new Gson().toJsonTree(combate).toString());
+		Instant nowUtc = Instant.now();
+		ZoneId americaMontevideo = ZoneId.of("America/Montevideo");
+		ZonedDateTime nowAmericaMontevideo = ZonedDateTime.ofInstant(nowUtc, americaMontevideo);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+		daoCombate.guardarCombate(nowAmericaMontevideo.format(formatter),
+				new Gson().toJsonTree(combate).toString());
 	}
 
 	public void setComponente(int idJugador, int idComponente, String TipoComponente, JsonObject data) {
@@ -174,7 +180,7 @@ public class Fachada {
 					componente.setVida(vida);
 				}
 			}
-		}	
+		}
 	}
 
 	public void setCoordenadaComponente(int idJugador, int idComponente, String TipoComponente, float x, float y,
@@ -185,7 +191,7 @@ public class Fachada {
 			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setUbicacionY(y);
 			this.combate.getJugadores().get(idJugador).getAvion(idComponente).setRotacion(rotacion);
 		}
-		
+
 		if (this.combate != null && TipoComponente.equals(Defensa.TIPO_DEFENSA_ARTILLERIA)) {
 			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setUbicacionX(x);
 			this.combate.getJugadores().get(idJugador).getArtilleria(idComponente).setUbicacionY(y);
