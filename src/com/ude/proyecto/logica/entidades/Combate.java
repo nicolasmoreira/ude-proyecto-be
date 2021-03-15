@@ -121,6 +121,7 @@ public class Combate {
 				Defensa artilleria = new Defensa(Defensa.TIPO_DEFENSA_ARTILLERIA, p);
 
 				if (i <= cantArtilleria / 2) {// si es la 1ra mitad del camino, dibujo diagonal arriba
+				//if (0 == cantArtilleria % 2) {// si es la 1ra mitad del camino, dibujo diagonal arriba
 					artilleria.setUbicacionX(
 							artilleria.ubicacionInicial(
 									limiteCampo - depCombustible.getUbicacionX() - baseDistancia,
@@ -128,7 +129,7 @@ public class Combate {
 									));
 					artilleria.setUbicacionY(
 							artilleria.ubicacionInicial(
-									depCombustible.getUbicacionY(), baseDistancia
+									depCombustible.getUbicacionY(), baseDistancia  + 20	//para que no quede arriba de la torreta
 									));
 
 				} else { // si es la 2da mitad del camino, dibujo diagonal abajo
@@ -137,7 +138,8 @@ public class Combate {
 									depCombustible.getUbicacionX() + baseDistancia));
 					artilleria.setUbicacionY(
 							artilleria.ubicacionInicial(limiteCampo - depCombustible.getUbicacionY() - baseDistancia,
-									depCombustible.getUbicacionY() + baseDistancia));
+									depCombustible.getUbicacionY() + baseDistancia  + 20	//para que no quede arriba de la torreta
+									));
 
 				}
 				
