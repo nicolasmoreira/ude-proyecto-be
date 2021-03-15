@@ -39,7 +39,7 @@ public class CrearPartida extends HttpServlet {
 
 			Fachada fachada = Fachada.getInstanceFachada();
 
-			player = "Player1"; // a fuego por ahora
+			player = "Player1";
 
 			color = request.getParameter("color");
 

@@ -28,11 +28,8 @@ public class FinalizarPartida extends HttpServlet {
 
 		try {
 			Fachada fachada = Fachada.getInstanceFachada();
-
-			// json.add("partida", new Gson().toJsonTree(fachada.getPartida())); //devuelvo
-			// la partida para que se muestre como un scorre
 			json.addProperty("mensaje", "OK");
-			fachada.finalizarPartida();// la finalizo y la borro del Backend
+			fachada.finalizarPartida();
 			response.setStatus(200);
 		} catch (Exception e) {
 			json.addProperty("mensaje", e.getMessage());

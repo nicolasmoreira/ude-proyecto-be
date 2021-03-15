@@ -96,72 +96,39 @@ public class WebSocketServer {
 			int idJugador = data.get("idJugador").getAsInt();
 			int idComponente = data.get("idComponente").getAsInt();
 			String tipoComponente = data.get("tipoComponente").getAsString();
-
-			// System.out.println(data);
-			// fachada.setCoordenadaComponente(idJugador, idComponente, Avion.TIPO_AVION,
-			// ubicacionX, ubicacionY,rotacion);
-
-			// esto es para setear la vida del avion
 			fachada.setComponente(idJugador, idComponente, Avion.TIPO_AVION, data);
-
 			this.broadcastOne(message, session);
-
-			/*
-			 * { "idComponente": 1, "tipoComponente": "avion", "ubicacionX": 1,
-			 * "ubicacionY": 1, "rotacion": 1, "vida": 100, "sprite": "ASDADASDAD",
-			 * "sonido": "ASDADASDAD", "altitudAlta": false, "tieneBomba": false,
-			 * "barraCombustible": 100, "rangoDisparo": 100, "enfocado": true }
-			 */
-
 		} else if (EVENTS.MOVIMIENTO_TORRETA.getValue().equals(event)) {
 			int idJugador = data.get("idJugador").getAsInt();
 			int idComponente = data.get("idComponente").getAsInt();
 			String tipoComponente = data.get("tipoComponente").getAsString();
-
 			fachada.setComponente(idJugador, idComponente, tipoComponente, data);
 			this.broadcastOne(message, session);
-
 		} else if (EVENTS.DISPARO_AVION.getValue().equals(event)) {
 			this.broadcastOne(message, session);
-
 		} else if (EVENTS.DISPARO_TORRETA.getValue().equals(event)) {
-
 		} else if (EVENTS.PARTIDA_FINALIZADA.getValue().equals(event)) {
 			this.broadcastOne(message, session);
-			// this.broadcastAll(message);//, session);
-
 		} else if (EVENTS.PARTIDA_INICIADA.getValue().equals(event)) {
-
 		} else if (EVENTS.PARTIDA_DETENIDA.getValue().equals(event)) {
-			// System.out.println(event.toString());
 			this.broadcastOne(message, session);
-
 		} else if (EVENTS.PARTIDA_REANUDADA.getValue().equals(event)) {
 			this.broadcastOne(message, session);
-
 		} else if (EVENTS.COLISION_ENTRE_AVIONES.getValue().equals(event)) {
-
 		} else if (EVENTS.CARGA_COMBUSTIBLE.getValue().equals(event)) {
 			this.broadcastOne(message, session);
-
 		} else if (EVENTS.DESTRUCCION_PROVISION.getValue().equals(event)) {
 			int idJugador = data.get("idJugador").getAsInt();
 			int idComponente = data.get("idComponente").getAsInt();
 			String tipoComponente = data.get("tipoComponente").getAsString();
-
 			fachada.setComponente(idJugador, idComponente, tipoComponente, data);
-
 			this.broadcastOne(message, session);
-			// System.out.println(data);
 		} else if (EVENTS.AVION_DERRIBADO.getValue().equals(event)) {
-
 			int idJugador = data.get("idJugador").getAsInt();
 			int idComponente = data.get("idComponente").getAsInt();
 			fachada.setDerribarComponente(idJugador, idComponente, Avion.TIPO_AVION);
 			this.broadcastOne(message, session);
-
 		} else if (EVENTS.SALIR.getValue().equals(event)) {
-
 		} else {
 			throw new Exception("Event not implemented.");
 		}

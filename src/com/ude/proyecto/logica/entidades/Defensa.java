@@ -21,19 +21,15 @@ public class Defensa extends Componente {
 		this.tipoDefensa = tipoDefensa;
 		this.rangoDisparo = rangoDisparo;
 		this.demoraDesplazamiento = demoraDesplazamiento;
-
 	}
 
 	public Defensa(String tipoDefensa, Properties p) {
 		super(TIPO_DEFENSA, p);
 		this.tipoDefensa = tipoDefensa;
-		// Torreta y Artilleria
-
 		this.rangoDisparo = Float.parseFloat(p.getProperty("rangDisp" + tipoDefensa.trim()));
 		this.demoraDesplazamiento = Float.parseFloat(p.getProperty("demDesp" + tipoDefensa.trim()));
 		this.sprite = p.getProperty("Sp" + tipoDefensa.trim());
 		this.sonido = p.getProperty("Sd" + tipoDefensa.trim());
-
 	}
 
 	public float getDemoraDesplazamiento() {

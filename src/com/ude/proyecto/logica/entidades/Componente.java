@@ -14,15 +14,14 @@ public abstract class Componente {
 	protected String sprite;
 	protected String tipoComponente;
 	protected float ubicacionX;
-
 	protected float ubicacionY;
 	protected int vida;
 
-	public Componente() {
+	protected Componente() {
 		super();
 	}
 
-	public Componente(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY, float rotacion,
+	protected Componente(int idComponente, String tipoComponente, float ubicacionX, float ubicacionY, float rotacion,
 			int vida, String sprite, String sonido) {
 		super();
 		this.idComponente = idComponente;
@@ -35,8 +34,7 @@ public abstract class Componente {
 		this.sonido = sonido;
 	}
 
-	public Componente(String tipoComponente, Properties p) {
-
+	protected Componente(String tipoComponente, Properties p) {
 		this.idComponente = Componente.idAutonumerico++;
 		this.tipoComponente = tipoComponente;
 
@@ -49,52 +47,6 @@ public abstract class Componente {
 
 		this.ubicacionX = ubicacionInicial(margen, verticeX);
 		this.ubicacionY = ubicacionInicial(margen, verticeY);
-
-		// System.out.print("this.ubicacionX " + String.valueOf(this.ubicacionX) +
-		// "this.ubicacionY " + String.valueOf(this.ubicacionY));
-
-//		/*
-//		switch(tipoComponente)
-//		{
-//		   // declaraci�n case
-//		   // los valores deben ser del mismo tipo de la expresi�n
-//		   case "Provision" :			    
-//			  /* this.idComponente = 1;
-//			   this.ubicacionX = 100;
-//			   this.ubicacionY = 100;*/
-//			   this.rotacion = Integer.parseInt(p.getProperty(tipoComponente + "Rotacion")); // 0;
-//			   this.vida = Integer.parseInt(p.getProperty(tipoComponente + "Vida"));//1;
-//			 //  this.sprite = "DepositoCombustible";
-//			 //  this.sonido = "DepositoCombustible";	   
-//			   
-//			   break;
-//		   
-//		   case "Defensa" :
-//			  // this.idComponente = 1;
-//			  // this.ubicacionX = 150;
-//			  // this.ubicacionY = 150;
-//			   this.rotacion = 0;
-//			   this.vida = 1;
-//			  // this.sprite = "Defensa";
-//			  // this.sonido = "Defensa";	   
-//			   	      
-//			   break; 
-//		
-//		   case "Avion" :
-//			  // this.idComponente = 1;
-//			  // this.ubicacionX = 150;
-//			  // this.ubicacionY = 150;
-//			   this.rotacion = 0;
-//			  // this.vida = 5;
-//			   this.sprite = "Avion";
-//			   this.sonido = "Avion";	   
-//			   	      
-//			   break; 
-//	   
-//			   
-//		   default : 
-//		      // Declaraciones
-//		}		
 	}
 
 	public int getIdComponente() {
@@ -162,17 +114,12 @@ public abstract class Componente {
 	}
 
 	public void ubicacionEspejar(int tamanioPantalla, float ubicacionY) {
-		// la forma de espejar es restando al tamanio de la pantalla la ubicacion X
-		// solamente
 		this.ubicacionX = tamanioPantalla - this.ubicacionX;
 		this.ubicacionY = ubicacionY;
 	}
 
 	public float ubicacionInicial(float margen, float veritce) {
-		// calcula un random en un area cuadrada a partir de un vertice (x e y) inicial,
-		// por ejemplo x=100 y=100
-		return (int) (Math.random() * margen + veritce); // para que no se construlla en campo enemigo
-		// https://programandoointentandolo.com/2013/10/como-generar-numeros-aleatorios-en-java.html#:~:text=La%20formula%20para%20obtener%20un,%3D%20(int)(Math.
+		return (int) (Math.random() * margen + veritce);
 	}
 
 }
