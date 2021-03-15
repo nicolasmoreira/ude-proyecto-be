@@ -14,7 +14,6 @@ public abstract class Componente {
 	protected String sprite;
 	protected String tipoComponente;
 	protected float ubicacionX;
-
 	protected float ubicacionY;
 	protected int vida;
 

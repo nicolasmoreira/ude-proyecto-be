@@ -21,7 +21,6 @@ public class Defensa extends Componente {
 		this.tipoDefensa = tipoDefensa;
 		this.rangoDisparo = rangoDisparo;
 		this.demoraDesplazamiento = demoraDesplazamiento;
-
 	}
 
 	public Defensa(String tipoDefensa, Properties p) {
@@ -31,7 +30,6 @@ public class Defensa extends Componente {
 		this.demoraDesplazamiento = Float.parseFloat(p.getProperty("demDesp" + tipoDefensa.trim()));
 		this.sprite = p.getProperty("Sp" + tipoDefensa.trim());
 		this.sonido = p.getProperty("Sd" + tipoDefensa.trim());
-
 	}
 
 	public float getDemoraDesplazamiento() {
