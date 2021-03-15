@@ -23,7 +23,6 @@ public class DAOCombate {
 
 	public String cargarCombate(int codigo) {
 
-		// levanto el combate
 		String query = "SELECT partida from DAOCombate WHERE codigo = ?";
 		String combateStr = "";
 

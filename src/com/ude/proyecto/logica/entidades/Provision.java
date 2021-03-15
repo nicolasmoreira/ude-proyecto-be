@@ -21,12 +21,11 @@ public class Provision extends Componente {
 		this.cantProvision = cantProvision;
 	}
 
-	public Provision(String tipoProvision, Properties p) {// provision
+	public Provision(String tipoProvision, Properties p) {
 		super(TIPO_PROVISION, p);
 
 		this.tipoProvision = tipoProvision;
 
-		// combustible o explosivos
 		if (tipoProvision.equals(Provision.TIPO_PROVISION_COMBUSTIBLE)) {
 			this.cantProvision = Float.parseFloat(p.getProperty("cantProvisionCombustible"));
 			this.sprite = p.getProperty("SpDepositoCombustible");
@@ -36,16 +35,6 @@ public class Provision extends Componente {
 			this.sprite = p.getProperty("SpDepositoExplosivos");
 			this.sonido = p.getProperty("SdDepositoExplosivos");
 		}
-
-		/*
-		 * aca crear un iniciador por defecto de combustible (lo brinda el componente)
-		 */
-		/*
-		 * this.setIdComponente(1); //this.setTipoProvision("COMBUSTIBLE");
-		 * this.setRotacion(0); this.setVida(1);
-		 * 
-		 */
-		// this.setTipoComponente(tipComp);
 	}
 
 	public float getCantProvision() {

@@ -37,11 +37,10 @@ public class Jugador {
 		return artillerias;
 	}
 
-	// primitivas de avion
 	public Avion getAvion(int idComponente) {
-
 		for (Avion avion : this.aviones) {
 			if (avion.getIdComponente() == idComponente) {
+				
 				return avion;
 			}
 		}

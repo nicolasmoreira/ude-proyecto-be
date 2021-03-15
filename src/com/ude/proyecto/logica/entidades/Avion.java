@@ -30,14 +30,12 @@ public class Avion extends Componente {
 		this.spritesLaterales = spritesLaterales;
 	}
 
-	// creador inicial desde properties
 	public Avion(Properties p) {
 		super(TIPO_AVION, p);
 		this.altitudAlta = Boolean.getBoolean(p.getProperty("altitudAlta"));
 		this.tieneBomba = Boolean.getBoolean(p.getProperty("tieneBomba"));
 		this.barraCombustible = Float.parseFloat(p.getProperty("barraCombustible"));
-		this.rangoDisparo = Float.parseFloat(p.getProperty("rangoDisparoAvion")); // este es un multiplo del tamanio del
-																					// avion
+		this.rangoDisparo = Float.parseFloat(p.getProperty("rangoDisparoAvion"));
 		this.enfocado = Boolean.getBoolean(p.getProperty("enfocado"));
 		this.setSprite(p.getProperty("SpAvion"));
 		this.setSonido(p.getProperty("SdAvion"));

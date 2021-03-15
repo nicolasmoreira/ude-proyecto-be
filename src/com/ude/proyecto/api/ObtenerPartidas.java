@@ -21,6 +21,7 @@ public class ObtenerPartidas extends HttpServlet {
 		super();
 	}
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -28,7 +29,6 @@ public class ObtenerPartidas extends HttpServlet {
 
 		try {
 			Fachada fachada = Fachada.getInstanceFachada();
-
 			json.add("partidas", new Gson().toJsonTree(fachada.listarPartidas()));
 			response.setStatus(200);
 		} catch (Exception e) {

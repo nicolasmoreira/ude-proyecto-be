@@ -10,18 +10,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-//import com.ude.proyecto.logica.vo.VOAvion;
-//import logica.objetos.Avion;
-
 public class creaBase {
 
 	public static void main(String[] args) {
-		// Properties p = new Properties();
 		InputStream input = null;
 		try {
-			// Properties p = new Properties();
-			// String nomArch = "config.properties";
-			// p.load(new FileInputStream("config.properties"));
 			Properties p = new Properties();
 			p.load(new FileInputStream("src/config.properties"));
 
@@ -41,15 +34,12 @@ public class creaBase {
 			Statement stmt;
 			int cant;
 
-			/* borro base de datos */
 			creaBase = "DROP DATABASE IF EXISTS " + database;
 			stmt = con.prepareStatement(creaBase);
 			cant = stmt.executeUpdate(creaBase);
 			stmt.close();
 
-			/* Creo la base de datos */
-
-			creaBase = "Create database " + database; // Juego";
+			creaBase = "Create database " + database;
 			stmt = con.prepareStatement(creaBase);
 			cant = stmt.executeUpdate(creaBase);
 			stmt.close();
@@ -57,15 +47,12 @@ public class creaBase {
 			System.out.println(cant + " bases creadas");
 			System.out.println("Estamos con conexion a MYSQL :)");
 
-			/* Selecciono base */
-			creaBase = "Use " + database;// Juego";
+			creaBase = "Use " + database;
 			stmt = con.prepareStatement(creaBase);
 			cant = stmt.executeUpdate(creaBase);
 			stmt.close();
 			System.out.print("Resultado de " + creaBase + ": ");
 			System.out.println(cant + " bases seleccionadas");
-
-			/* Creo tabla DAOCombate */
 
 			String creaTabla = "create table DAOCombate (codigo int (3) AUTO_INCREMENT primary key, nombre_partida VARCHAR(255), partida TEXT)";
 			Statement stmt2 = con.createStatement();
@@ -73,30 +60,7 @@ public class creaBase {
 			stmt2.close();
 			System.out.print("Resultado de " + creaTabla + ": ");
 			System.out.println(cant + " tablas creadas");
-
-			/* Inserto los registros iniciales */
-//			String creareg = "insert into Avion values ('Matias-3',5,5,0)";
-//			Statement stmt4 = con.createStatement();
-//			cant = stmt4.executeUpdate(creareg);
-//			creareg = "insert into Avion values ('Matias-2',100,100,0)";
-//			cant = stmt4.executeUpdate(creareg);
-//			stmt4.close();
-
-			// prueba select de datos
-
-//			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Avion");
-//			ResultSet rs = pstmt.executeQuery();
-//			if (rs.next()) {
-//				float coordX = rs.getFloat("coordX");
-//				float coordY = rs.getFloat("coordY");
-//				boolean colision = rs.getBoolean("colision");
-//				VOAvion VOA = new VOAvion(coordX, coordY, colision);
-//				System.out.println(VOA.toString());
-//			}
-//			rs.close();
-//			pstmt.close();
-
-			/* Cierro la conexion con la base de datos */
+			
 			con.close();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
