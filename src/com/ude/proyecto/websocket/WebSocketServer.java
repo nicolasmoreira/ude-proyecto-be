@@ -63,8 +63,8 @@ public class WebSocketServer {
 	@OnClose
 	public void onClose(CloseReason reason, Session session) throws Exception {
 		System.out.println("Cerrando la sessions: " + session.getId() + ", motivo: " + reason.getReasonPhrase());
-		System.out.println("Cantidad de sessions: " + sessions.size());
 		sessions.remove(session.getId());
+		System.out.println("Cantidad de sessions: " + sessions.size());		
 		if (sessions.size() == 0) {
 			fachada.finalizarPartida();
 		}
